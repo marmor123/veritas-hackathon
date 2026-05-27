@@ -39,7 +39,6 @@ The core metaphor: a blood test is a sensor network from an industrial system. C
 ## Project Structure
 
 ```
-veritas/
 ├── frontend/           # React + TypeScript + Tailwind + D3.js
 │   └── src/
 │       ├── components/ # Dashboard, Upload, PatternDetail, NetworkGraph, etc.

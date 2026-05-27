@@ -414,7 +414,6 @@ Replace each hardcoded piece with real implementation:
 ## File Structure
 
 ```
-veritas/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
