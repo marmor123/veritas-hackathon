@@ -237,7 +237,7 @@ A: Privacy is the feature. "Your blood test never leaves your device" is a power
 A: It won't be. QVAC MedPsy 1.7B runs at ~22 tokens/sec on laptop hardware. A full synthesis takes 10-15 seconds. For a hackathon demo, that's fast enough.
 
 **Q: What if we don't have Wallach's book?**
-A: We need excerpts for the knowledge base. The medical student handles sourcing. For the demo, we need ~30 clinical pattern descriptions covering the most common blood test findings.
+A: We have access via Hebrew University's institutional subscription (lwwhealthlibrary.com). The medical student copies HTML source (View Source) of the clinical pattern chapters. A parser (`knowledge-base/parse_wallach.py`) auto-extracts chunks, detects biomarkers, and classifies by organ system — no manual writing needed. The med student validates the extracted chunks for clinical accuracy (~1-2 hours).
 
 **Q: What if the wearable API is a pain?**
 A: Mock data fallback. We pre-generate realistic 30-day datasets for our demo scenarios. The real API integration is bonus points.

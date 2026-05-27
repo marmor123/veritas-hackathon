@@ -335,7 +335,7 @@ Response: {summary, patterns: [{name, severity, confidence, explanation, citatio
 
 ## Day 0 Prep (Before the 36-Hour Clock)
 
-- [ ] Medical student: prepare paraphrased clinical pattern summaries for ~30 conditions (sourced from Wallach + guidelines, not verbatim copies — avoids copyright issues)
+- [ ] Medical student: copy HTML source (View Source) of clinical chapters (Ch. 2+) from Wallach website; run `parse_wallach.py` to auto-extract chunks; validate clinical accuracy and chunk boundaries (Chapter 1 is pre-analytical errors — useful for verification rules, not RAG)
 - [ ] Find/scan 5 test blood test PDFs covering all 4 demo scenarios + one all-normal
 - [ ] Set up development environments on all laptops (Python, Node, Tesseract, Ollama)
 - [ ] Pre-download all models: QVAC MedPsy 1.7B, all-MiniLM-L6-v2, ms-marco-MiniLM-L-6-v2
@@ -405,7 +405,7 @@ Replace each hardcoded piece with real implementation:
 | Scope creep, nothing polished | Hard priority: Pattern Cards > Verification > Doctor Questions > Network Graph |
 | LLM hallucinates clinical claims | Citation requirement in prompt; medical student review; GBNF forces citation fields |
 | Wearable API access issues | Mock data fallback with 4 realistic scenarios |
-| Wallach copyright concerns | Medical student writes original pattern summaries (not verbatim excerpts) |
+| Wallach copyright/IP concerns | Medical student validates extracted chunks for clinical accuracy; parser extracts structured data (not verbatim redistribution); all processing on-device |
 | Demo fails due to live LLM issue | Pre-cached JSON outputs for all 4 scenarios; one-click switch to cached mode |
 | Integration breaks in final hours | Walking skeleton from Hour 2; integration test suite run after every module |
 
@@ -438,8 +438,10 @@ Replace each hardcoded piece with real implementation:
 │   ├── llm/                     # Prompts, synthesis, parsing
 │   └── wearable/                # Health data connectors
 ├── knowledge-base/
-│   ├── raw/                     # Source texts
-│   ├── build_kb.py              # Chunking + embedding + LanceDB load
+│   ├── raw/                     # Wallach HTML source (view-source copies)
+│   ├── parse_wallach.py         # HTML parser: extract chunks → chunks.json
+│   ├── chunks.json              # Extracted clinical pattern chunks
+│   ├── build_kb.py              # Embed chunks → LanceDB
 │   └── test_queries.py          # Retrieval quality testing
 ├── docs/
 │   ├── FOR_TEAMMATES.md         # Medical context for CS students

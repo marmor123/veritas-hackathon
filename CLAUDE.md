@@ -61,8 +61,10 @@ The core metaphor: a blood test is a sensor network from an industrial system. C
 │   ├── llm/            # Prompts, Ollama synthesis, output parsing
 │   └── wearable/       # Apple Health / Google Fit connectors
 ├── knowledge-base/     # Build scripts + raw source texts
-│   ├── raw/            # Wallach excerpts, guideline PDFs
-│   └── build_kb.py     # Chunk → embed → LanceDB
+│   ├── raw/            # Wallach HTML source (view-source copies)
+│   ├── parse_wallach.py  # Parse HTML → chunks.json
+│   ├── build_kb.py     # Chunk → embed → LanceDB
+│   └── chunks.json     # Extracted clinical pattern chunks
 └── docs/               # Planning documents (read these first)
 ```
 
@@ -80,7 +82,7 @@ The core metaphor: a blood test is a sensor network from an industrial system. C
 
 ## Day 0 Prep (Before the Clock)
 
-- Medical student: write original pattern summaries for ~30 conditions (not verbatim Wallach)
+- Medical student: copy HTML source of clinical chapters (Ch. 2+) from Wallach website; run `parse_wallach.py` to extract chunks; validate clinical accuracy and chunk boundaries
 - Find/scan 5 test blood test PDFs (all 4 demo scenarios + one all-normal)
 - Set up dev environments, pre-download all models (QVAC MedPsy, MiniLM, ms-marco)
 - Write demo scripts (30s per scenario), prepare "before" mockups
@@ -97,7 +99,7 @@ The core metaphor: a blood test is a sensor network from an industrial system. C
 - Module 3: `backend/verification/` — run integration tests after each module
 
 ### Phase 2 (Hours 12-22): RAG, LLM, Dashboard
-- Module 4: `knowledge-base/build_kb.py` + `backend/rag/` (multi-label, relevance threshold)
+- Module 4: `knowledge-base/parse_wallach.py` → `knowledge-base/build_kb.py` → `backend/rag/` (multi-label, relevance threshold)
 - Module 5: `backend/llm/` (GBNF grammar, token budget, pre-cached outputs)
 - Module 6: Dashboard components (progressive rendering, demo mode, clear data, network Plan A)
 
@@ -126,8 +128,8 @@ cd backend && pip install fastapi uvicorn python-multipart pytesseract pdf2image
 # Frontend
 cd frontend && npm install react react-dom typescript tailwindcss @types/react d3 @types/d3 framer-motion
 
-# Knowledge base (run once)
-cd knowledge-base && python build_kb.py
+# Knowledge base (run once per book)
+cd knowledge-base && python parse_wallach.py raw/chapter*.html && python build_kb.py
 
 # LLM
 ollama pull qvac-medpsy:1.7b
@@ -166,7 +168,8 @@ Rule: if everything is red, nothing is. Reserve red for genuinely dangerous valu
 - [x] Architecture designed (with state-of-the-art RAG, GBNF grammar, progressive UI)
 - [x] Documentation: FOR_TEAMMATES (.md + .html), ARCHITECTURE.md, AGENT_PLAN.md, DESIGN_SPEC.md
 - [x] Project directory structure created
-- [ ] Day 0 prep: pattern summaries, test PDFs, model downloads, demo scripts
+- [x] Wallach HTML parser (`knowledge-base/parse_wallach.py`) — ready, tested on Ch. 1 structure
+- [ ] Day 0 prep: copy clinical chapters from Wallach website, run parser, validate chunks, find 5 test PDFs, download models, write demo scripts
 - [ ] Shared Pydantic schemas (`backend/api/models/schemas.py`)
 - [ ] Integration test suite (3 reference cases)
 - [ ] Walking skeleton (hardcoded end-to-end pipeline)

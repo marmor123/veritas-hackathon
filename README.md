@@ -23,8 +23,9 @@ cd frontend
 npm install
 npm run dev
 
-# Knowledge Base (run once)
+# Knowledge Base (run once per book)
 cd knowledge-base
+python parse_wallach.py raw/chapter*.html
 python build_kb.py
 
 # Local LLM (separate terminal)
