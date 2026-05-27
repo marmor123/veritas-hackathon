@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERITAS — Team Onboarding</title>
+<style>
+  :root {
+    --warning: #DC2626;
+    --warning-bg: #FEF2F2;
+    --warning-border: #FECACA;
+    --caution: #D97706;
+    --caution-bg: #FFFBEB;
+    --caution-border: #FDE68A;
+    --advisory: #2563EB;
+    --advisory-bg: #EFF6FF;
+    --advisory-border: #BFDBFE;
+    --normal: #16A34A;
+    --normal-bg: #F0FDF4;
+    --normal-border: #BBF7D0;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --border: #E2E8F0;
+    --accent: #7C3AED;
+    --accent-bg: #F5F3FF;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #312E81 100%);
+    color: white;
+    padding: 80px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(124,58,237,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(37,99,235,0.1) 0%, transparent 60%);
+    animation: heroPulse 8s ease-in-out infinite;
+  }
+  @keyframes heroPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: #A78BFA; }
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #C4B5FD;
+  }
+  .hero-stat .label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Layout ──────────────────── */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  section { padding: 64px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  /* ── Typography ──────────────── */
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  /* ── Cards ───────────────────── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  /* ── Pipeline Diagram ────────── */
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 32px 0;
+  }
+  .pipeline-step {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .pipeline-connector {
+    width: 3px;
+    background: var(--border);
+    margin: 0 auto;
+    height: 24px;
+    border-radius: 2px;
+  }
+  .pipeline-node {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+  }
+  .pipeline-num {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .pipeline-num.ocr { background: #FEF3C7; color: #92400E; }
+  .pipeline-num.context { background: #E0E7FF; color: #3730A3; }
+  .pipeline-num.verify { background: #FCE7F3; color: #9D174D; }
+  .pipeline-num.rag { background: #D1FAE5; color: #065F46; }
+  .pipeline-num.llm { background: #EDE9FE; color: #5B21B6; }
+  .pipeline-num.dash { background: #FEE2E2; color: #991B1B; }
+  .pipeline-body { flex: 1; }
+  .pipeline-body strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .pipeline-body span { font-size: 13px; color: var(--text-secondary); }
+  .pipeline-owner {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ── Severity Badges ─────────── */
+  .severity-demo {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .sev-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .sev-warning {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border: 1.5px solid var(--warning-border);
+  }
+  .sev-caution {
+    background: var(--caution-bg);
+    color: var(--caution);
+    border: 1.5px solid var(--caution-border);
+  }
+  .sev-advisory {
+    background: var(--advisory-bg);
+    color: var(--advisory);
+    border: 1.5px solid var(--advisory-border);
+  }
+  .sev-normal {
+    background: var(--normal-bg);
+    color: var(--normal);
+    border: 1.5px solid var(--normal-border);
+  }
+
+  /* ── Pattern Flow ────────────── */
+  .cascade {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+  }
+  .cascade-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .cascade-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+  }
+  .cascade-arrow {
+    color: var(--warning);
+    font-weight: 700;
+    font-size: 20px;
+    padding-left: 24px;
+    line-height: 1;
+  }
+  .cascade-label { font-weight: 600; color: var(--text); min-width: 140px; }
+  .cascade-detail { color: var(--text-secondary); font-size: 13px; }
+
+  /* ── Callout Boxes ───────────── */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-bg);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .callout strong { color: var(--accent); }
+
+  /* ── Comparison Table ────────── */
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .compare-table th {
+    background: #F1F5F9;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .compare-table .bad { color: var(--warning); font-weight: 500; }
+  .compare-table .good { color: var(--normal); font-weight: 500; }
+
+  /* ── Industry Grid ───────────── */
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .industry-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .industry-card .icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .industry-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .industry-card .from {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .industry-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* ── FAQ ─────────────────────── */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .faq-a {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* ── Footer ──────────────────── */
+  footer {
+    background: #0F172A;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+  }
+
+  /* ── Responsive ──────────────── */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 16px 40px; }
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .hero-stats { gap: 20px; }
+    .hero-stat .num { font-size: 22px; }
+    section { padding: 40px 0; }
+    h2 { font-size: 22px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .industry-grid { grid-template-columns: 1fr; }
+    .pipeline-owner { display: none; }
+    .pipeline-node { padding: 12px 14px; }
+  }
+
+  @media print {
+    .hero { background: white; color: black; padding: 20px 0; }
+    .hero p, .hero-badge, .hero-stats { color: #475569; }
+    .hero h1 span { color: #7C3AED; }
+    section { padding: 24px 0; break-inside: avoid; }
+    .card, .cascade, .pipeline-node { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">HACKATHON 2026 · BEYOND ALERTS</div>
+    <h1>VERITAS</h1>
+    <p>We apply industrial alarm management to human biology — so people stop getting 40 panic-inducing alerts and start understanding what's actually happening in their body.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">6</div><div class="label">CS Students</div></div>
+      <div class="hero-stat"><div class="num">1</div><div class="label">Med Student</div></div>
+      <div class="hero-stat"><div class="num">6</div><div class="label">Modules</div></div>
+      <div class="hero-stat"><div class="num">36h</div><div class="label">Build Time</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- WHY THIS MATTERS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>The Problem We're Solving</h2>
+    <p class="section-subtitle">200 million blood tests happen every year. Here's what the user sees.</p>
+
+    <div class="card" style="font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; background: #1E293B; color: #E2E8F0; border: none;">
+      <div style="display: grid; grid-template-columns: 1fr 80px 60px 80px 40px; gap: 8px 16px; font-size: 13px;">
+        <div style="color: #94A3B8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;">Test</div>
+        <div style="color: #94A3B8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;">Result</div>
+        <div style="color: #94A3B8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;">Flag</div>
+        <div style="color: #94A3B8; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;">Range</div>
+        <div></div>
+        <div>Glucose</div><div>102</div><div style="color: #FCA5A5;">H</div><div>70–100</div><div>🔴</div>
+        <div>Cholesterol</div><div>228</div><div style="color: #FCA5A5;">H</div><div>&lt;200</div><div>🔴</div>
+        <div>HDL</div><div>36</div><div style="color: #FCA5A5;">L</div><div>&gt;40</div><div>🔴</div>
+        <div>Triglycerides</div><div>198</div><div style="color: #FCA5A5;">H</div><div>&lt;150</div><div>🔴</div>
+        <div>ALT</div><div>48</div><div style="color: #FCA5A5;">H</div><div>&lt;35</div><div>🔴</div>
+        <div>Uric Acid</div><div>7.4</div><div style="color: #FCA5A5;">H</div><div>3.5–7.2</div><div>🔴</div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 24px 0;">
+      <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 8px;">Existing apps see this →</div>
+      <div class="severity-demo" style="justify-content: center;">
+        <span class="sev-badge sev-warning" style="font-size: 18px; padding: 14px 28px;">⚠ 6 Separate Alerts</span>
+      </div>
+      <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">User panics. Googles each one. WebMD spiral.</div>
+    </div>
+
+    <div style="text-align: center; margin: 24px 0;">
+      <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 8px;">We see this →</div>
+      <div class="severity-demo" style="justify-content: center;">
+        <span class="sev-badge sev-caution" style="font-size: 18px; padding: 14px 28px;">⚠ 1 Pattern: Metabolic</span>
+      </div>
+      <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">"The underlying pattern is insulin resistance. Discuss with your doctor."</div>
+    </div>
+
+    <div class="callout">
+      <strong>The reality:</strong> Those 6 red flags aren't 6 separate problems. They're one pattern — metabolic syndrome. Everything is a downstream effect of the same root cause. We're the only consumer app that tells you that.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HOW IT WORKS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>How It Works</h2>
+    <p class="section-subtitle">Upload a blood test PDF. The system verifies, correlates, and explains. Everything runs on your device.</p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num ocr">1</div>
+          <div class="pipeline-body">
+            <strong>OCR Pipeline</strong>
+            <span>Extract biomarkers from PDF/image → structured JSON</span>
+          </div>
+          <div class="pipeline-owner">1 CS</div>
+        </div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num context">2</div>
+          <div class="pipeline-body">
+            <strong>Context Collector</strong>
+            <span>Medications, supplements, wearable data (Apple Health / Google Fit)</span>
+          </div>
+          <div class="pipeline-owner">1 CS</div>
+        </div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num verify">3</div>
+          <div class="pipeline-body">
+            <strong>Verification Layer</strong>
+            <span>Drug interference, hemolysis detection, physiological plausibility</span>
+          </div>
+          <div class="pipeline-owner">Med + 1 CS</div>
+        </div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num rag">4</div>
+          <div class="pipeline-body">
+            <strong>RAG Engine</strong>
+            <span>Retrieve matching clinical patterns from Wallach + guidelines (LanceDB)</span>
+          </div>
+          <div class="pipeline-owner">2 CS</div>
+        </div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num llm">5</div>
+          <div class="pipeline-body">
+            <strong>LLM Synthesis</strong>
+            <span>Pattern grouping, severity assignment, doctor questions, citations (QVAC MedPsy 1.7B)</span>
+          </div>
+          <div class="pipeline-owner">1 CS</div>
+        </div>
+      </div>
+      <div class="pipeline-connector"></div>
+      <div class="pipeline-step">
+        <div class="pipeline-node">
+          <div class="pipeline-num dash">6</div>
+          <div class="pipeline-body">
+            <strong>Dashboard</strong>
+            <span>Pattern cards, interactive network graph, doctor questions (React + D3.js)</span>
+          </div>
+          <div class="pipeline-owner">2 CS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- MEDICAL CONCEPTS FOR CS PEOPLE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Medical Concepts → CS Terms</h2>
+    <p class="section-subtitle">Everything you need to understand. Nothing you don't.</p>
+
+    <h3 style="margin-top: 32px;">Blood Test = Sensor Array</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Panel</th><th>What It Measures</th><th>CS Analogy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>CBC</strong></td><td>Red/white blood cells, hemoglobin, platelets, MCV</td><td>System health — CPU load, memory, uptime</td></tr>
+        <tr><td><strong>CMP</strong></td><td>Glucose, electrolytes, kidney values, liver enzymes</td><td>Resource monitors — power draw, thermals</td></tr>
+        <tr><td><strong>Lipids</strong></td><td>Cholesterol, HDL, LDL, triglycerides</td><td>Network throughput — bandwidth, packet loss</td></tr>
+        <tr><td><strong>Thyroid</strong></td><td>TSH, T3, T4</td><td>Clock signal — everything's timing depends on it</td></tr>
+        <tr><td><strong>Iron Panel</strong></td><td>Ferritin, serum iron, transferrin, saturation</td><td>Resource reserves — cache levels, buffer capacity</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top: 40px;">Clinical Pattern = Stack Trace</h3>
+    <p style="margin-bottom: 16px;">You don't debug each stack frame independently — you recognize the pattern. Same with blood work.</p>
+
+    <div class="cascade">
+      <div style="font-weight: 700; font-size: 15px; margin-bottom: 16px; color: var(--warning);">🔴 Iron Deficiency Cascade</div>
+      <div class="cascade-steps">
+        <div class="cascade-step">
+          <span class="cascade-label">Low Ferritin (12)</span>
+          <span class="cascade-detail">Iron storage tanks empty</span>
+        </div>
+        <div class="cascade-arrow">└─→</div>
+        <div class="cascade-step">
+          <span class="cascade-label">Low Serum Iron (35)</span>
+          <span class="cascade-detail">Not enough iron moving through blood</span>
+        </div>
+        <div class="cascade-arrow">└─→</div>
+        <div class="cascade-step">
+          <span class="cascade-label">Low MCV (78)</span>
+          <span class="cascade-detail">Red blood cells getting smaller (microcytic)</span>
+        </div>
+        <div class="cascade-arrow">└─→</div>
+        <div class="cascade-step">
+          <span class="cascade-label">Low Hemoglobin (11.2)</span>
+          <span class="cascade-detail">Anemia — less oxygen in circulation</span>
+        </div>
+        <div class="cascade-arrow">└─→</div>
+        <div class="cascade-step" style="background: #FEF3C7; border: 1px solid #FDE68A;">
+          <span class="cascade-label">⬆ Resting HR (76 bpm)</span>
+          <span class="cascade-detail">Heart compensating for low oxygen — <strong>visible on smartwatch</strong></span>
+        </div>
+      </div>
+      <div style="margin-top: 16px; padding: 12px; background: var(--normal-bg); border-radius: var(--radius-sm); font-size: 14px;">
+        <strong>🟢 Our output:</strong> "Pattern consistent with iron deficiency — <em>potentially symptomatic</em> (elevated resting HR detected). 1 pattern card. Not 5 alerts."
+      </div>
+    </div>
+
+    <h3 style="margin-top: 40px;">RAG Pipeline — How We Retrieve Clinical Knowledge</h3>
+    <p style="margin-bottom: 16px; font-size: 14px; color: var(--text-secondary);">Five-stage retrieval pipeline. This is state-of-the-art RAG, not a naive vector search.</p>
+
+    <div class="cascade" style="border-left: 4px solid var(--accent); margin-bottom: 20px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; min-width: 32px; text-align: center;">1</div>
+          <div>
+            <strong style="font-size: 14px;">Query Rewriting</strong>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 2px 0 0;">LLM transforms raw data <code style="background:#F1F5F9;padding:1px 4px;border-radius:3px;">"ferritin 12, MCV 78"</code> into clinical query <code style="background:#F1F5F9;padding:1px 4px;border-radius:3px;">"Microcytic anemia with depleted iron — differential: iron deficiency vs ACD"</code></p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; min-width: 32px; text-align: center;">2</div>
+          <div>
+            <strong style="font-size: 14px;">Metadata-Filtered Hybrid Search</strong>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 2px 0 0;">Pre-filter by organ system (e.g., only hematologic chunks) → semantic + keyword search within filtered set</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; min-width: 32px; text-align: center;">3</div>
+          <div>
+            <strong style="font-size: 14px;">Cross-Encoder Re-Ranking</strong>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 2px 0 0;">Small second model (~90MB) reads each (query, chunk) pair and scores relevance directly — much more accurate than embedding similarity</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; min-width: 32px; text-align: center;">4</div>
+          <div>
+            <strong style="font-size: 14px;">Citation Tracking</strong>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 2px 0 0;">Every chunk carries immutable source metadata — Wallach chapter, page, pattern name</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="background: var(--accent-bg); color: var(--accent); font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; min-width: 32px; text-align: center;">5</div>
+          <div>
+            <strong style="font-size: 14px;">LLM Synthesis</strong>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 2px 0 0;">Top-5 chunks → LLM generates structured explanation with citations. Every claim traceable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>Naive RAG (what most apps would do)</th><th>Our RAG</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bad">Embed raw biomarker names → search → hope for the best</td>
+          <td class="good">Rewrite → filter → hybrid search → cross-encoder re-rank → synthesize</td>
+        </tr>
+        <tr>
+          <td class="bad">LLM generates explanation from training data → might be plausible-sounding fiction</td>
+          <td class="good">LLM receives retrieved textbook chapters → synthesizes citing specific sources</td>
+        </tr>
+        <tr>
+          <td class="bad">No way to verify claims</td>
+          <td class="good">Every assertion traceable to a specific chunk in the knowledge base</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- THE EDGE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Our "Edge" — Cross-Industry Alert Management</h2>
+    <p class="section-subtitle">Healthcare's alert fatigue crisis has already been solved — in other industries. We're importing those solutions.</p>
+
+    <div class="industry-grid">
+      <div class="industry-card">
+        <div class="icon">🛡️</div>
+        <div class="from">From Cybersecurity (SIEM)</div>
+        <h4>Event Correlation</h4>
+        <p>Don't fire 40 alerts. Correlate events into attack chains.<br><br><em>We correlate biomarkers into clinical patterns.</em></p>
+      </div>
+      <div class="industry-card">
+        <div class="icon">🏭</div>
+        <div class="from">From Industrial Control (SCADA)</div>
+        <h4>Parent-Child Suppression</h4>
+        <p>One pump failure triggers 50 downstream alarms. Show the root cause, suppress the cascade.<br><br><em>We group biomarkers under their root physiological cause.</em></p>
+      </div>
+      <div class="industry-card">
+        <div class="icon">✈️</div>
+        <div class="from">From Aviation (Cockpit Design)</div>
+        <h4>Warning / Caution / Advisory</h4>
+        <p>Not everything flashing is equally urgent. Triage by severity.<br><br><em>Critical potassium = Warning. Low Vitamin D = Advisory.</em></p>
+      </div>
+    </div>
+
+    <div class="severity-demo" style="margin-top: 24px;">
+      <span class="sev-badge sev-warning">🔴 WARNING — Act now (hours–days)</span>
+      <span class="sev-badge sev-caution">🟡 CAUTION — Follow up (days–weeks)</span>
+      <span class="sev-badge sev-advisory">🔵 ADVISORY — Lifestyle (weeks–months)</span>
+      <span class="sev-badge sev-normal">🟢 NORMAL — Nothing to do</span>
+    </div>
+
+    <div class="callout" style="margin-top: 24px;">
+      <strong>Rule:</strong> If everything is red, nothing is. Red is reserved for genuinely dangerous values. Most results should be blue or green.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- QUESTION GENERATOR -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>The Secret Weapon: Question Generator</h2>
+    <p class="section-subtitle">Most apps stop at "here's what's happening." We add "here's what to ask your doctor about it." Oracle is adding this to hospital portals in 2026 — no consumer app has it.</p>
+
+    <div class="card" style="border-left: 4px solid var(--accent);">
+      <div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+          <h3 style="margin-bottom: 12px;">What Other Apps Say</h3>
+          <div style="background: #FEF2F2; padding: 16px; border-radius: var(--radius-sm); font-size: 14px;">
+            <p style="color: var(--text-secondary); margin-bottom: 8px;">"Your ferritin is low."</p>
+            <p style="color: var(--text-secondary); margin-bottom: 8px;">"Your hemoglobin is below normal."</p>
+            <p style="color: var(--text-secondary);">"Discuss abnormal results with your healthcare provider."</p>
+          </div>
+          <div style="text-align: center; margin-top: 12px; font-size: 13px; color: var(--warning);">← User thinks: "OK... but what do I actually SAY?"</div>
+        </div>
+        <div style="flex: 1; min-width: 280px;">
+          <h3 style="margin-bottom: 12px;">What We Say</h3>
+          <div style="background: #F0FDF4; padding: 16px; border-radius: var(--radius-sm); font-size: 14px;">
+            <p style="color: var(--text); margin-bottom: 12px; font-weight: 500;">Questions for your doctor:</p>
+            <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 8px; border: 1px solid #BBF7D0;">
+              <span style="color: var(--text-muted); font-size: 11px;">Q1</span>
+              <p style="font-size: 13px; color: var(--text);">My ferritin is 12 ng/mL. At what level would you recommend iron supplementation, and what formulation?</p>
+            </div>
+            <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 8px; border: 1px solid #BBF7D0;">
+              <span style="color: var(--text-muted); font-size: 11px;">Q2</span>
+              <p style="font-size: 13px; color: var(--text);">My resting heart rate has trended up from 68 to 76 bpm. Is this related to my low hemoglobin?</p>
+            </div>
+            <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #BBF7D0;">
+              <span style="color: var(--text-muted); font-size: 11px;">Q3</span>
+              <p style="font-size: 13px; color: var(--text);">Should we investigate the cause — diet, absorption issues, or blood loss?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- DEMO SCENARIOS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>The Four Demo Scenarios</h2>
+    <p class="section-subtitle">The narratives we'll show the judges. Each one demonstrates a different dimension of the system.</p>
+
+    <div class="card-grid">
+      <div class="card" style="border-left: 4px solid var(--caution);">
+        <span class="sev-badge sev-caution" style="margin-bottom: 12px;">SCENARIO A</span>
+        <h3>The Five-Alert Problem, Solved</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Metabolic syndrome panel — 6 abnormal values. System groups all 6 into one "Metabolic Pattern" card.</p>
+        <div style="font-size: 13px; color: var(--text-muted); background: var(--bg); padding: 10px 12px; border-radius: var(--radius-sm);">
+          <strong>Pitch:</strong> "A normal app gives you 6 reasons to panic. We give you 1 thing to discuss with your doctor."
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--warning);">
+        <span class="sev-badge sev-warning" style="margin-bottom: 12px;">SCENARIO B</span>
+        <h3>Your Watch Already Knows</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Iron deficiency + smartwatch data showing rising resting heart rate. Pattern card shows "potentially symptomatic" tag + 3 specific questions for the doctor visit.</p>
+        <div style="font-size: 13px; color: var(--text-muted); background: var(--bg); padding: 10px 12px; border-radius: var(--radius-sm);">
+          <strong>Pitch:</strong> "We don't just tell you what's happening — we tell you what to ask your doctor about it."
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--advisory);">
+        <span class="sev-badge sev-advisory" style="margin-bottom: 12px;">SCENARIO C</span>
+        <h3>Your Supplement Is Lying</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Abnormal thyroid panel + user takes biotin. System flags drug interference before interpreting the result as a thyroid problem.</p>
+        <div style="font-size: 13px; color: var(--text-muted); background: var(--bg); padding: 10px 12px; border-radius: var(--radius-sm);">
+          <strong>Pitch:</strong> "We verify results before we explain them. Biotin makes thyroid tests lie."
+        </div>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--accent);">
+        <span class="sev-badge sev-normal" style="margin-bottom: 12px; background: var(--accent-bg); color: var(--accent); border-color: #DDD6FE;">SCENARIO D</span>
+        <h3>This Result Is Probably Wrong</h3>
+        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Very high potassium with normal kidney function. System detects physiological implausibility, suggests possible hemolysis artifact.</p>
+        <div style="font-size: 13px; color: var(--text-muted); background: var(--bg); padding: 10px 12px; border-radius: var(--radius-sm);">
+          <strong>Pitch:</strong> "Sometimes the most important insight is: this result might not be real."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- WHAT YOU DON'T NEED -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>What You Don't Need to Know</h2>
+    <div class="card-grid" style="grid-template-columns: 1fr;">
+      <div class="card" style="display: flex; align-items: flex-start; gap: 16px;">
+        <div style="font-size: 32px; flex-shrink: 0;">🚫</div>
+        <div>
+          <p style="margin-bottom: 8px;"><strong>Clinical accuracy validation</strong> — the medical student reviews LLM outputs and tunes severity assignments.</p>
+          <p style="margin-bottom: 8px;"><strong>Medical terminology</strong> — you need pattern names and biomarker lists, not pathophysiology.</p>
+          <p style="margin-bottom: 8px;"><strong>Regulatory compliance</strong> — hackathon scope; every screen says "discuss with your doctor."</p>
+          <p style="margin-bottom: 8px;"><strong>Whether ferritin should be high or low</strong> — the knowledge base stores that; your job is retrieval quality.</p>
+          <p><strong>What "microcytic hypochromic anemia" means</strong> — the LLM translates it to "small, pale red blood cells from low iron."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- TECH STACK -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>Tech Stack</h2>
+    <table class="compare-table">
+      <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Frontend</td><td>React + TypeScript + Tailwind</td><td>You already know this</td></tr>
+        <tr><td>Visualization</td><td>D3.js</td><td>Full control over interactive network graph</td></tr>
+        <tr><td>Backend API</td><td>Python FastAPI + Pydantic</td><td>Auto-docs, strong validation, async</td></tr>
+        <tr><td>OCR</td><td>Tesseract (local)</td><td>No cloud, English + Hebrew</td></tr>
+        <tr><td>Vector DB</td><td>LanceDB (embedded)</td><td>No separate server, runs in-process</td></tr>
+        <tr><td>Embeddings</td><td>all-MiniLM-L6-v2</td><td>Tiny, fast, good enough for medical text</td></tr>
+        <tr><td>LLM</td><td>QVAC MedPsy 1.7B (GGUF, Ollama)</td><td>Medical-specific, ~1.2GB, runs on laptop</td></tr>
+        <tr><td>Storage</td><td>SQLite</td><td>Zero config, embedded</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FAQ -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">Why local AI instead of calling GPT-4?</div>
+      <div class="faq-a">Privacy is the feature. "Your blood test never leaves your device" is a powerful claim judges understand. Also, a 1.7B medical-specific model now matches GPT-4 on clinical benchmarks — the tech is ready.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if the local LLM is too slow?</div>
+      <div class="faq-a">It won't be. QVAC MedPsy 1.7B runs at ~22 tokens/sec on laptop hardware. A full synthesis takes 10–15 seconds. For a hackathon demo, that's fast enough.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if we don't have Wallach's book?</div>
+      <div class="faq-a">We need excerpts for the knowledge base. The medical student handles sourcing. For the demo, we need ~30 clinical pattern descriptions covering the most common blood test findings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if the wearable API is a pain?</div>
+      <div class="faq-a">Mock data fallback. We pre-generate realistic 30-day datasets for our demo scenarios. The real API integration is bonus points.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Which module should I pick?</div>
+      <div class="faq-a">Frontend person → Module 6 (Dashboard). Backend/ML person → Module 4 (RAG). CV/regex person → Module 1 (OCR). Full-stack → Modules 2+3. Prompt engineer → Module 5.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if OCR fails on Hebrew reports?</div>
+      <div class="faq-a">Focus on English reports for the demo. Hebrew is a stretch goal. Tesseract supports it, but right-to-left text is harder to parse correctly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <p style="margin-bottom: 8px; color: rgba(255,255,255,0.7); font-weight: 600;">VERITAS · Hackathon 2026</p>
+  <p>Detailed architecture → <a href="ARCHITECTURE.md" style="color: #A78BFA;">ARCHITECTURE.md</a> &nbsp;·&nbsp; Design spec → <a href="DESIGN_SPEC.md" style="color: #A78BFA;">DESIGN_SPEC.md</a> &nbsp;·&nbsp; AI agent instructions → <a href="AGENT_PLAN.md" style="color: #A78BFA;">AGENT_PLAN.md</a></p>
+  <p style="margin-top: 8px;">Not a medical device. Every screen includes: "This is not a diagnosis. Discuss with your doctor."</p>
+</footer>
+
+</body>
+</html>
