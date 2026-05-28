@@ -36,11 +36,13 @@ export interface Citation {
 export interface Pattern {
   name: string;
   severity: 'WARNING' | 'CAUTION' | 'ADVISORY';
-  confidence: number;
+  confidence: 'HIGH' | 'MODERATE' | 'LOW';
   explanation: string;
+  symptomatic_note: string | null;
+  supporting_markers: string[];   // e.g. ["Ferritin: 12 ng/mL (Low)", "MCV: 78 fL (Low)"]
   citations: Citation[];
   doctor_questions: string[];
-  biomarkers: string[];
+  biomarkers: string[];           // kept for backward compat (just names)
 }
 
 export interface AnalysisResponse {

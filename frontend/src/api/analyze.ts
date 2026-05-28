@@ -73,8 +73,10 @@ function transformBackendResponse(data: Record<string, unknown>): AnalysisRespon
   const patterns = (data.patterns as Array<Record<string, unknown>> || []).map((p) => ({
     name: p.name as string,
     severity: p.severity as 'WARNING' | 'CAUTION' | 'ADVISORY',
-    confidence: confidenceToNumber(p.confidence as string),
+    confidence: normalizeConfidence(p.confidence),
     explanation: p.explanation as string,
+    symptomatic_note: (p.symptomatic_note as string) || null,
+    supporting_markers: (p.supporting_markers as string[]) || [],
     citations: (p.citations as string[] || []).map((c, i) => ({
       chunk_id: `cite_${i}`,
       source: c,
@@ -101,11 +103,15 @@ function transformBackendResponse(data: Record<string, unknown>): AnalysisRespon
   };
 }
 
-function confidenceToNumber(confidence: string): number {
-  switch (confidence?.toUpperCase()) {
-    case 'HIGH': return 0.9;
-    case 'MODERATE': return 0.7;
-    case 'LOW': return 0.5;
-    default: return 0.7;
+function normalizeConfidence(confidence: unknown): 'HIGH' | 'MODERATE' | 'LOW' {
+  if (typeof confidence === 'string') {
+    const upper = confidence.toUpperCase();
+    if (upper === 'HIGH' || upper === 'MODERATE' || upper === 'LOW') return upper as 'HIGH' | 'MODERATE' | 'LOW';
   }
+  if (typeof confidence === 'number') {
+    if (confidence >= 0.85) return 'HIGH';
+    if (confidence >= 0.65) return 'MODERATE';
+    return 'LOW';
+  }
+  return 'MODERATE';
 }
