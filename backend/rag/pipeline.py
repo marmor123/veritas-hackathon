@@ -45,7 +45,7 @@ class RAGPipeline:
     def __init__(
         self,
         llm_model: str = "qvac-medpsy:1.7b",
-        rerank_threshold: float = 0.3,
+        rerank_threshold: float = -3.0,
         rerank_top_k: int = 5,
         search_top_k: int = 15,
     ):
@@ -128,7 +128,7 @@ class RAGPipeline:
         )
         timings["reranking"] = time.time() - t0
         print(f"[RAG] Stage 3 (Re-Ranking): {timings['reranking']:.2f}s, "
-              f"{len(ranked_chunks)} chunks passed threshold")
+              f"{len(ranked_chunks)} chunks returned (top {self.rerank_top_k})")
 
         # ── Stage 4: Citation Tracking ───────────────────────────────────
         t0 = time.time()

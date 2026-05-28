@@ -92,50 +92,124 @@ def rewrite_query(
 
 def _fallback_query(verified_results: list[VerifiedResult]) -> str:
     """
-    Construct a basic clinical query without LLM.
-    Groups biomarkers by direction and adds pattern-matching keywords.
+    Construct a clinical retrieval query without LLM.
+
+    The cross-encoder (ms-marco-MiniLM) was trained on natural-language
+    question-passage pairs, so we generate a question-shaped query
+    (not a raw value list) for better re-ranking.
+
+    Strategy:
+      1. Detect the dominant pattern from biomarker combinations
+      2. Build a single focused clinical question (not multiple patterns)
+      3. Avoid mixing contradictory keywords (e.g., hyperthyroid + hypothyroid)
     """
     abnormal = [r for r in verified_results if r.flagged]
     if not abnormal:
         return ""
 
+    # Categorize abnormal biomarkers by direction
     low_markers = []
     high_markers = []
-
     for r in abnormal:
         if r.ref_low is not None and r.value < r.ref_low:
-            low_markers.append(f"{r.biomarker} {r.value} {r.unit}")
+            low_markers.append((r.biomarker.lower(), r.value, r.unit))
         elif r.ref_high is not None and r.value > r.ref_high:
-            high_markers.append(f"{r.biomarker} {r.value} {r.unit}")
+            high_markers.append((r.biomarker.lower(), r.value, r.unit))
 
-    parts = []
-    if low_markers:
-        parts.append(f"Low values: {', '.join(low_markers)}.")
-    if high_markers:
-        parts.append(f"Elevated values: {', '.join(high_markers)}.")
-
-    # Add pattern-matching keywords based on biomarker combinations
     marker_names = {r.biomarker.lower() for r in abnormal}
 
-    # Iron deficiency pattern
-    if {"ferritin", "mcv", "hemoglobin"} & marker_names or {"ferritin", "iron"} & marker_names:
-        parts.append("Iron deficiency anemia microcytic anemia pattern.")
+    # ── Detect the SINGLE most likely pattern ──
+    # Order matters: more specific patterns first
+    pattern_query = None
 
-    # Metabolic syndrome pattern
-    if len({"glucose", "hdl", "triglycerides", "alt", "uric acid"} & marker_names) >= 3:
-        parts.append("Metabolic syndrome insulin resistance dyslipidemia pattern.")
+    # Iron deficiency: low ferritin + low MCV is the diagnostic combo
+    if {"ferritin"} & marker_names and any(
+        m in marker_names for m in ["mcv", "hemoglobin", "iron"]
+    ):
+        pattern_query = (
+            "What is the differential diagnosis for microcytic anemia with "
+            "low ferritin, low MCV, and low hemoglobin? Iron deficiency anemia "
+            "vs anemia of chronic disease vs thalassemia trait."
+        )
 
-    # Thyroid pattern
-    if {"tsh"} & marker_names:
-        parts.append("Thyroid dysfunction hypothyroidism hyperthyroidism pattern.")
+    # B12/Folate deficiency: macrocytic anemia
+    elif (any(m in marker_names for m in ["vitamin b12", "b12", "folate"])
+          and "mcv" in marker_names):
+        pattern_query = (
+            "What is the differential diagnosis for macrocytic anemia with "
+            "low vitamin B12 or folate and elevated MCV? B12 deficiency, "
+            "folate deficiency, megaloblastic anemia."
+        )
 
-    # B12/folate deficiency
-    if {"vitamin b12", "b12", "folate"} & marker_names:
-        parts.append("Vitamin B12 deficiency macrocytic anemia pattern.")
+    # Hypothyroidism: high TSH + low FT4
+    elif "tsh" in marker_names:
+        # Determine direction
+        tsh_high = any(b == "tsh" for b, _, _ in high_markers)
+        ft4_low = any(b in ("free t4", "ft4") for b, _, _ in low_markers)
 
-    # Kidney pattern
-    if {"creatinine", "egfr", "bun"} & marker_names:
-        parts.append("Renal dysfunction kidney disease pattern.")
+        if tsh_high and ft4_low:
+            pattern_query = (
+                "What are the laboratory findings in primary hypothyroidism "
+                "with elevated TSH and low Free T4?"
+            )
+        elif tsh_high:
+            pattern_query = (
+                "What is the differential diagnosis for elevated TSH? "
+                "Subclinical hypothyroidism, primary hypothyroidism."
+            )
+        else:
+            pattern_query = (
+                "What is the differential diagnosis for suppressed TSH? "
+                "Hyperthyroidism, thyroid hormone use, central hypothyroidism."
+            )
 
-    parts.append("Clinical pattern identification and differential diagnosis.")
-    return " ".join(parts)
+    # Metabolic syndrome: glucose + lipids combo
+    elif (len({"glucose", "hdl", "triglycerides", "alt", "uric acid"} & marker_names) >= 3):
+        pattern_query = (
+            "What are the laboratory findings in metabolic syndrome and "
+            "insulin resistance with elevated glucose, low HDL, elevated "
+            "triglycerides, and elevated liver enzymes?"
+        )
+
+    # Kidney dysfunction: creatinine/eGFR/BUN
+    elif any(m in marker_names for m in ["creatinine", "egfr", "bun"]):
+        pattern_query = (
+            "What is the differential diagnosis for acute kidney injury and "
+            "chronic kidney disease with elevated creatinine, elevated BUN, "
+            "and reduced eGFR?"
+        )
+
+    # Liver dysfunction: ALT/AST/ALP/Bilirubin
+    elif any(m in marker_names for m in ["alt", "ast", "alp", "bilirubin"]):
+        pattern_query = (
+            "What is the differential diagnosis for elevated liver enzymes "
+            "with hepatocellular vs cholestatic patterns of injury?"
+        )
+
+    # Hemolysis / hyperkalemia
+    elif "potassium" in marker_names and any(
+        b == "potassium" for b, _, _ in high_markers
+    ):
+        pattern_query = (
+            "What is the differential diagnosis for hyperkalemia? "
+            "Pseudohyperkalemia from hemolysis, kidney disease, "
+            "medication effects."
+        )
+
+    # Generic fallback if no pattern detected
+    if pattern_query is None:
+        pattern_query = (
+            f"What is the differential diagnosis for "
+            f"abnormal laboratory findings including "
+            f"{', '.join(b for b, _, _ in (low_markers + high_markers)[:5])}?"
+        )
+
+    # Append the actual values for context (helps semantic search match
+    # specific magnitudes)
+    value_str_parts = []
+    for b, v, u in low_markers:
+        value_str_parts.append(f"{b} {v} {u} (low)")
+    for b, v, u in high_markers:
+        value_str_parts.append(f"{b} {v} {u} (high)")
+
+    return f"{pattern_query} Values: {', '.join(value_str_parts)}."

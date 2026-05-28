@@ -202,14 +202,17 @@ class WallachParser(HTMLParser):
             # h4/h5: subsection label kept inline
             if tag in ("h4", "h5"):
                 if self.current_condition and (self.content_depth > 0 or self.first_content_heading):
-                    # If current chunk is already large, flush it now and start
-                    # a new sub-chunk with this h4 as the title.
-                    # This keeps each subsection (Definition, Lab Findings, etc.)
-                    # as its own coherent chunk — never cut mid-sentence.
+                    # If current chunk is already large, flush it now using the
+                    # PREVIOUSLY-SEEN h4 label (which describes the content
+                    # that was just collected). Then start fresh with the new h4.
                     current_size = sum(len(p.split()) for p in self.current_paragraphs)
                     if current_size >= self.max_words_before_subsplit:
-                        self._flush_chunk(suffix=f" — {text}")
+                        # Flush with the previously-active subsection label
+                        self._flush_chunk()
+                        # Start tracking the new h4 as the next subsection
                         self.current_subsection_label = text
+                        # Add the new label as a marker for the next chunk
+                        self.current_paragraphs.append(f"\n## {text}\n")
                     else:
                         self.current_paragraphs.append(f"\n## {text}\n")
                 return
@@ -278,6 +281,7 @@ class WallachParser(HTMLParser):
         """
         if not self.current_condition or not self.current_paragraphs:
             self.current_paragraphs = []
+            self.current_subsection_label = None
             return
 
         text = "\n\n".join(p for p in self.current_paragraphs if p.strip())
@@ -285,13 +289,13 @@ class WallachParser(HTMLParser):
 
         if len(text.split()) < 30:
             self.current_paragraphs = []
+            self.current_subsection_label = None
             return
 
-        # Build condition title (with optional subsection suffix)
+        # Title is just the h3 condition (no h4 suffix in title — h4 labels
+        # are kept inline in the text via "## Subsection")
         condition_title = self.current_condition
-        if self.current_subsection_label:
-            condition_title = f"{condition_title} — {self.current_subsection_label}"
-        elif suffix:
+        if suffix:
             condition_title = f"{condition_title}{suffix}"
 
         self.chunks.append({
@@ -300,8 +304,7 @@ class WallachParser(HTMLParser):
             "text": text,
         })
         self.current_paragraphs = []
-        # Reset subsection label after flushing
-        self.current_subsection_label = None
+        # Don't reset subsection_label here — let the caller manage it
 
     def finalize(self):
         self._flush_chunk()
@@ -409,9 +412,27 @@ def detect_organ_systems(text: str, condition: str = "") -> list[str]:
 def is_clinical_pattern(chunk: dict) -> bool:
     biomarkers = chunk.get("biomarkers_mentioned", [])
     text = chunk.get("text", "").lower()
+    title = chunk.get("section_title", "").lower()
     word_count = chunk.get("word_count", 0)
 
     if word_count < 50:
+        return False
+
+    # Skip bibliography/reference sections — they pollute retrieval
+    skip_titles = [
+        "suggested reading", "references", "bibliography",
+        "further reading", "additional resources",
+    ]
+    if any(skip in title for skip in skip_titles):
+        return False
+
+    # Skip chunks that are mostly citations (lots of numeric years, "et al.", etc.)
+    citation_density = (
+        text.count("et al.") +
+        text.count("et al,") +
+        len([y for y in text.split() if y.startswith(("19", "20")) and len(y) <= 5 and y[2:].isdigit()])
+    )
+    if citation_density > 5 and word_count < 300:
         return False
 
     if len(biomarkers) >= 2:
