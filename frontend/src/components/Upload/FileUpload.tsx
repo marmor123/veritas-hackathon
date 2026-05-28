@@ -1,5 +1,8 @@
 import { useState, useCallback, useRef } from 'react';
 
+const ACCEPTED_TYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+const MAX_SIZE_MB = 10;
+
 interface FileUploadProps {
   onFileSelected: (file: File) => void;
 }
@@ -10,23 +13,14 @@ export function FileUpload({ onFileSelected }: FileUploadProps) {
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const ACCEPTED_TYPES = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
-  const MAX_SIZE_MB = 10;
-
-  const validateFile = (file: File): string | null => {
+  const handleFile = useCallback((file: File) => {
     if (!ACCEPTED_TYPES.includes(file.type)) {
-      return 'Please upload a PDF or image file (PNG, JPG).';
+      setError('Please upload a PDF or image file (PNG, JPG).');
+      setSelectedFile(null);
+      return;
     }
     if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-      return `File size must be under ${MAX_SIZE_MB}MB.`;
-    }
-    return null;
-  };
-
-  const handleFile = useCallback((file: File) => {
-    const validationError = validateFile(file);
-    if (validationError) {
-      setError(validationError);
+      setError(`File size must be under ${MAX_SIZE_MB}MB.`);
       setSelectedFile(null);
       return;
     }

@@ -51,4 +51,4 @@ export interface AnalysisResponse {
 }
 
 // Pipeline stage tracking for progressive rendering
-export type PipelineStage = 'idle' | 'uploading' | 'ocr' | 'verification' | 'analysis' | 'complete' | 'error';
+export type PipelineStage = 'idle' | 'uploading' | 'ocr' | 'health_form' | 'verification' | 'analysis' | 'complete' | 'error';

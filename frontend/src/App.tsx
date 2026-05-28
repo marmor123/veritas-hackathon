@@ -3,15 +3,18 @@ import { FileUpload } from './components/Upload/FileUpload';
 import { PatternCard } from './components/Dashboard/PatternCard';
 import { BiomarkerList } from './components/Dashboard/BiomarkerList';
 import { VerificationAlerts } from './components/Dashboard/VerificationAlerts';
+import { HealthForm } from './components/HealthForm/HealthForm';
 import { uploadForOcr } from './api/ocr';
+import { verifyBiomarkers } from './api/verify';
 import { demoScenarios } from './api/mock-data';
 import type { DemoScenario } from './api/mock-data';
-import type { OcrResponse, AnalysisResponse, PipelineStage } from './types';
+import type { OcrResponse, AnalysisResponse, VerificationResponse, PipelineStage } from './types';
 
 function App() {
   const [stage, setStage] = useState<PipelineStage>('idle');
   const [ocrResult, setOcrResult] = useState<OcrResponse | null>(null);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResponse | null>(null);
+  const [verificationResult, setVerificationResult] = useState<VerificationResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useMock, setUseMock] = useState(true); // Toggle for demo mode
 
@@ -28,18 +31,14 @@ function App() {
       const demo = demoScenarios.iron_deficiency;
       await simulateDelay(1200);
       setOcrResult(demo.ocr);
-      setStage('analysis');
-      await simulateDelay(2000);
-      setAnalysisResult(demo.analysis);
-      setStage('complete');
+      setStage('health_form');
     } else {
       // Real API call
       try {
         setStage('ocr');
         const ocr = await uploadForOcr(file);
         setOcrResult(ocr);
-        setStage('complete');
-        // TODO: Call /api/verify and /api/analyze when ready
+        setStage('health_form');
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to process file');
         setStage('error');
@@ -56,16 +55,50 @@ function App() {
     setStage('ocr');
     await simulateDelay(1000);
     setOcrResult(demo.ocr);
-    setStage('analysis');
-    await simulateDelay(1500);
-    setAnalysisResult(demo.analysis);
-    setStage('complete');
+    setStage('health_form');
   };
+
+  const handleHealthFormSubmit = async (supplements: string[], diseases: string) => {
+    if (!ocrResult) return;
+
+    setStage('verification');
+    setError(null);
+
+    if (useMock) {
+      // In demo mode, simulate verification and then show analysis
+      await simulateDelay(1500);
+      // Use the demo scenario's analysis data
+      const demo = demoScenarios.iron_deficiency;
+      setAnalysisResult(demo.analysis);
+      setStage('complete');
+    } else {
+      try {
+        const result = await verifyBiomarkers({
+          biomarkers: ocrResult.biomarkers,
+          supplements: supplements.length > 0 ? supplements : undefined,
+          medications: diseases ? [diseases] : undefined,
+        });
+        setVerificationResult(result);
+        setStage('complete');
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Verification failed');
+        setStage('error');
+      }
+    }
+  };
+
+  const handleHealthFormSkip = () => {
+    handleHealthFormSubmit([], '');
+  };
+
+  // verificationResult is stored for potential future use (e.g., rendering verification-specific data)
+  void verificationResult;
 
   const handleClearAll = () => {
     setStage('idle');
     setOcrResult(null);
     setAnalysisResult(null);
+    setVerificationResult(null);
     setError(null);
   };
 
@@ -124,14 +157,22 @@ function App() {
         {showUpload && <FileUpload onFileSelected={handleFileSelected} />}
 
         {/* Loading states */}
-        {(stage === 'uploading' || stage === 'ocr' || stage === 'analysis') && (
+        {(stage === 'uploading' || stage === 'ocr' || stage === 'analysis' || stage === 'verification') && (
           <div className="flex items-center justify-center gap-3 my-8">
             <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
             <span className="text-slate-300">
               {stage === 'uploading' && 'Uploading file...'}
               {stage === 'ocr' && 'Extracting biomarkers (OCR)...'}
               {stage === 'analysis' && 'Analyzing patterns...'}
+              {stage === 'verification' && 'Verifying results...'}
             </span>
+          </div>
+        )}
+
+        {/* Health Form (show when stage is health_form) */}
+        {stage === 'health_form' && (
+          <div className="mt-6">
+            <HealthForm onSubmit={handleHealthFormSubmit} onSkip={handleHealthFormSkip} />
           </div>
         )}
 
