@@ -17,6 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.api.routes.rag import router as rag_router
 from backend.api.routes.verification import router as verification_router
+from backend.api.routes.ocr import router as ocr_router
 
 app = FastAPI(
     title="VERITAS — Blood Test Analysis Engine",
@@ -36,6 +37,7 @@ app.add_middleware(
 
 # Register routers
 app.include_router(verification_router, tags=["Verification"])
+app.include_router(ocr_router, tags=["OCR Pipeline"])
 app.include_router(rag_router, tags=["RAG Engine"])
 
 
@@ -47,6 +49,7 @@ async def root():
         "description": "Blood test verification and correlation engine",
         "modules": {
             "verify": "/api/verify",
+            "ocr": "/api/ocr",
             "rag": "/api/rag",
             "rag_health": "/api/rag/health",
         },
