@@ -31,11 +31,13 @@ export const mockAnalysisIronDeficiency: AnalysisResponse = {
     {
       name: 'Iron Deficiency Pattern',
       severity: 'CAUTION',
-      confidence: 0.92,
-      explanation: 'Severely depleted iron stores (ferritin 12 ng/mL) with microcytosis (MCV 78 fL) and mild anemia (hemoglobin 11.2 g/dL). This combination of low ferritin, low serum iron, reduced MCV, and decreased hemoglobin is the hallmark pattern of iron deficiency anemia. Wearable data shows elevated resting heart rate (76 bpm, up from 68 over 30 days), which may indicate your body is compensating for reduced oxygen-carrying capacity.',
+      confidence: 'HIGH',
+      explanation: 'Severely depleted iron stores (ferritin 12 ng/mL) with microcytosis (MCV 78 fL) and mild anemia (hemoglobin 11.2 g/dL). This combination of low ferritin, low serum iron, reduced MCV, and decreased hemoglobin is the hallmark pattern of iron deficiency anemia.',
+      symptomatic_note: 'Your resting heart rate trending up (76 bpm, from 68 over 30 days) may be compensatory for reduced oxygen-carrying capacity.',
+      supporting_markers: ['Ferritin: 12 ng/mL (Low)', 'Iron: 35 µg/dL (Low)', 'MCV: 78 fL (Low)', 'Hemoglobin: 11.2 g/dL (Low)'],
       citations: [
-        { chunk_id: 'wallach_ch3_iron_def_01', source: "Wallach's Interpretation of Diagnostic Tests", chapter: 'Chapter 3: Hematologic Disorders' },
-        { chunk_id: 'wallach_ch3_iron_def_02', source: "Wallach's Interpretation of Diagnostic Tests", chapter: 'Chapter 3: Hematologic Disorders' },
+        { chunk_id: 'wallach_ch3_iron_def_01', source: "Wallach's 11th Ed", chapter: 'Hematologic Disorders — Microcytic Anemias' },
+        { chunk_id: 'wallach_ch3_iron_def_02', source: "Wallach's 11th Ed", chapter: 'Hematologic Disorders — Iron Studies' },
       ],
       doctor_questions: [
         'Could my iron deficiency be related to dietary intake, or should we investigate other causes like occult blood loss?',
@@ -71,10 +73,12 @@ export const mockAnalysisMetabolic: AnalysisResponse = {
     {
       name: 'Metabolic Syndrome Pattern',
       severity: 'CAUTION',
-      confidence: 0.88,
+      confidence: 'MODERATE',
       explanation: 'Elevated fasting glucose (108 mg/dL), low HDL cholesterol (34 mg/dL), high triglycerides (195 mg/dL), borderline elevated ALT (48 U/L suggesting early fatty liver), and elevated uric acid (7.8 mg/dL) together form the metabolic syndrome pattern. These markers are interconnected through insulin resistance — treating them as five separate issues misses the underlying mechanism.',
+      symptomatic_note: null,
+      supporting_markers: ['Glucose: 108 mg/dL (High)', 'HDL: 34 mg/dL (Low)', 'Triglycerides: 195 mg/dL (High)', 'ALT: 48 U/L (High)', 'Uric Acid: 7.8 mg/dL (High)'],
       citations: [
-        { chunk_id: 'wallach_ch5_metabolic_01', source: "Wallach's Interpretation of Diagnostic Tests", chapter: 'Chapter 5: Metabolic Disorders' },
+        { chunk_id: 'wallach_ch5_metabolic_01', source: "Wallach's 11th Ed", chapter: 'Metabolic Disorders' },
         { chunk_id: 'aha_lipids_guideline_02', source: 'AHA Lipid Management Guidelines', chapter: 'Metabolic Syndrome Criteria' },
       ],
       doctor_questions: [
@@ -107,10 +111,12 @@ export const mockAnalysisBiotin: AnalysisResponse = {
     {
       name: 'Possible Biotin Interference',
       severity: 'ADVISORY',
-      confidence: 0.85,
-      explanation: 'Your TSH (0.15 mIU/L) is below normal range, but your Free T4 (1.3 ng/dL) is completely normal. In true hyperthyroidism, we would expect elevated Free T4. This discordance, combined with your reported biotin supplementation, strongly suggests biotin interference with the TSH immunoassay rather than actual thyroid disease. Biotin competes with the assay reagents, producing falsely low TSH readings.',
+      confidence: 'MODERATE',
+      explanation: 'Your TSH (0.15 mIU/L) is below normal range, but your Free T4 (1.3 ng/dL) is completely normal. In true hyperthyroidism, we would expect elevated Free T4. This discordance, combined with your reported biotin supplementation, strongly suggests biotin interference with the TSH immunoassay rather than actual thyroid disease.',
+      symptomatic_note: null,
+      supporting_markers: ['TSH: 0.15 mIU/L (Low)', 'Free T4: 1.3 ng/dL (Normal)'],
       citations: [
-        { chunk_id: 'wallach_ch7_thyroid_interference_01', source: "Wallach's Interpretation of Diagnostic Tests", chapter: 'Chapter 7: Endocrine Disorders' },
+        { chunk_id: 'wallach_ch7_thyroid_interference_01', source: "Wallach's 11th Ed", chapter: 'Endocrine Disorders — Thyroid Interference' },
       ],
       doctor_questions: [
         'Should I stop biotin for 48-72 hours and repeat the TSH test to confirm this is interference?',
@@ -146,10 +152,12 @@ export const mockAnalysisHemolysis: AnalysisResponse = {
     {
       name: 'Suspected Hemolysis Artifact',
       severity: 'WARNING',
-      confidence: 0.91,
+      confidence: 'HIGH',
       explanation: 'Extremely elevated potassium (6.8 mEq/L) with completely normal kidney function (eGFR 95, creatinine 0.9) is a classic hemolysis pattern. When red blood cells rupture during blood draw or transport, they release intracellular potassium and LDH into the sample. Your elevated LDH (380 U/L) and very low glucose (45 mg/dL — glucose is consumed by lysed cells) further confirm this is a sample quality issue, not a true electrolyte emergency.',
+      symptomatic_note: null,
+      supporting_markers: ['Potassium: 6.8 mEq/L (High)', 'LDH: 380 U/L (High)', 'Glucose: 45 mg/dL (Low)', 'eGFR: 95 mL/min (Normal)', 'Creatinine: 0.9 mg/dL (Normal)'],
       citations: [
-        { chunk_id: 'wallach_ch1_preanalytical_01', source: "Wallach's Interpretation of Diagnostic Tests", chapter: 'Chapter 1: Pre-analytical Errors' },
+        { chunk_id: 'wallach_ch1_preanalytical_01', source: "Wallach's 11th Ed", chapter: 'Pre-analytical Errors — Hemolysis' },
       ],
       doctor_questions: [
         'Should I have my potassium rechecked with a fresh blood draw to confirm this was hemolysis?',
