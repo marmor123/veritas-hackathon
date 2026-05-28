@@ -5,7 +5,7 @@ import { BiomarkerList } from './components/Dashboard/BiomarkerList';
 import { VerificationAlerts } from './components/Dashboard/VerificationAlerts';
 import { HealthForm } from './components/HealthForm/HealthForm';
 import { uploadForOcr } from './api/ocr';
-import { verifyBiomarkers } from './api/verify';
+import { analyzeResults } from './api/analyze';
 import { demoScenarios } from './api/mock-data';
 import type { DemoScenario } from './api/mock-data';
 import type { OcrResponse, AnalysisResponse, VerificationResponse, PipelineStage } from './types';
@@ -73,15 +73,14 @@ function App() {
       setStage('complete');
     } else {
       try {
-        const result = await verifyBiomarkers({
-          biomarkers: ocrResult.biomarkers,
+        const result = await analyzeResults(ocrResult.biomarkers, {
           supplements: supplements.length > 0 ? supplements : undefined,
           medications: diseases ? [diseases] : undefined,
         });
-        setVerificationResult(result);
+        setAnalysisResult(result);
         setStage('complete');
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Verification failed');
+        setError(err instanceof Error ? err.message : 'Analysis failed');
         setStage('error');
       }
     }
