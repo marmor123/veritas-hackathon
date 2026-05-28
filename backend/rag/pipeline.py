@@ -44,7 +44,7 @@ class RAGPipeline:
 
     def __init__(
         self,
-        llm_model: str = "qvac-medpsy:1.7b",
+        llm_model: str = "qwen3.5:0.8b",
         rerank_threshold: float = -3.0,
         rerank_top_k: int = 5,
         search_top_k: int = 15,

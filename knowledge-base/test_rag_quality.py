@@ -1,14 +1,9 @@
 """
-RAG Quality Test — shows EXACTLY what goes in and what comes out at every stage.
+RAG Quality Test — compares Fallback vs LLM query rewriting.
 
-For each scenario, prints:
-  1. INPUT: biomarker data
-  2. Stage 1: Rewritten clinical query
-  3. Stage 2: Top hybrid search candidates with scores
-  4. Stage 3: Top 5 after cross-encoder re-ranking
-  5. Stage 4: Citations - FULL TEXT excerpt (not just titles)
-  6. Output: clinical_graph
-  7. Validation: did retrieval find the medically correct content?
+For each scenario, runs the pipeline twice: once with the deterministic
+fallback query, once with the LLM-generated query (qwen3.5:0.8b via Ollama).
+Shows comparison of cross-encoder scores and top citations.
 
 Run: python knowledge-base/test_rag_quality.py
 """
@@ -27,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from backend.api.models.schemas import BiomarkerResult
 from backend.verification.verifier import verify_results
-from backend.rag.query_rewriter import _fallback_query
+from backend.rag.query_rewriter import rewrite_query, _fallback_query
 from backend.rag.retriever import hybrid_search
 from backend.rag.reranker import rerank
 from backend.rag.citation import extract_citations
@@ -43,186 +38,181 @@ def subheader(text):
     print(f"\n--- {text} " + "-" * (74 - len(text)))
 
 
-def print_chunk_short(chunk, idx, score_label="combined_score"):
-    title = chunk.get("section_title", "Unknown")
-    score = chunk.get(score_label, 0)
-    biomarkers = chunk.get("biomarkers_text", "")
-    print(f"  #{idx}  [score={score:+.3f}]  {title}")
-    if biomarkers:
-        print(f"        biomarkers: {biomarkers[:75]}")
+def _wrap(text, indent="    ", width=76):
+    """Word-wrap text to fit in terminal."""
+    words = text.split()
+    lines = []
+    line = indent
+    for w in words:
+        if len(line) + len(w) > width:
+            lines.append(line)
+            line = indent
+        line += w + " "
+    if line.strip():
+        lines.append(line.rstrip())
+    return lines
 
 
-def print_chunk_full(chunk, idx):
-    """Print a chunk preview (text truncated for display ONLY — full text is in Stage 4)."""
-    title = chunk.get("section_title", "Unknown")
-    score = chunk.get("relevance_score", 0)
-    text = chunk.get("text", "").replace("\n", " ").strip()
-    biomarkers = chunk.get("biomarkers_text", "")
-    print(f"  #{idx}  [relevance={score:+.3f}]  {title}")
-    if biomarkers:
-        print(f"        biomarkers: {biomarkers[:75]}")
-    # Display-only preview (220 chars). The actual chunk text is preserved in full
-    # in the Stage 4 output below.
-    preview = text[:220] + ("..." if len(text) > 220 else "")
-    print(f"        text preview: {preview}")
+def run_pipeline(query, abnormal_names, top_k=5):
+    """Run stages 2-3 of the RAG pipeline with a given query.
+
+    Returns: (search_results, ranked_chunks, citations, timing_dict)
+    """
+    # Stage 2: Hybrid search
+    t0 = time.time()
+    search_results = hybrid_search(query, abnormal_names, top_k=15)
+    t_search = time.time() - t0
+
+    # Stage 3: Cross-encoder re-rank
+    t0 = time.time()
+    ranked = rerank(query, search_results, top_k=top_k)
+    t_rerank = time.time() - t0
+
+    # Stage 4: Citations
+    citations = extract_citations(ranked)
+
+    return search_results, ranked, citations, {"search": t_search, "rerank": t_rerank}
 
 
-def test_query(name, biomarkers, medications=None, wearable_data=None, expected_keywords=None):
-    header(f"QUERY: {name}")
+def run_scenario(name, biomarkers, medications=None, wearable_data=None, expected_keywords=None):
+    """Run a single scenario, comparing fallback vs LLM query rewriting."""
+    header(f"SCENARIO: {name}")
 
-    # Stage 0: INPUT
-    subheader("INPUT (OCR output)")
-    print(f"  {len(biomarkers)} biomarkers from blood test:")
+    # ── INPUT ──────────────────────────────────────────────────────────────
+    print(f"\n  {len(biomarkers)} biomarkers:")
     for b in biomarkers:
         flag = ""
         if b.ref_low and b.value < b.ref_low:
             flag = f"  LOW (ref >= {b.ref_low})"
         elif b.ref_high and b.value > b.ref_high:
             flag = f"  HIGH (ref <= {b.ref_high})"
-        print(f"    - {b.name:20} {b.value:>8} {b.unit:10}{flag}")
+        print(f"    - {b.name:18} {b.value:>8} {b.unit:10}{flag}")
     if medications:
         print(f"  Medications: {', '.join(medications)}")
     if wearable_data:
         print(f"  Wearable: HR={wearable_data.get('resting_hr_avg')}bpm "
               f"trend={wearable_data.get('resting_hr_trend')}")
 
-    # Verification (Module 3)
+    # Run verification
     verified = verify_results(biomarkers, medications=medications)
     abnormal_names = [r.biomarker for r in verified.verified_results if r.flagged]
 
-    # Stage 1: Query Rewriting
-    subheader("STAGE 1: Query Rewriting")
-    print("  HOW IT WORKS:")
-    print("    Rule-based pattern detection (deterministic, no LLM in fallback mode):")
-    print("      1. Filter to abnormal biomarkers only (flagged=True)")
-    print("      2. Categorize by direction (low/high)")
-    print("      3. Match against pattern priority list:")
-    print("         Ferritin+MCV/Hb -> microcytic anemia")
-    print("         B12/Folate+MCV  -> macrocytic anemia")
-    print("         TSH             -> hypo/hyperthyroid (uses direction)")
-    print("         3+ metabolic    -> metabolic syndrome")
-    print("         Creatinine/BUN  -> kidney disease")
-    print("         ALT/AST/Bili    -> liver dysfunction")
-    print("         K+ high         -> hyperkalemia")
-    print("      4. Generate question-shaped query (optimized for cross-encoder)")
-    print("      5. Append actual values for semantic specificity")
-    print()
-    t0 = time.time()
-    query = _fallback_query(verified.verified_results)
-    t1 = time.time()
-    print(f"  Time: {(t1-t0)*1000:.1f}ms")
-    print(f"  Output query (this is what Stage 2 will search with):")
-    # word wrap
-    words = query.split()
-    line = "    "
-    for w in words:
-        if len(line) + len(w) > 76:
-            print(line)
-            line = "    "
-        line += w + " "
-    if line.strip():
-        print(line.rstrip())
+    # ── Generate both queries ──────────────────────────────────────────────
+    print(f"\n{'='*78}")
+    print(f"  QUERY COMPARISON")
+    print(f"{'='*78}")
 
-    # Stage 2: Hybrid Search
-    subheader("STAGE 2: Hybrid Search (top 10 candidates)")
-    print("  HOW IT WORKS:")
-    print("    Two parallel searches in LanceDB, then merge with weighted scores:")
-    print("      a) Semantic search: embed query (all-MiniLM-L6-v2 -> 384-dim vector),")
-    print("         find chunks with closest cosine similarity")
-    print("      b) Keyword search: full-text search for biomarker names in 'biomarkers_text'")
-    print("      c) Merge with normalized scores: 0.7 * semantic + 0.3 * keyword")
-    print("      d) Pre-filter by organ system (e.g., hematologic) when possible")
-    print()
+    # Fallback query
     t0 = time.time()
-    search_results = hybrid_search(query, abnormal_names, top_k=15)
-    t1 = time.time()
-    print(f"  Time: {(t1-t0)*1000:.1f}ms")
-    print(f"  Retrieved: {len(search_results)} candidates (showing top 10)")
-    for i, c in enumerate(search_results[:10], 1):
-        print_chunk_short(c, i, "combined_score")
+    fallback_query = _fallback_query(verified.verified_results)
+    t_fallback = (time.time() - t0) * 1000
 
-    # Stage 3: Cross-Encoder Re-Rank
-    subheader("STAGE 3: Cross-Encoder Re-Rank (top 10 by relevance)")
+    print(f"\n  [FALLBACK] ({t_fallback:.1f}ms)")
+    for line in _wrap(fallback_query):
+        print(line)
+
+    # LLM query
     t0 = time.time()
-    # Top 10 to see how the cross-encoder distributes confidence across more chunks
-    ranked = rerank(query, search_results, top_k=10)
-    t1 = time.time()
-    print(f"  Time: {(t1-t0)*1000:.1f}ms")
-    print(f"  Returned: {len(ranked)} chunks (top-10 by relevance)")
-    if ranked:
-        # Show confidence breakdown
+    llm_query = rewrite_query(
+        verified.verified_results,
+        medications=medications,
+    )
+    t_llm = (time.time() - t0) * 1000
+
+    print(f"\n  [LLM — qwen3.5:0.8b] ({t_llm:.1f}ms)")
+    for line in _wrap(llm_query):
+        print(line)
+
+    # ── Run pipeline with BOTH queries ─────────────────────────────────────
+    print(f"\n{'='*78}")
+    print(f"  RETRIEVAL RESULTS")
+    print(f"{'='*78}")
+
+    fb_search, fb_ranked, fb_citations, fb_time = run_pipeline(fallback_query, abnormal_names)
+    llm_search, llm_ranked, llm_citations, llm_time = run_pipeline(llm_query, abnormal_names)
+
+    # ── Side-by-side comparison ────────────────────────────────────────────
+    print(f"\n  {'':30} {'FALLBACK':>22} {'LLM':>22}")
+    print(f"  {'-'*74}")
+    print(f"  {'Cross-encoder latency':30} {fb_time['rerank']*1000:>19.1f}ms {llm_time['rerank']*1000:>19.1f}ms")
+
+    for i in range(5):
+        fb_label = fb_ranked[i].get("section_title", "?")[:40] if i < len(fb_ranked) else "(none)"
+        fb_score = fb_ranked[i].get("relevance_score", 0) if i < len(fb_ranked) else 0
+        fb_conf = fb_ranked[i].get("confidence", "?") if i < len(fb_ranked) else "?"
+        llm_label = llm_ranked[i].get("section_title", "?")[:40] if i < len(llm_ranked) else "(none)"
+        llm_score = llm_ranked[i].get("relevance_score", 0) if i < len(llm_ranked) else 0
+        llm_conf = llm_ranked[i].get("confidence", "?") if i < len(llm_ranked) else "?"
+        diff = llm_score - fb_score
+        marker = ">" if diff > 0.1 else ("<" if diff < -0.1 else "=")
+        print(f"  #{i+1} {marker} "
+              f"[{fb_conf[0].upper():1}{fb_score:+6.3f}] {fb_label:42} | "
+              f"[{llm_conf[0].upper():1}{llm_score:+6.3f}] {llm_label:42}")
+
+    # ── Confidence breakdown ───────────────────────────────────���──────────
+    for label, ranked in [("FALLBACK", fb_ranked), ("LLM", llm_ranked)]:
         high = sum(1 for c in ranked if c.get("confidence") == "high")
         mod = sum(1 for c in ranked if c.get("confidence") == "moderate")
         low = sum(1 for c in ranked if c.get("confidence") == "low")
-        print(f"  Confidence: {high} high, {mod} moderate, {low} low")
-    for i, c in enumerate(ranked, 1):
-        print_chunk_full(c, i)
+        top_score = ranked[0].get("relevance_score", -99) if ranked else -99
+        print(f"\n  {label} — {high} high, {mod} moderate, {low} low | "
+              f"Top score: {top_score:+.3f}")
 
-    # Stage 4: Top Citation FULL TEXT (always show — this is what the LLM sees)
-    subheader("STAGE 4: TOP CITATION - FULL TEXT (what the LLM will see)")
-    citations = extract_citations(ranked)
-    if not citations:
-        print("  [!] No citations available - search returned 0 chunks")
-    else:
+    # ── Top citation comparison ────────────────────────────────────────────
+    print(f"\n  TOP CITATION TEXT COMPARISON:")
+    for label, ranked, citations in [("FALLBACK", fb_ranked, fb_citations),
+                                      ("LLM", llm_ranked, llm_citations)]:
+        if not citations:
+            print(f"\n  {label}: No citations")
+            continue
         top = citations[0]
-        confidence = ranked[0].get("confidence", "unknown") if ranked else "unknown"
-        print(f"  Chunk ID:   {top.chunk_id}")
-        print(f"  Source:     {top.source}")
-        print(f"  Biomarkers: {top.biomarkers_involved}")
-        print(f"  Relevance:  {top.relevance_score:+.3f}  (confidence: {confidence})")
-        print(f"\n  FULL TEXT (this is what gets sent to the LLM synthesis prompt):")
-        print(f"  " + "-" * 74)
-        for line in top.text.split("\n"):
-            line = line.strip()
-            if not line:
-                continue
-            words = line.split()
-            buf = "  | "
-            for w in words:
-                if len(buf) + len(w) > 76:
-                    print(buf)
-                    buf = "  | "
-                buf += w + " "
-            if buf.strip() != "|":
-                print(buf.rstrip())
-        print(f"  " + "-" * 74)
+        source = top.source.split(",")[0].strip() if top.source else "?"
+        section = ranked[0].get("section_title", "?") if ranked else "?"
+        print(f"\n  [{label}] {section}")
+        print(f"    Source: {source}")
+        print(f"    Score:  {top.relevance_score:+.3f}  "
+              f"(confidence: {ranked[0].get('confidence', '?')})")
+        # First 80 chars of text
+        text_preview = top.text.replace("\n", " ").strip()[:200]
+        print(f"    Text:   {text_preview}...")
 
-    # Graph
-    subheader("Graph (Graphify)")
-    graph = build_clinical_graph(verified.verified_results, citations, wearable_data)
-    print(f"  {len(graph.nodes)} nodes, {len(graph.edges)} edges")
-    for node in graph.nodes:
-        print(f"    [{node.type:9}] {node.label}")
-
-    # Validation
-    subheader("VALIDATION")
+    # ── Validation ─────────────────────────────────────────────────────────
+    print(f"\n  VALIDATION:")
     if expected_keywords:
-        all_text = " ".join(c.text.lower() for c in citations) + " " + \
-                   " ".join(r.get("section_title", "").lower() for r in ranked)
-        for kw in expected_keywords:
-            mark = "[+]" if kw.lower() in all_text else "[-]"
-            print(f"  {mark} expected keyword: '{kw}'")
-    if not citations:
-        print("  [-] FAIL: No citations available")
+        for label, citations in [("FALLBACK", fb_citations), ("LLM", llm_citations)]:
+            all_text = " ".join(c.text.lower() for c in citations)
+            found = [kw for kw in expected_keywords if kw.lower() in all_text]
+            missing = [kw for kw in expected_keywords if kw.lower() not in all_text]
+            f_str = ", ".join(f"[+] {k}" for k in found) if found else "(none found)"
+            m_str = ", ".join(f"[-] {k}" for k in missing) if missing else ""
+            print(f"    {label:10} {f_str}  {m_str}")
+
+    # ── Score delta ────────────────────────────────────────────────────────
+    fb_top = fb_ranked[0].get("relevance_score", -99) if fb_ranked else -99
+    llm_top = llm_ranked[0].get("relevance_score", -99) if llm_ranked else -99
+    delta = llm_top - fb_top
+    if delta > 0:
+        print(f"\n  RESULT: LLM query improved top relevance by {delta:+.3f}")
+    elif delta < 0:
+        print(f"\n  RESULT: Fallback query was better by {abs(delta):.3f}")
     else:
-        top_score = citations[0].relevance_score
-        top_conf = ranked[0].get("confidence", "unknown")
-        if top_score > 0:
-            print(f"  [+] PASS: Top citation relevance {top_score:+.3f} (high confidence)")
-        elif top_conf == "moderate":
-            print(f"  [~] OK:   Top citation relevance {top_score:+.3f} (moderate confidence)")
-            print(f"           LLM still gets useful clinical context")
-        else:
-            print(f"  [-] WARN: Top citation relevance {top_score:+.3f} (low confidence)")
+        print(f"\n  RESULT: No difference in top relevance")
+
+    return {
+        "name": name,
+        "fallback_top_score": fb_top,
+        "llm_top_score": llm_top,
+        "delta": delta,
+    }
 
 
 def main():
-    header("VERITAS RAG Quality Test - Detailed Input/Output Verification", "=")
-    print("\nThis test runs realistic blood-test queries and shows exactly what")
-    print("the RAG pipeline retrieves at each stage. Verify retrieval quality below.\n")
+    header("VERITAS RAG Quality Test — Fallback vs LLM Query Rewriting")
+
+    results = []
 
     # SCENARIO 1: Iron Deficiency
-    test_query(
+    results.append(run_scenario(
         name="Iron Deficiency Anemia",
         biomarkers=[
             BiomarkerResult(name="Ferritin", value=12, unit="ng/mL",
@@ -235,11 +225,11 @@ def main():
                             ref_low=12, ref_high=16, flag="L"),
         ],
         wearable_data={"resting_hr_avg": 76, "resting_hr_trend": "rising"},
-        expected_keywords=["microcytic", "iron", "ferritin"],
-    )
+        expected_keywords=["microcytic", "iron", "ferritin", "anemia"],
+    ))
 
     # SCENARIO 2: B12 Deficiency
-    test_query(
+    results.append(run_scenario(
         name="B12 Deficiency (Macrocytic Anemia)",
         biomarkers=[
             BiomarkerResult(name="Vitamin B12", value=180, unit="pg/mL",
@@ -249,11 +239,11 @@ def main():
             BiomarkerResult(name="Hemoglobin", value=10.8, unit="g/dL",
                             ref_low=12, ref_high=16, flag="L"),
         ],
-        expected_keywords=["macrocytic", "b12", "folate"],
-    )
+        expected_keywords=["macrocytic", "b12", "folate", "anemia"],
+    ))
 
     # SCENARIO 3: Hypothyroidism
-    test_query(
+    results.append(run_scenario(
         name="Primary Hypothyroidism",
         biomarkers=[
             BiomarkerResult(name="TSH", value=12.5, unit="mIU/L",
@@ -263,11 +253,11 @@ def main():
             BiomarkerResult(name="Cholesterol", value=265, unit="mg/dL",
                             ref_low=0, ref_high=200, flag="H"),
         ],
-        expected_keywords=["thyroid", "hypothyroid"],
-    )
+        expected_keywords=["thyroid", "hypothyroid", "tsh"],
+    ))
 
     # SCENARIO 4: Kidney Dysfunction
-    test_query(
+    results.append(run_scenario(
         name="Kidney Dysfunction",
         biomarkers=[
             BiomarkerResult(name="Creatinine", value=2.4, unit="mg/dL",
@@ -279,10 +269,26 @@ def main():
             BiomarkerResult(name="Potassium", value=5.4, unit="mmol/L",
                             ref_low=3.5, ref_high=5.0, flag="H"),
         ],
-        expected_keywords=["renal", "kidney"],
-    )
+        expected_keywords=["renal", "kidney", "creatinine"],
+    ))
 
-    header("ALL QUERIES COMPLETE", "=")
+    # ── FINAL SUMMARY ──────────────────────────────────────────────────────
+    header("SUMMARY: LLM vs Fallback Query Rewriting")
+    print(f"\n  {'Scenario':35} {'Fallback':>8} {'LLM':>8} {'Delta':>8}")
+    print(f"  {'-'*60}")
+    for r in results:
+        print(f"  {r['name']:35} {r['fallback_top_score']:>+8.3f} "
+              f"{r['llm_top_score']:>+8.3f} {r['delta']:>+8.3f}")
+
+    avg_delta = sum(r["delta"] for r in results) / len(results)
+    print(f"\n  Average delta: {avg_delta:+.3f}")
+    if avg_delta > 0:
+        print(f"  LLM query rewriting improves cross-encoder relevance scores.")
+    else:
+        print(f"  Fallback query performs comparably or better.")
+    print(f"\n  Note: Scores > 0 = high confidence, > -3 = moderate, < -3 = low")
+
+    header("ALL SCENARIOS COMPLETE")
 
 
 if __name__ == "__main__":

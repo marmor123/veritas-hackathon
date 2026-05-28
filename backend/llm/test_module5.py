@@ -90,7 +90,7 @@ def test_demo_outputs_valid():
             assert len(pattern.doctor_questions) >= 2, f"{name}: fewer than 2 doctor questions"
             assert len(pattern.citations) >= 1, f"{name}: no citations"
 
-    print("✓ test_demo_outputs_valid PASSED")
+    print("PASSED: test_demo_outputs_valid")
 
 
 def test_get_demo_output():
@@ -101,7 +101,7 @@ def test_get_demo_output():
     assert get_demo_output("hemolysis_artifact") is not None
     assert get_demo_output("nonexistent") is None
 
-    print("✓ test_get_demo_output PASSED")
+    print("PASSED: test_get_demo_output")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -118,7 +118,7 @@ def test_format_biomarker_table():
     assert "WBC" not in result
     assert "Glucose" not in result
 
-    print("✓ test_format_biomarker_table PASSED")
+    print("PASSED:test_format_biomarker_table PASSED")
 
 
 def test_format_biomarker_table_all_normal():
@@ -126,7 +126,7 @@ def test_format_biomarker_table_all_normal():
     result = format_biomarker_table(ALL_NORMAL_RESULTS)
     assert "normal" in result.lower()
 
-    print("✓ test_format_biomarker_table_all_normal PASSED")
+    print("PASSED:test_format_biomarker_table_all_normal PASSED")
 
 
 def test_format_wearable_summary():
@@ -144,7 +144,7 @@ def test_format_wearable_summary():
     result = format_wearable_summary({})
     assert "No wearable" in result
 
-    print("✓ test_format_wearable_summary PASSED")
+    print("PASSED: test_format_wearable_summary")
 
 
 def test_format_medications():
@@ -153,7 +153,7 @@ def test_format_medications():
     assert "None" in format_medications(None)
     assert "None" in format_medications([])
 
-    print("✓ test_format_medications PASSED")
+    print("PASSED: test_format_medications")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -183,7 +183,7 @@ def test_prompt_assembly():
     assert "wallach_001" in prompt
     assert "CITATION" in prompt
 
-    print("✓ test_prompt_assembly PASSED")
+    print("PASSED:test_prompt_assembly PASSED")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -218,7 +218,7 @@ def test_parse_valid_json():
     assert result.patterns[0].name == "Test Pattern"
     assert result.patterns[0].severity == Severity.CAUTION
 
-    print("✓ test_parse_valid_json PASSED")
+    print("PASSED:test_parse_valid_json PASSED")
 
 
 def test_parse_json_with_surrounding_text():
@@ -231,7 +231,7 @@ def test_parse_json_with_surrounding_text():
     assert result is not None
     assert result.summary == "Found pattern"
 
-    print("✓ test_parse_json_with_surrounding_text PASSED")
+    print("PASSED:test_parse_json_with_surrounding_text PASSED")
 
 
 def test_parse_invalid_json():
@@ -240,7 +240,7 @@ def test_parse_invalid_json():
     assert _parse_llm_output("{broken: json}") is None
     assert _parse_llm_output("") is None
 
-    print("✓ test_parse_invalid_json PASSED")
+    print("PASSED:test_parse_invalid_json PASSED")
 
 
 def test_parse_severity_normalization():
@@ -269,7 +269,7 @@ def test_parse_severity_normalization():
     assert result.patterns[1].severity == Severity.ADVISORY  # fallback
     assert result.patterns[1].confidence == Confidence.MODERATE  # fallback
 
-    print("✓ test_parse_severity_normalization PASSED")
+    print("PASSED:test_parse_severity_normalization PASSED")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -283,7 +283,7 @@ def test_all_normal_fast_path():
     assert len(result.patterns) == 0
     assert result.disclaimer
 
-    print("✓ test_all_normal_fast_path PASSED")
+    print("PASSED:test_all_normal_fast_path PASSED")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -307,7 +307,7 @@ def test_synthesize_fallback_to_demo():
     assert result.summary
     assert result.disclaimer
 
-    print("✓ test_synthesize_fallback_to_demo PASSED")
+    print("PASSED:test_synthesize_fallback_to_demo PASSED")
 
 
 def test_synthesize_all_normal():
@@ -324,7 +324,7 @@ def test_synthesize_all_normal():
     assert "normal" in result.summary.lower()
     assert len(result.patterns) == 0
 
-    print("✓ test_synthesize_all_normal PASSED")
+    print("PASSED:test_synthesize_all_normal PASSED")
 
 
 def test_raw_fallback_output():
@@ -337,7 +337,7 @@ def test_raw_fallback_output():
     assert result.patterns[0].severity == Severity.ADVISORY
     assert "unavailable" in result.summary.lower()
 
-    print("✓ test_raw_fallback_output PASSED")
+    print("PASSED:test_raw_fallback_output PASSED")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -360,7 +360,7 @@ def test_match_demo_scenario():
     result = match_demo_scenario(ALL_NORMAL_RESULTS)
     assert result is None
 
-    print("✓ test_match_demo_scenario PASSED")
+    print("PASSED:test_match_demo_scenario PASSED")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -395,13 +395,13 @@ if __name__ == "__main__":
             test()
             passed += 1
         except Exception as e:
-            print(f"✗ {test.__name__} FAILED: {e}")
+            print(f"FAILED:{test.__name__} FAILED: {e}")
             failed += 1
 
     print(f"\n{'='*50}")
     print(f"Results: {passed} passed, {failed} failed, {passed + failed} total")
     if failed == 0:
-        print("All tests passed! ✓")
+        print("All tests passed!")
     else:
         print(f"FAILURES: {failed}")
         sys.exit(1)
