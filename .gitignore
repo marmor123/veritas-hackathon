@@ -10,8 +10,16 @@ dist/
 build/
 *.egg-info/
 
-# LanceDB data (rebuild from knowledge-base/)
+# LanceDB data (rebuild with: python knowledge-base/build_kb.py)
 knowledge-base/lancedb/
+
+# HTML companion _files folders (JS/CSS/images saved by browser — not needed)
+knowledge-base/*_files/
+
+# Large generated files (rebuild with parsers)
+knowledge-base/chunks.json
+knowledge-base/chunks_html.json
+knowledge-base/chunks_pdf.json
 
 # Claude internal files
 .claude/

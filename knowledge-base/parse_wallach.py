@@ -286,11 +286,24 @@ def parse_file(filepath):
 def main():
     if len(sys.argv) < 2:
         print("Usage: python parse_wallach.py <html_file> [html_file ...]")
-        print("Example: python parse_wallach.py chapter2.html chapter3.html")
+        print("       python parse_wallach.py --output chunks_html.json raw/chapter2.html ...")
+        print("Example: python parse_wallach.py raw/chapter2.html raw/chapter3.html")
         sys.exit(1)
 
+    # Check for --output flag
+    output_name = "chunks.json"
+    args = sys.argv[1:]
+    if "--output" in args:
+        idx = args.index("--output")
+        if idx + 1 < len(args):
+            output_name = args[idx + 1]
+            args = args[:idx] + args[idx+2:]
+        else:
+            print("Error: --output requires a filename")
+            sys.exit(1)
+
     all_chunks = []
-    for filepath in sys.argv[1:]:
+    for filepath in args:
         path = Path(filepath)
         if not path.exists():
             print(f"Warning: {filepath} not found, skipping")
@@ -325,7 +338,7 @@ def main():
     kept = pattern_chunks + clinical_chunks
 
     # Write output
-    output_path = Path(__file__).parent / "chunks.json"
+    output_path = Path(__file__).parent / output_name
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(kept, f, indent=2, ensure_ascii=False)
 
