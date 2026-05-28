@@ -12,8 +12,17 @@ Usage:
     uvicorn backend.main:app --reload --port 8000
 """
 
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+# Configure logging so all modules output to console
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    datefmt="%H:%M:%S",
+)
 
 from backend.api.routes.rag import router as rag_router
 from backend.api.routes.verification import router as verification_router

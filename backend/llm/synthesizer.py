@@ -11,6 +11,9 @@ This is the single entry point for Module 5.
 """
 
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 from backend.api.models.schemas import (
     AnalysisOutput,
@@ -69,7 +72,10 @@ def synthesize(
     # Fast path: all normal
     abnormal = [r for r in verified_results if r.flagged]
     if not abnormal:
+        logger.info("[Synthesizer] All biomarkers normal — skipping LLM")
         return _all_normal_output(verification)
+
+    logger.info("[Synthesizer] %d abnormal biomarkers found, proceeding with LLM synthesis", len(abnormal))
 
     # Build the full prompt
     prompt = _build_prompt(
@@ -79,29 +85,37 @@ def synthesize(
         medications=medications,
         wearable_data=wearable_data,
     )
+    logger.info("[Synthesizer] Prompt built (%d chars)", len(prompt))
 
     # Try LLM call
     model_to_use = model or DEFAULT_MODEL
+    logger.info("[Synthesizer] Trying primary model: %s", model_to_use)
     result = _call_llm(prompt, model_to_use)
 
     if result is not None:
+        logger.info("[Synthesizer] SUCCESS with model %s", model_to_use)
         return result
 
     # LLM failed — try fallback models
     for fallback_model in FALLBACK_MODELS:
         if fallback_model == model_to_use:
             continue
+        logger.info("[Synthesizer] Trying fallback model: %s", fallback_model)
         result = _call_llm(prompt, fallback_model)
         if result is not None:
+            logger.info("[Synthesizer] SUCCESS with fallback model %s", fallback_model)
             return result
 
     # All LLM attempts failed — use demo fallback
+    logger.warning("[Synthesizer] All LLM models failed. Trying demo fallback...")
     if use_demo_fallback:
         demo = match_demo_scenario(verified_results)
         if demo:
+            logger.info("[Synthesizer] Matched demo scenario as fallback")
             return demo
 
     # Ultimate fallback: return raw findings without LLM interpretation
+    logger.warning("[Synthesizer] Returning raw fallback output (no LLM, no demo match)")
     return _raw_fallback_output(verified_results, verification)
 
 
@@ -132,6 +146,7 @@ def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
     try:
         import ollama
 
+        logger.info("[Synthesizer] Calling ollama.generate(model=%s)...", model)
         response = ollama.generate(
             model=model,
             system=SYSTEM_PROMPT,
@@ -145,13 +160,17 @@ def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
         )
         raw_text = response.get("response", "").strip()
         if not raw_text:
-            print(f"[Synthesizer] Empty response from {model}")
+            logger.warning("[Synthesizer] Empty response from %s", model)
             return None
 
+        logger.info("[Synthesizer] Got response from %s (%d chars), parsing...", model, len(raw_text))
         return _parse_llm_output(raw_text)
 
+    except ImportError:
+        logger.error("[Synthesizer] 'ollama' package not installed!")
+        return None
     except Exception as e:
-        print(f"[Synthesizer] LLM call failed ({model}): {e}")
+        logger.error("[Synthesizer] LLM call failed (%s): %s", model, e)
         return None
 
 
@@ -163,13 +182,13 @@ def _parse_llm_output(raw_text: str) -> AnalysisOutput | None:
     # Try to extract JSON from the response (LLM might add text around it)
     json_str = _extract_json(raw_text)
     if not json_str:
-        print(f"[Synthesizer] Could not extract JSON from response")
+        logger.warning("[Synthesizer] Could not extract JSON from response: %s", raw_text[:200])
         return None
 
     try:
         data = json.loads(json_str)
     except json.JSONDecodeError as e:
-        print(f"[Synthesizer] JSON parse error: {e}")
+        logger.warning("[Synthesizer] JSON parse error: %s — raw: %s", e, json_str[:200])
         return None
 
     # Build AnalysisOutput from parsed data
@@ -201,7 +220,7 @@ def _parse_llm_output(raw_text: str) -> AnalysisOutput | None:
         )
 
     except Exception as e:
-        print(f"[Synthesizer] Error building AnalysisOutput: {e}")
+        logger.error("[Synthesizer] Error building AnalysisOutput: %s", e)
         return None
 
 

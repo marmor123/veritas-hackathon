@@ -13,9 +13,12 @@ Also supports:
   - Graceful degradation if any stage fails
 """
 
+import logging
 from typing import Optional, List
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 from backend.api.models.schemas import (
     BiomarkerResult,
@@ -72,10 +75,17 @@ async def analyze(
 
     try:
         # ── Stage 1: Verification (Module 3) ─────────────────────────────
+        logger.info("[Analyze] Stage 1: Running verification...")
         verification = verify_results(
             biomarkers=request.biomarkers,
             medications=request.medications,
             supplements=request.supplements,
+        )
+        logger.info(
+            "[Analyze] Stage 1 DONE — %d verified results, %d quality flags, %d drug interferences",
+            len(verification.verified_results),
+            len(verification.quality_flags),
+            len(verification.drug_interferences),
         )
 
         # ── Early halt: if any quality flag has severity "high", stop ────
@@ -107,14 +117,21 @@ async def analyze(
             )
 
         # ── Stage 2: RAG Retrieval (Module 4) ────────────────────────────
+        logger.info("[Analyze] Stage 2: Running RAG retrieval...")
         pipeline = _get_pipeline()
         rag_result = pipeline.run(
             verified_results=verification.verified_results,
             medications=request.medications,
             wearable_data=request.wearable_data,
         )
+        logger.info(
+            "[Analyze] Stage 2 DONE — citations length: %d chars, clinical_graph present: %s",
+            len(rag_result.get("citations_formatted", "")),
+            "clinical_graph" in rag_result,
+        )
 
         # ── Stage 3: LLM Synthesis (Module 5) ────────────────────────────
+        logger.info("[Analyze] Stage 3: Running LLM synthesis...")
         analysis = synthesize(
             verified_results=verification.verified_results,
             citations_formatted=rag_result["citations_formatted"],
@@ -122,6 +139,7 @@ async def analyze(
             medications=request.medications,
             wearable_data=request.wearable_data,
         )
+        logger.info("[Analyze] Stage 3 DONE — summary: %s", analysis.summary[:80])
 
         # Attach the clinical graph from RAG to the output
         analysis.clinical_graph = rag_result.get("clinical_graph")
@@ -150,7 +168,7 @@ async def analyze(
 
     except Exception as e:
         # If anything fails, try to return partial results
-        print(f"[Analyze] Pipeline error: {e}")
+        logger.error("[Analyze] Pipeline error: %s", e, exc_info=True)
         raise HTTPException(
             status_code=500,
             detail=f"Analysis pipeline error: {str(e)}",
