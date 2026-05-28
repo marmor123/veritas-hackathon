@@ -1,50 +1,49 @@
 # Raw HTML Source Files
 
-Place HTML files saved from the Wallach 11th Edition website here.
+The Wallach 11th Edition HTML files are placed directly in `knowledge-base/`
+(not in this `raw/` subfolder). The parser auto-discovers them.
 
 ## How to Get the HTML Files
 
 1. Go to https://apn.lwwhealthlibrary.com/book.aspx?bookid=2839
 2. Log in with Hebrew University credentials
-3. Navigate to a clinical chapter (e.g., Chapter 2: Laboratory Tests)
-4. Right-click → "View Page Source" (or Ctrl+U)
-5. Save the HTML file here as `chapter2.html`, `chapter3.html`, etc.
+3. Navigate to a clinical chapter (e.g., Hematologic Disorders)
+4. Press `Ctrl+S` (Save Page As) — saves as "Web Page, Complete"
+5. Save to `knowledge-base/` directory
 
-## Important Chapters to Copy
+## Important Chapters
 
-| Chapter | Content | Priority |
-|---------|---------|----------|
-| 2 | Laboratory Tests (individual biomarker descriptions) | HIGH |
-| 4 | Cardiovascular Disorders | HIGH |
-| 6 | Digestive Diseases | MEDIUM |
-| 7 | Endocrine Diseases | HIGH |
-| 8 | Renal & Urinary Tract Diseases | HIGH |
-| 10 | Hematologic Disorders | HIGH |
-| 14 | Respiratory, Metabolic & Acid-Base Disorders | MEDIUM |
+The parser automatically classifies chapters as clinical or reference:
+
+**Clinical pattern chapters (used for RAG):**
+- Hematologic Disorders
+- Endocrine Diseases
+- Cardiovascular Disorders
+- Renal Disorders
+- Digestive Diseases
+- Respiratory, Metabolic, and Acid-Base Disorders
+- Gynecologic and Obstetric Disorders
+- Central Nervous System Disorders
+- Hereditary and Genetic Diseases
+- Genitourinary System Disorders
+
+**Reference chapters (auto-skipped — they pollute retrieval):**
+- Laboratory Tests (A-Z encyclopedia of individual tests)
+- Abbreviations and Acronyms
+- FALTs (Factors Affecting Laboratory Tests)
+- Toxicology and Therapeutic Drug Monitoring
+- Transfusion Medicine
+- Infectious Disease Assays / Infectious Diseases
 
 ## After Saving HTML Files
 
 ```bash
-# Parse HTML files into chunks
-python parse_wallach.py raw/chapter2.html raw/chapter10.html raw/chapter7.html
-
-# This creates chunks.json (or rename to chunks_html.json for merging)
-# Then compare with PDF-based chunks:
-python merge_sources.py --compare-only
-
-# Merge both sources (HTML preferred for duplicates):
-python merge_sources.py --prefer html
+# Parse all HTML files (auto-skips reference chapters):
+python knowledge-base/parse_wallach.py
 
 # Rebuild the vector database:
-python build_kb.py
+python knowledge-base/build_kb.py
+
+# Run tests:
+python knowledge-base/test_pipeline.py
 ```
-
-## Why HTML is Better Than PDF
-
-The HTML source (11th Edition) is preferred because:
-- **Newer edition** — more up-to-date clinical guidelines
-- **Cleaner structure** — `<h2>` tags give precise section boundaries
-- **Better text quality** — no OCR artifacts or PDF formatting issues
-- **Richer metadata** — CSS classes indicate content type (para, table, heading)
-
-The PDF (9th Edition) serves as fallback for chapters not yet copied from the website.

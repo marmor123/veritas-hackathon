@@ -74,22 +74,27 @@ cd veritas-hackathon
 pip install -r backend/requirements.txt
 
 # Or install individually:
-pip install PyMuPDF sentence-transformers lancedb ollama fastapi uvicorn
+pip install sentence-transformers lancedb ollama fastapi uvicorn
 ```
 
 ### Build the Knowledge Base (one-time setup)
 
 ```bash
-# Step 1: Parse the Wallach PDF into chunks
-python knowledge-base/parse_wallach_pdf.py
+# Step 1: Parse the Wallach 11th Edition HTML files into chunks
+# (HTML files saved from apn.lwwhealthlibrary.com via View Source)
+python knowledge-base/parse_wallach.py
 
 # Step 2: Embed chunks and build the vector database
 python knowledge-base/build_kb.py
 ```
 
 This creates:
-- `knowledge-base/chunks.json` — 831 clinical text chunks
+- `knowledge-base/chunks.json` — 467 clinical pattern chunks (one per condition)
 - `knowledge-base/lancedb/` — Vector database with embeddings
+
+The parser only includes clinical pattern chapters (Hematologic, Endocrine, Cardiovascular,
+Renal, etc.) and skips non-pattern chapters (Laboratory Tests A-Z, Toxicology, Transfusion, etc.)
+that would pollute retrieval with single-test reference cards.
 
 ### Run Tests
 
@@ -408,39 +413,21 @@ backend/
     └── graph_builder.py         # Graphify: knowledge graph construction
 
 knowledge-base/
-├── epdf.pub_wallachs-...pdf     # Source PDF (Wallach 9th Edition)
-├── parse_wallach.py             # HTML parser (for 11th Edition online)
-├── parse_wallach_pdf.py         # PDF parser (for 9th Edition PDF)
+├── *.html                       # Wallach 11th Edition HTML source (gitignored)
+├── parse_wallach.py             # HTML parser → clinical pattern chunks
 ├── build_kb.py                  # Embed chunks → LanceDB
-├── chunks.json                  # 831 extracted clinical chunks
-├── lancedb/                     # Vector database (created by build_kb.py)
-├── test_pipeline.py             # End-to-end pipeline tests
-└── test_queries.py              # RAG quality test suite
+├── chunks.json                  # 467 clinical pattern chunks (committed)
+├── lancedb/                     # Vector database (gitignored, rebuild with build_kb.py)
+└── test_pipeline.py             # End-to-end pipeline tests
 ```
 
 ---
 
 ## How to Add More Knowledge
 
-### Option A: Parse more chapters from the PDF
+### Option A: Add more HTML chapters from the website
 
-```bash
-# Parse all chapters (not just priority ones):
-python knowledge-base/parse_wallach_pdf.py --all
-
-# Or specific chapters:
-python knowledge-base/parse_wallach_pdf.py --chapters 3 5 11 12
-
-# Rebuild the vector DB:
-python knowledge-base/build_kb.py
-```
-
-### Option B: Use HTML from the 11th Edition website (PREFERRED)
-
-The 11th Edition from lwwhealthlibrary.com produces higher-quality chunks because:
-- Newer edition with updated clinical guidelines
-- Cleaner section boundaries from HTML structure
-- No PDF extraction artifacts
+The 11th Edition from lwwhealthlibrary.com is the source of truth.
 
 **Workflow:**
 
@@ -449,22 +436,22 @@ The 11th Edition from lwwhealthlibrary.com produces higher-quality chunks becaus
 #    Go to https://apn.lwwhealthlibrary.com/book.aspx?bookid=2839
 #    Log in with Hebrew University credentials
 #    Navigate to chapter → Right-click → View Source → Save as .html
-#    Save files to: knowledge-base/raw/
+#    Save files to: knowledge-base/
 
-# 2. Parse HTML files:
-python knowledge-base/parse_wallach.py --output chunks_html.json raw/chapter2.html raw/chapter10.html
+# 2. Parse all HTML files (parser auto-detects clinical vs reference chapters):
+python knowledge-base/parse_wallach.py
 
-# 3. Compare both sources:
-python knowledge-base/merge_sources.py --compare-only
-
-# 4. Merge (HTML preferred for duplicates):
-python knowledge-base/merge_sources.py --prefer html
-
-# 5. Rebuild vector DB:
+# 3. Rebuild vector DB:
 python knowledge-base/build_kb.py
 ```
 
-### Option C: Add custom clinical knowledge
+The parser:
+- Chunks at h3 (one chunk per clinical condition)
+- Sub-splits large conditions at h4 (Definition, Lab Findings, etc.) — never mid-sentence
+- Auto-skips reference chapters (Laboratory Tests A-Z, Toxicology, Transfusion, etc.)
+- Detects biomarkers and organ systems automatically
+
+### Option B: Add custom clinical knowledge
 
 1. Create a JSON file with the same schema as `chunks.json`:
 ```json
@@ -589,9 +576,8 @@ Please [describe what you want the AI to do with this module].
 
 | Issue | Solution |
 |-------|----------|
-| `ModuleNotFoundError: No module named 'fitz'` | `pip install PyMuPDF` |
 | `No table 'clinical_patterns'` | Run `python knowledge-base/build_kb.py` |
-| `chunks.json not found` | Run `python knowledge-base/parse_wallach_pdf.py` |
+| `chunks.json not found` | Run `python knowledge-base/parse_wallach.py` |
 | Cross-encoder returns all negative scores | Normal without LLM rewriter. Threshold is set to -2.0 |
 | LLM query rewriter fails | Falls back to deterministic query. Install Ollama for better results |
 | Search returns irrelevant results | Check organ system mapping in `organ_system_map.py` |

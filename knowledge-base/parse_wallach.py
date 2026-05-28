@@ -1,143 +1,321 @@
 """
-Parse Wallach HTML source into embeddable chunks for LanceDB.
+Parse Wallach's Interpretation of Diagnostic Tests, 11th Edition (HTML source) into
+clinical pattern chunks for the RAG knowledge base.
 
-Input: HTML files saved from apn.lwwhealthlibrary.com (Silverchair platform)
-Output: chunks.json — [{chunk_id, source, section_title, text, organ_system, biomarkers, word_count}]
+Each chunk represents ONE clinical condition (h3 boundary) with all its subsections
+(Definition, Laboratory Findings, etc. — h4 labels kept inline).
 
-Usage: python parse_wallach.py chapter2.html chapter3.html ...
-       Outputs to knowledge-base/chunks.json
+Chunking strategy:
+  - h2 = chapter section (e.g., "Red Blood Cell Disorders") — flush + update section
+  - h3 = clinical condition (e.g., "Microcytic Anemias") — primary chunk boundary
+  - h4 = subsection (e.g., "Definition") — kept inline as label
+  - Body text accumulated between h3 boundaries
+
+Clinical pattern chapters (KEEP):
+  - Hematologic Disorders, Endocrine Diseases, Cardiovascular Disorders
+  - Renal Disorders, Digestive Diseases, Respiratory/Metabolic/Acid-Base
+  - Gynecologic and Obstetric, Central Nervous System, Hereditary and Genetic
+  - Genitourinary System Disorders
+
+Reference/non-pattern chapters (SKIP):
+  - Laboratory Tests, Abbreviations, FALTs, Toxicology, Transfusion
+  - Infectious Disease Assays, Infectious Diseases
+
+Usage:
+    python parse_wallach.py
+    python parse_wallach.py --output custom.json
+    python parse_wallach.py --include-all  # include reference chapters
 """
 
 import re
 import json
 import sys
+import argparse
 from pathlib import Path
 from html.parser import HTMLParser
 
 
-class WallachParser(HTMLParser):
-    """Extract structured content from Silverchair-hosted Wallach pages."""
+# ── Chapter classification ──────────────────────────────────────────────
 
-    def __init__(self):
+EXCLUDE_PATTERNS = [
+    "Laboratory Tests",
+    "Abbreviations",
+    "FALTs",
+    "Toxicology",
+    "Transfusion",
+    "Infectious Disease Assays",
+    "Infectious Diseases",
+]
+
+
+def should_skip_file(filename: str) -> bool:
+    return any(pattern in filename for pattern in EXCLUDE_PATTERNS)
+
+
+# ── HTML Parser ─────────────────────────────────────────────────────────
+
+class WallachParser(HTMLParser):
+    """
+    Extract clinical condition chunks from Wallach 11e HTML.
+
+    Key insight: Only headings with class="content-section-header" (h2) and
+    headings inside <div id="section_NNNNN"> blocks are chapter content.
+    Other headings are navigation/sidebar widgets to skip.
+    """
+
+    def __init__(self, max_words_before_subsplit: int = 600):
         super().__init__()
         self.chunks = []
-        self.current_chunk = None
-        self.current_section = None  # h2 title
-        self.current_subsection = None  # h3 title
+        self.current_section = None      # h2 (chapter section)
+        self.current_condition = None    # h3 (clinical condition — chunk boundary)
+        self.current_paragraphs = []     # text accumulated for current h3
+        self.current_subsection_label = None  # h4 currently being collected (when subsplit active)
+
+        # Threshold: if a condition exceeds this, start flushing on h4 boundaries
+        self.max_words_before_subsplit = max_words_before_subsplit
+
+        # Heading state
+        self.heading_stack = []          # [(tag, attrs_dict, text)]
+
+        # Body content state
         self.in_para = False
+        self.in_li = False
         self.in_table = False
-        self.in_thead = False
-        self.para_text = []
+        self.text_buffer = []
         self.table_rows = []
         self.current_row = []
         self.current_cell = []
-        self.skip_rsbtn = False
-        self.heading_stack = []  # [(tag, text)]
+
+        # Content area tracking
+        self.content_depth = 0           # nesting depth inside section_NNNNN divs
+        self.in_skip_block = 0           # nesting depth inside skipped widgets
+
+        # Track if first content heading found (skip pre-content garbage)
+        self.first_content_heading = False
 
     def handle_starttag(self, tag, attrs):
         attrs_dict = dict(attrs)
+        cls = attrs_dict.get("class", "")
+        elem_id = attrs_dict.get("id", "")
 
-        # Track headings
-        if tag in ("h1", "h2", "h3", "h4"):
-            self.heading_stack.append((tag, ""))
+        # Track entering a "section_NNNNN" content block
+        if tag == "div" and elem_id.startswith("section_"):
+            self.content_depth += 1
+
+        # Skip navigation / widgets / login forms
+        if (tag == "div" and (
+            "rs_skip" in cls or
+            "subscription" in cls.lower() or
+            "navigation" in cls.lower() or
+            "sidebar" in cls.lower() or
+            "header" in cls.lower() or
+            "footer" in cls.lower() or
+            "menu" in cls.lower() or
+            "login" in cls.lower()
+        )) or tag in ("nav", "header", "footer", "form", "script", "style", "aside"):
+            self.in_skip_block += 1
             return
 
-        # Main content sections
-        if tag == "div" and "para" in attrs_dict.get("class", ""):
+        if self.in_skip_block:
+            return
+
+        # Headings
+        if tag in ("h1", "h2", "h3", "h4", "h5"):
+            self.heading_stack.append((tag, attrs_dict, ""))
+            return
+
+        # Paragraphs (only meaningful in content area)
+        if tag == "div" and "para" in cls:
             self.in_para = True
-            self.para_text = []
+            self.text_buffer = []
+            return
+        if tag == "p" and self.content_depth > 0:
+            self.in_para = True
+            self.text_buffer = []
             return
 
-        # Table cells
-        if tag in ("td", "th"):
-            self.current_cell = []
+        # List items (only in content area)
+        if tag == "li" and self.content_depth > 0:
+            self.in_li = True
+            self.text_buffer = []
             return
 
-        # Skip ReadSpeaker buttons
-        if tag == "div" and "rs_skip" in attrs_dict.get("class", ""):
-            self.skip_rsbtn = True
+        # Tables (only in content area)
+        if tag == "table" and self.content_depth > 0:
+            self.in_table = True
+            self.table_rows = []
             return
+        if self.in_table:
+            if tag == "tr":
+                self.current_row = []
+            elif tag in ("td", "th"):
+                self.current_cell = []
 
     def handle_endtag(self, tag):
-        if tag in ("h1", "h2", "h3", "h4"):
-            if self.heading_stack and self.heading_stack[-1][0] == tag:
-                _, text = self.heading_stack.pop()
-                text = text.strip()
-                if not text:
+        # Skip block exit
+        if (tag == "div" and self.in_skip_block > 0) or tag in ("nav", "header", "footer", "form", "script", "style", "aside"):
+            if self.in_skip_block > 0:
+                self.in_skip_block -= 1
+            return
+
+        if self.in_skip_block:
+            return
+
+        # Headings
+        if tag in ("h1", "h2", "h3", "h4", "h5"):
+            if not self.heading_stack or self.heading_stack[-1][0] != tag:
+                return
+            _, attrs, text = self.heading_stack.pop()
+            text = re.sub(r'\s+', ' ', text).strip()
+            if not text:
+                return
+
+            cls = attrs.get("class", "")
+
+            # h2: only honor "content-section-header" or inside content div
+            if tag == "h2":
+                is_content = ("content-section-header" in cls) or (self.content_depth > 0)
+                if not is_content:
+                    return  # skip nav/sidebar h2s
+                self._flush_chunk()
+                self.current_section = text
+                self.current_condition = None
+                self.current_subsection_label = None
+                self.first_content_heading = True
+                return
+
+            # h3: only honor inside content area, or after first content header
+            if tag == "h3":
+                if not self.first_content_heading and self.content_depth == 0:
+                    return  # skip pre-content sidebar h3s like "Sign In"
+                # Skip subscription / navigation patterns
+                if any(skip in text.lower() for skip in [
+                    "sign in", "subscription", "log in", "register",
+                    "table of contents", "you have no active",
+                ]):
                     return
+                self._flush_chunk()
+                self.current_condition = text
+                self.current_subsection_label = None
+                return
 
-                if tag == "h2":
-                    # Flush previous chunk
-                    self._flush_chunk()
-                    self.current_section = text
-                    self.current_subsection = None
-                elif tag == "h3":
-                    self.current_subsection = text
-                elif tag == "h4":
-                    self.current_subsection = text  # treat h4 same as h3 for sub-sectioning
-            return
+            # h4/h5: subsection label kept inline
+            if tag in ("h4", "h5"):
+                if self.current_condition and (self.content_depth > 0 or self.first_content_heading):
+                    # If current chunk is already large, flush it now and start
+                    # a new sub-chunk with this h4 as the title.
+                    # This keeps each subsection (Definition, Lab Findings, etc.)
+                    # as its own coherent chunk — never cut mid-sentence.
+                    current_size = sum(len(p.split()) for p in self.current_paragraphs)
+                    if current_size >= self.max_words_before_subsplit:
+                        self._flush_chunk(suffix=f" — {text}")
+                        self.current_subsection_label = text
+                    else:
+                        self.current_paragraphs.append(f"\n## {text}\n")
+                return
 
-        if tag == "div" and self.in_para:
+        # Paragraph end
+        if (tag in ("div", "p")) and self.in_para:
             self.in_para = False
-            text = " ".join(self.para_text).strip()
-            if text and self.current_section:
-                if self.current_chunk is None:
-                    self._new_chunk()
-                self.current_chunk["paragraphs"].append(text)
-            return
+            text = " ".join(self.text_buffer).strip()
+            text = re.sub(r'\s+', ' ', text)
+            if text and self.current_condition:
+                self.current_paragraphs.append(text)
+            self.text_buffer = []
 
-        if tag == "div" and self.skip_rsbtn:
-            self.skip_rsbtn = False
-            return
+        # List item end
+        if tag == "li" and self.in_li:
+            self.in_li = False
+            text = " ".join(self.text_buffer).strip()
+            text = re.sub(r'\s+', ' ', text)
+            if text and self.current_condition:
+                self.current_paragraphs.append(f"• {text}")
+            self.text_buffer = []
 
-        if tag in ("td", "th"):
-            cell_text = " ".join(self.current_cell).strip()
-            self.current_row.append(cell_text)
-            return
+        # Table cells/rows
+        if self.in_table:
+            if tag in ("td", "th"):
+                cell_text = re.sub(r'\s+', ' ', " ".join(self.current_cell).strip())
+                self.current_row.append(cell_text)
+                self.current_cell = []
+            elif tag == "tr":
+                if self.current_row:
+                    self.table_rows.append(self.current_row)
+            elif tag == "table":
+                self.in_table = False
+                if self.table_rows and self.current_condition:
+                    table_text = "\n".join(" | ".join(row) for row in self.table_rows)
+                    self.current_paragraphs.append(f"[Table]\n{table_text}")
+                self.table_rows = []
 
-        if tag == "tr":
-            if self.current_row:
-                self.table_rows.append(self.current_row)
-            self.current_row = []
+        # Exit content area
+        if tag == "div" and self.content_depth > 0:
+            self.content_depth -= 1
 
     def handle_data(self, data):
-        if self.heading_stack:
-            tag, existing = self.heading_stack.pop()
-            self.heading_stack.append((tag, existing + data))
+        if self.in_skip_block:
             return
-        if self.in_para and not self.skip_rsbtn:
-            self.para_text.append(data)
-        if self.current_cell is not None:
+
+        # Heading text
+        if self.heading_stack:
+            tag, attrs, existing = self.heading_stack.pop()
+            self.heading_stack.append((tag, attrs, existing + data))
+            return
+
+        # Body text
+        if self.in_para or self.in_li:
+            self.text_buffer.append(data)
+
+        if self.in_table and self.current_cell is not None:
             self.current_cell.append(data)
 
-    def _new_chunk(self):
-        self.current_chunk = {
-            "section_title": self.current_section,
-            "subsection": self.current_subsection,
-            "paragraphs": [],
-            "tables": [],
-        }
+    def _flush_chunk(self, suffix: str = ""):
+        """
+        Flush the current accumulated text as a chunk.
 
-    def _flush_chunk(self):
-        if self.current_chunk and self.current_chunk["paragraphs"]:
-            self.current_chunk["tables"] = self.table_rows
-            self.chunks.append(self.current_chunk)
-        self.current_chunk = None
-        self.table_rows = []
+        suffix: optional addition to the condition title (used when sub-splitting
+                a large condition by h4 — e.g., "Diabetes Mellitus — Definition")
+        """
+        if not self.current_condition or not self.current_paragraphs:
+            self.current_paragraphs = []
+            return
+
+        text = "\n\n".join(p for p in self.current_paragraphs if p.strip())
+        text = re.sub(r'\n{3,}', '\n\n', text).strip()
+
+        if len(text.split()) < 30:
+            self.current_paragraphs = []
+            return
+
+        # Build condition title (with optional subsection suffix)
+        condition_title = self.current_condition
+        if self.current_subsection_label:
+            condition_title = f"{condition_title} — {self.current_subsection_label}"
+        elif suffix:
+            condition_title = f"{condition_title}{suffix}"
+
+        self.chunks.append({
+            "section": self.current_section,
+            "condition": condition_title,
+            "text": text,
+        })
+        self.current_paragraphs = []
+        # Reset subsection label after flushing
+        self.current_subsection_label = None
 
     def finalize(self):
         self._flush_chunk()
 
 
-# ── Organ system → biomarker mapping ──────────────────────────────────
+# ── Biomarker / organ system detection ──────────────────────────────────
 
 ORGAN_SYSTEM_MAP = {
     "hematologic": [
         "hemoglobin", "hgb", "hct", "hematocrit", "rbc", "mcv", "mch", "mchc",
         "rdw", "ferritin", "iron", "tibc", "transferrin", "transferrin saturation",
-        "b12", "folate", "platelets", "wbc", "neutrophils", "lymphocytes",
-        "monocytes", "eosinophils", "basophils", "esr", "crp", "reticulocyte",
-        "haptoglobin", "ldh", "fibrinogen", "pt", "ptt", "inr", "d-dimer",
+        "platelets", "wbc", "neutrophils", "lymphocytes", "monocytes",
+        "eosinophils", "basophils", "esr", "reticulocyte", "haptoglobin",
+        "ldh", "fibrinogen", "pt", "ptt", "inr", "d-dimer",
     ],
     "hepatic": [
         "alt", "ast", "ggt", "alp", "alkaline phosphatase", "bilirubin",
@@ -146,17 +324,16 @@ ORGAN_SYSTEM_MAP = {
     ],
     "renal": [
         "creatinine", "bun", "egfr", "gfr", "cystatin c", "uric acid",
-        "urine", "microalbumin", "creatinine clearance", "bun/creatinine ratio",
+        "microalbumin", "creatinine clearance",
     ],
     "thyroid": [
         "tsh", "t3", "t4", "ft3", "ft4", "free t3", "free t4",
-        "thyroglobulin", "thyroid peroxidase", "tpo", "trab", "tsi",
-        "reverse t3", "thyroglobulin antibodies",
+        "thyroglobulin", "thyroid peroxidase", "tpo", "reverse t3",
     ],
     "cardiometabolic": [
-        "glucose", "hba1c", "a1c", "insulin", "c-peptide", "cholesterol",
-        "total cholesterol", "ldl", "hdl", "triglycerides", "non-hdl",
-        "apob", "apoa1", "lipoprotein(a)", "homocysteine",
+        "glucose", "hba1c", "a1c", "insulin", "c-peptide",
+        "cholesterol", "total cholesterol", "ldl", "hdl", "triglycerides",
+        "non-hdl", "apob", "lipoprotein(a)", "homocysteine",
     ],
     "electrolyte": [
         "sodium", "potassium", "chloride", "co2", "bicarbonate",
@@ -164,10 +341,9 @@ ORGAN_SYSTEM_MAP = {
         "phosphorus", "phosphate",
     ],
     "endocrine": [
-        "cortisol", "acth", "aldosterone", "renin", "dhea-s", "dheas",
-        "testosterone", "free testosterone", "shbg", "estradiol", "progesterone",
-        "lh", "fsh", "prolactin", "igf-1", "gh", "parathyroid hormone", "pth",
-        "vitamin d", "25-oh vitamin d", "1,25-oh vitamin d",
+        "cortisol", "acth", "aldosterone", "renin", "dhea-s",
+        "testosterone", "estradiol", "progesterone", "lh", "fsh", "prolactin",
+        "igf-1", "parathyroid hormone", "pth", "vitamin d", "25-oh vitamin d",
     ],
     "cardiac": [
         "troponin", "ck", "ck-mb", "bnp", "nt-probnp", "myoglobin",
@@ -175,195 +351,203 @@ ORGAN_SYSTEM_MAP = {
     "pancreatic": [
         "amylase", "lipase",
     ],
-    "autoimmune": [
-        "ana", "rf", "anti-ccp", "c3", "c4", "iga", "igg", "igm",
-        "ige", "anti-tpo", "anti-tg",
-    ],
     "nutritional": [
-        "vitamin b12", "folate", "vitamin d", "25-oh vitamin d",
-        "zinc", "selenium", "copper", "ceruloplasmin",
+        "vitamin b12", "b12", "folate", "vitamin d", "zinc", "selenium", "copper",
+    ],
+    "inflammatory": [
+        "crp", "esr",
     ],
 }
 
-# Normalize: lowercase, strip units/parentheticals
-BIOMARKER_NAMES = set()
-for names in ORGAN_SYSTEM_MAP.values():
-    for name in names:
-        BIOMARKER_NAMES.add(name.lower().strip())
+BIOMARKER_NAMES = {bm.lower() for names in ORGAN_SYSTEM_MAP.values() for bm in names}
 
 
-def detect_biomarkers(text):
-    """Find biomarker names mentioned in text."""
+def detect_biomarkers(text: str) -> list[str]:
     text_lower = text.lower()
-    found = []
+    found = set()
     for bm in sorted(BIOMARKER_NAMES, key=len, reverse=True):
-        if bm in text_lower:
-            found.append(bm)
-    return list(set(found))
+        if re.search(rf'\b{re.escape(bm)}\b', text_lower):
+            found.add(bm)
+    return sorted(found)
 
 
-def detect_organ_systems(text):
-    """Return list of organ systems whose biomarkers appear in text."""
-    text_lower = text.lower()
-    systems = []
+def detect_organ_systems(text: str, condition: str = "") -> list[str]:
+    text_lower = (text + " " + condition).lower()
+    systems = set()
+
     for system, biomarkers in ORGAN_SYSTEM_MAP.items():
-        if any(bm in text_lower for bm in biomarkers):
-            systems.append(system)
-    # Special case: if no biomarkers matched, try keyword-based classification
+        if any(re.search(rf'\b{re.escape(bm)}\b', text_lower) for bm in biomarkers):
+            systems.add(system)
+
     keyword_map = {
         "hematologic": ["anemia", "iron deficiency", "thalassemia", "hemoglobinopathy",
-                        "hemolysis", "polycythemia", "pancytopenia", "leukemia", "lymphoma"],
+                        "hemolysis", "polycythemia", "pancytopenia", "leukemia", "lymphoma",
+                        "myelodysplas", "thrombocyt", "neutropen"],
         "hepatic": ["liver", "hepatic", "cirrhosis", "hepatitis", "cholestatic",
-                    "jaundice", "portal hypertension"],
+                    "jaundice", "portal hypertension", "wilson"],
         "renal": ["kidney", "renal", "nephrotic", "nephritic", "ckd", "aki",
-                  "acute kidney injury"],
-        "thyroid": ["thyroid", "hyperthyroid", "hypothyroid", "goiter", "graves",
-                    "hashimoto"],
+                  "acute kidney injury", "glomerul"],
+        "thyroid": ["thyroid", "hyperthyroid", "hypothyroid", "goiter", "graves", "hashimoto"],
         "cardiometabolic": ["diabetes", "metabolic syndrome", "insulin resistance",
-                            "dyslipidemia", "obesity"],
-        "cardiac": ["heart failure", "myocardial infarction", "cardiac", "chest pain"],
+                            "dyslipidemia", "obesity", "hyperlipidemia"],
+        "cardiac": ["heart failure", "myocardial infarction", "myocardial",
+                    "chest pain", "atherosclero", "coronary"],
         "endocrine": ["adrenal", "pituitary", "cushing", "addison", "pcos",
-                      "menopause", "andropause"],
-        "electrolyte": ["dehydration", "fluid", "acidosis", "alkalosis"],
-        "autoimmune": ["lupus", "sle", "rheumatoid", "sjogren", "vasculitis",
-                       "scleroderma"],
+                      "hyperparathyroid", "hypoparathyroid"],
+        "electrolyte": ["dehydration", "acidosis", "alkalosis", "hyperkalem",
+                        "hypokalem", "hypernatrem", "hyponatrem"],
     }
     for system, keywords in keyword_map.items():
         if any(kw in text_lower for kw in keywords):
-            if system not in systems:
-                systems.append(system)
-    return systems if systems else ["general"]
+            systems.add(system)
+
+    return sorted(systems) if systems else ["general"]
 
 
-def clean_section_id(raw_id):
-    """Clean Silverchair section IDs like '240112273' or URLs."""
-    if not raw_id:
-        return None
-    # Just use the numeric ID
-    match = re.search(r'(\d{8,})', str(raw_id))
-    return match.group(1) if match else raw_id
+# ── Clinical relevance filter ───────────────────────────────────────────
+
+def is_clinical_pattern(chunk: dict) -> bool:
+    biomarkers = chunk.get("biomarkers_mentioned", [])
+    text = chunk.get("text", "").lower()
+    word_count = chunk.get("word_count", 0)
+
+    if word_count < 50:
+        return False
+
+    if len(biomarkers) >= 2:
+        return True
+
+    pattern_keywords = [
+        "anemia", "deficiency", "syndrome", "disorder", "disease",
+        "increased in", "decreased in", "laboratory findings",
+        "differential diagnosis", "who should be suspected",
+        "clinical findings", "interpretation",
+        "associated with", "indicates",
+    ]
+    return any(kw in text for kw in pattern_keywords)
 
 
-def chunk_to_json(chunk, source_name, chunk_idx):
-    """Convert a parsed chunk to the LanceDB-ready format."""
-    title = chunk["section_title"]
-    subsection = chunk.get("subsection", "")
-    full_title = f"{title} — {subsection}" if subsection else title
+# ── Main ────────────────────────────────────────────────────────────────
 
-    text = "\n\n".join(chunk["paragraphs"])
-
-    # Add table data as structured text if present
-    if chunk.get("tables"):
-        table_text = "\n".join(
-            " | ".join(row) for row in chunk["tables"]
-        )
-        text += f"\n\nTABLE DATA:\n{table_text}"
-
-    biomarkers = detect_biomarkers(text)
-    organ_systems = detect_organ_systems(text)
-
-    return {
-        "chunk_id": f"wallach_{source_name}_s{chunk_idx:03d}",
-        "source": "Wallach's Interpretation of Diagnostic Tests, 11th Edition",
-        "chapter": source_name,
-        "section_title": full_title,
-        "text": text,
-        "organ_system": organ_systems,
-        "biomarkers_mentioned": biomarkers,
-        "word_count": len(text.split()),
-    }
-
-
-def parse_file(filepath):
-    """Parse a single HTML file into chunks."""
+def parse_html_file(filepath: Path, source_label: str) -> list[dict]:
     parser = WallachParser()
-    with open(filepath, "r", encoding="utf-8") as f:
-        parser.feed(f.read())
+    parser.feed(filepath.read_text(encoding="utf-8"))
     parser.finalize()
-    return parser.chunks
+
+    results = []
+    for i, raw in enumerate(parser.chunks):
+        text = raw["text"]
+        biomarkers = detect_biomarkers(text + " " + raw["condition"])
+        systems = detect_organ_systems(text, raw["condition"])
+
+        if raw["section"] and raw["section"] != raw["condition"]:
+            full_title = f"{raw['section']} — {raw['condition']}"
+        else:
+            full_title = raw["condition"]
+
+        results.append({
+            "chunk_id": f"wallach_{source_label}_{i:03d}",
+            "source": "Wallach's Interpretation of Diagnostic Tests, 11th Edition",
+            "chapter": source_label,
+            "section_title": full_title,
+            "text": text,
+            "organ_system": systems,
+            "biomarkers_mentioned": biomarkers,
+            "word_count": len(text.split()),
+        })
+    return results
+
+
+def filename_to_label(filename: str) -> str:
+    base = filename.split(" _ Wallach")[0].strip()
+    label = re.sub(r'[^a-zA-Z0-9]+', '_', base).strip('_').lower()
+    return label[:40]
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: python parse_wallach.py <html_file> [html_file ...]")
-        print("       python parse_wallach.py --output chunks_html.json raw/chapter2.html ...")
-        print("Example: python parse_wallach.py raw/chapter2.html raw/chapter3.html")
+    parser = argparse.ArgumentParser(description="Parse Wallach 11e HTML into RAG chunks")
+    parser.add_argument("--include-all", action="store_true",
+                        help="Include reference chapters (Laboratory Tests, etc.)")
+    parser.add_argument("--output", type=str, default=None)
+    parser.add_argument("--input-dir", type=str, default=None)
+    parser.add_argument("--no-filter", action="store_true",
+                        help="Skip the clinical pattern filter")
+    args = parser.parse_args()
+
+    kb_dir = Path(args.input_dir) if args.input_dir else Path(__file__).parent
+    html_files = sorted(kb_dir.glob("*.html"))
+
+    if not html_files:
+        print(f"ERROR: No HTML files found in {kb_dir}")
         sys.exit(1)
 
-    # Check for --output flag
-    output_name = "chunks.json"
-    args = sys.argv[1:]
-    if "--output" in args:
-        idx = args.index("--output")
-        if idx + 1 < len(args):
-            output_name = args[idx + 1]
-            args = args[:idx] + args[idx+2:]
-        else:
-            print("Error: --output requires a filename")
-            sys.exit(1)
+    print(f"Found {len(html_files)} HTML files\n")
 
     all_chunks = []
-    for filepath in args:
-        path = Path(filepath)
-        if not path.exists():
-            print(f"Warning: {filepath} not found, skipping")
+    skipped = []
+
+    for html_path in html_files:
+        if not args.include_all and should_skip_file(html_path.name):
+            skipped.append(html_path.name.split(" _ ")[0])
             continue
 
-        source_name = path.stem.replace(" ", "_").replace("-", "_")[:30]
-        print(f"Parsing {path.name}...")
+        label = filename_to_label(html_path.name)
+        chapter_name = html_path.name.split(" _ ")[0]
+        print(f"Parsing: {chapter_name[:60]}")
+        chunks = parse_html_file(html_path, label)
+        print(f"  → {len(chunks)} condition chunks")
+        all_chunks.extend(chunks)
 
-        raw_chunks = parse_file(filepath)
-        for i, chunk in enumerate(raw_chunks):
-            ch = chunk_to_json(chunk, source_name, i)
-            if ch["word_count"] >= 30:  # skip tiny chunks (headers with no body)
-                all_chunks.append(ch)
+    if skipped:
+        print(f"\nSkipped {len(skipped)} non-clinical chapter(s):")
+        for s in skipped:
+            print(f"  - {s}")
 
-        print(f"  → {len(all_chunks)} chunks so far")
+    print(f"\nTotal chunks before filter: {len(all_chunks)}")
 
-    # Filter for clinical pattern relevance
-    pattern_chunks = [c for c in all_chunks if len(c.get("biomarkers_mentioned", [])) >= 2]
+    if not args.no_filter:
+        filtered = [c for c in all_chunks if is_clinical_pattern(c)]
+        print(f"After clinical pattern filter: {len(filtered)} (removed {len(all_chunks) - len(filtered)})")
+    else:
+        filtered = all_chunks
 
-    # Also keep chunks that mention clinical conditions even if few biomarkers
-    condition_pattern = re.compile(
-        r'(syndrome|disease|disorder|deficiency|anemia|failure|'
-        r'itis|osis|emia|thyroid|diabetes|hepatitis|nephritis|'
-        r'infarction|cirrhosis|thrombosis|embolism)',
-        re.IGNORECASE
-    )
-    clinical_chunks = [
-        c for c in all_chunks
-        if c not in pattern_chunks and condition_pattern.search(c["text"])
-    ]
+    output_path = Path(args.output) if args.output else kb_dir / "chunks.json"
+    output_path.write_text(json.dumps(filtered, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    kept = pattern_chunks + clinical_chunks
+    print(f"\n{'=' * 60}")
+    print(f"OUTPUT: {output_path}")
+    print(f"{'=' * 60}")
+    print(f"  Final chunks: {len(filtered)}")
 
-    # Write output
-    output_path = Path(__file__).parent / output_name
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(kept, f, indent=2, ensure_ascii=False)
+    if filtered:
+        wc = [c["word_count"] for c in filtered]
+        print(f"  Words: min={min(wc)}, max={max(wc)}, avg={sum(wc)//len(wc)}, total={sum(wc):,}")
 
-    print(f"\nDone. {len(kept)} clinical chunks → {output_path}")
-    print(f"  (filtered from {len(all_chunks)} total, "
-          f"dropped {len(all_chunks) - len(kept)} non-clinical)")
+        all_bm = set()
+        for c in filtered:
+            all_bm.update(c.get("biomarkers_mentioned", []))
+        print(f"  Unique biomarkers: {len(all_bm)}")
 
-    # Print organ system distribution
-    system_counts = {}
-    for c in kept:
-        for s in c["organ_system"]:
-            system_counts[s] = system_counts.get(s, 0) + 1
-    print("\nOrgan system coverage:")
-    for system, count in sorted(system_counts.items(), key=lambda x: -x[1]):
-        print(f"  {system}: {count} chunks")
+        systems = {}
+        for c in filtered:
+            for s in c.get("organ_system", []):
+                systems[s] = systems.get(s, 0) + 1
+        print("\n  Organ system coverage:")
+        for s, count in sorted(systems.items(), key=lambda x: -x[1]):
+            print(f"    {s}: {count}")
 
-    # Print sample chunk
-    if kept:
-        print(f"\nSample chunk:")
-        print(f"  ID: {kept[0]['chunk_id']}")
-        print(f"  Title: {kept[0]['section_title']}")
-        print(f"  Organ systems: {kept[0]['organ_system']}")
-        print(f"  Biomarkers: {kept[0]['biomarkers_mentioned'][:10]}")
-        print(f"  Words: {kept[0]['word_count']}")
-        print(f"  Text preview: {kept[0]['text'][:200]}...")
+        # Find Microcytic Anemias chunk specifically
+        for c in filtered:
+            if "microcytic" in c["section_title"].lower():
+                print(f"\n  Sample (Microcytic Anemias chunk):")
+                print(f"    ID: {c['chunk_id']}")
+                print(f"    Title: {c['section_title']}")
+                print(f"    Words: {c['word_count']}")
+                print(f"    Biomarkers: {c['biomarkers_mentioned']}")
+                print(f"    Text preview:\n      {c['text'][:400]}...")
+                break
+
+    print("\nNext: python knowledge-base/build_kb.py")
 
 
 if __name__ == "__main__":
