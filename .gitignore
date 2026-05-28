@@ -16,8 +16,10 @@ knowledge-base/lancedb/
 # HTML companion _files folders (JS/CSS/images saved by browser — not needed)
 knowledge-base/*_files/
 
-# Large generated files (rebuild with parsers)
-knowledge-base/chunks.json
+# Raw source files (large, copyrighted — not needed in git)
+# The processed chunks.json IS committed (it's the deliverable)
+knowledge-base/*.pdf
+knowledge-base/*.html
 knowledge-base/chunks_html.json
 knowledge-base/chunks_pdf.json
 

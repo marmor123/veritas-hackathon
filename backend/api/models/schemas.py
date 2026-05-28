@@ -26,7 +26,7 @@ class BiomarkerResult(BaseModel):
     unit: str                 # e.g., "ng/mL"
     ref_low: Optional[float] = None  # e.g., 15.0
     ref_high: Optional[float] = None  # e.g., 150.0
-    flag: Optional[str] = None       # "H", "L", or None
+    flag: Optional[str] = None       # "H"/"L"/"high"/"low"/"normal" or None
 
 
 class Medication(BaseModel):
