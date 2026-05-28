@@ -177,14 +177,12 @@ def parse_text_to_json(raw_text):
                 continue
             elif re.search(r'\bPOSITIVE\b', right_of_keyword_upper) or re.search(r'\bPRESENT\b', right_of_keyword_upper) or re.search(r'\bREACTIVE\b', right_of_keyword_upper):
                 results[canonical_name] = "Positive"
-                print(f"   -> Extracted (Qualitative): {canonical_name} = Positive")
                 continue
             
             # אם הגענו לכאן ומצאנו כבר ערך בעבר עבור המדד הזה, לא נדרוס אותו בטקסט ריק
             if canonical_name in results:
                 continue
                 
-            print(f"   ⚠️ Row for {canonical_name} filtered out (complex text format)")
                 
     return results
 
