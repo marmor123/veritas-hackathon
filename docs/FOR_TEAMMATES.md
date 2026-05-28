@@ -240,7 +240,7 @@ A: It won't be. QVAC MedPsy 1.7B runs at ~22 tokens/sec on laptop hardware. A fu
 A: We have access via Hebrew University's institutional subscription (lwwhealthlibrary.com). The medical student copies HTML source (View Source) of the clinical pattern chapters. A parser (`knowledge-base/parse_wallach.py`) auto-extracts chunks, detects biomarkers, and classifies by organ system — no manual writing needed. The med student validates the extracted chunks for clinical accuracy (~1-2 hours).
 
 **Q: What if the wearable API is a pain?**
-A: Mock data fallback. We pre-generate realistic 30-day datasets for our demo scenarios. The real API integration is bonus points.
+A: Mock data fallback. We pre-generate  realistic 30-day datasets for our demo scenarios. The real API integration is bonus points.
 
 **Q: Which module should I pick?**
 A: Frontend person → Module 6 (Dashboard). Backend/ML person → Module 4 (RAG). CV/regex person → Module 1 (OCR). Full-stack → Module 2 + 3. Prompt engineer → Module 5.
