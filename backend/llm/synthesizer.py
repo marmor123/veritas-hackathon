@@ -11,7 +11,6 @@ This is the single entry point for Module 5.
 """
 
 import json
-import ollama
 
 from backend.api.models.schemas import (
     AnalysisOutput,
@@ -34,8 +33,8 @@ from backend.llm.demo_outputs import get_demo_output, match_demo_scenario
 
 
 # Default model — can be overridden
-DEFAULT_MODEL = "qvac-medpsy:1.7b"
-FALLBACK_MODELS = ["gemma2:2b", "gemma:2b", "llama3.2:1b", "phi3:mini"]
+DEFAULT_MODEL = "qwen3.5:0.8b"
+FALLBACK_MODELS = ["qwen3:1.7b", "qwen3:4b", "llama3.2:1b"]
 
 DISCLAIMER = (
     "This is not a medical diagnosis. All identified patterns should be "
@@ -131,11 +130,14 @@ def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
     Returns None if the call fails or output can't be parsed.
     """
     try:
+        import ollama
+
         response = ollama.generate(
             model=model,
             system=SYSTEM_PROMPT,
             prompt=prompt,
             format="json",
+            think=False,  # Disable thinking mode for Qwen3.5 models
             options={
                 "temperature": 0.3,
                 "num_predict": 2048,
