@@ -53,6 +53,7 @@ def print_chunk_short(chunk, idx, score_label="combined_score"):
 
 
 def print_chunk_full(chunk, idx):
+    """Print a chunk preview (text truncated for display ONLY — full text is in Stage 4)."""
     title = chunk.get("section_title", "Unknown")
     score = chunk.get("relevance_score", 0)
     text = chunk.get("text", "").replace("\n", " ").strip()
@@ -60,8 +61,10 @@ def print_chunk_full(chunk, idx):
     print(f"  #{idx}  [relevance={score:+.3f}]  {title}")
     if biomarkers:
         print(f"        biomarkers: {biomarkers[:75]}")
-    # Show first 200 chars of text
-    print(f"        text: {text[:220]}...")
+    # Display-only preview (220 chars). The actual chunk text is preserved in full
+    # in the Stage 4 output below.
+    preview = text[:220] + ("..." if len(text) > 220 else "")
+    print(f"        text preview: {preview}")
 
 
 def test_query(name, biomarkers, medications=None, wearable_data=None, expected_keywords=None):

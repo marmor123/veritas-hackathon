@@ -10,8 +10,9 @@ dist/
 build/
 *.egg-info/
 
-# LanceDB data (rebuild with: python knowledge-base/build_kb.py)
-knowledge-base/lancedb/
+# LanceDB vector database — committed so the project is ready-to-use
+# without rebuilding (1.5 MB). Rebuild with: python knowledge-base/build_kb.py
+# knowledge-base/lancedb/
 
 # HTML companion _files folders (JS/CSS/images saved by browser — not needed)
 knowledge-base/*_files/

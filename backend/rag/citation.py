@@ -19,6 +19,7 @@ def extract_citations(ranked_chunks: list[dict]) -> list[RetrievedChunk]:
 
     Returns:
         List of RetrievedChunk objects ready for LLM synthesis.
+        The full text of each chunk is preserved — no truncation.
     """
     import json
 
@@ -35,7 +36,7 @@ def extract_citations(ranked_chunks: list[dict]) -> list[RetrievedChunk]:
         citation = RetrievedChunk(
             chunk_id=chunk.get("chunk_id", "unknown"),
             source=_format_source(chunk),
-            text=_truncate_text(chunk.get("text", ""), max_words=300),
+            text=chunk.get("text", ""),
             relevance_score=chunk.get("relevance_score", 0.0),
             biomarkers_involved=biomarkers,
         )
@@ -86,11 +87,3 @@ def _format_source(chunk: dict) -> str:
         parts.append(section)
 
     return ", ".join(parts)
-
-
-def _truncate_text(text: str, max_words: int = 300) -> str:
-    """Truncate text to max_words to fit within LLM context window."""
-    words = text.split()
-    if len(words) <= max_words:
-        return text
-    return " ".join(words[:max_words]) + "..."
