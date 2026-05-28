@@ -78,6 +78,34 @@ async def analyze(
             supplements=request.supplements,
         )
 
+        # ── Early halt: if any quality flag has severity "high", stop ────
+        high_severity_flags = [
+            flag for flag in verification.quality_flags
+            if flag.severity == "high"
+        ]
+        if high_severity_flags:
+            return AnalysisOutput(
+                summary=(
+                    "Your results could not be analyzed because one or more values "
+                    "appear unreliable due to sample quality issues. "
+                    "This is likely a collection or handling error, not a medical problem."
+                ),
+                patterns=[],
+                verification_alerts=[
+                    {
+                        "biomarker": ", ".join(flag.affected_biomarkers),
+                        "issue": flag.detail,
+                        "recommendation": "Please consider repeating the blood test with a fresh sample.",
+                    }
+                    for flag in high_severity_flags
+                ],
+                disclaimer=(
+                    "This analysis is for informational purposes only and does not "
+                    "constitute medical advice. Please discuss these results with "
+                    "your healthcare provider."
+                ),
+            )
+
         # ── Stage 2: RAG Retrieval (Module 4) ────────────────────────────
         pipeline = _get_pipeline()
         rag_result = pipeline.run(
@@ -97,6 +125,26 @@ async def analyze(
 
         # Attach the clinical graph from RAG to the output
         analysis.clinical_graph = rag_result.get("clinical_graph")
+
+        # Attach non-critical verification alerts (low/medium flags + drug interferences)
+        if verification.drug_interferences:
+            for interference in verification.drug_interferences:
+                analysis.verification_alerts.append({
+                    "biomarker": interference.biomarker,
+                    "issue": f"Drug interference: {interference.drug} {interference.effect} {interference.biomarker}",
+                    "recommendation": interference.recommendation,
+                })
+
+        low_medium_flags = [
+            flag for flag in verification.quality_flags
+            if flag.severity in ("low", "medium")
+        ]
+        for flag in low_medium_flags:
+            analysis.verification_alerts.append({
+                "biomarker": ", ".join(flag.affected_biomarkers),
+                "issue": flag.detail,
+                "recommendation": "Discuss with your healthcare provider.",
+            })
 
         return analysis
 
