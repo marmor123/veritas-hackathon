@@ -1,0 +1,1615 @@
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 9]> <html id="doc" class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gte IE 9 | !IE ]><!-->
+<html id="doc" lang="en">
+<!--<![endif]-->
+
+<head id="ctl00_ctl00_Head1">
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=643701de45aa460012e1032e&product=sop" async="async"></script>
+        <div class="widget-GoogleTagManager widget-instance-GTM_HealthLibrary_script" 
+         data-widget-name="GoogleTagManager" 
+         data-widget-instance="GTM_HealthLibrary_script">
+        
+
+<!-- Google Tag Manager -->
+<script>
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start': new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl + '';
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-P59CJ23T');
+</script>
+<!-- End Google Tag Manager --> 
+    </div>
+<script type="text/javascript" src=https://cdn.cookielaw.org/consent/735b5386-72d1-4877-bd79-15b7ad16cdc1/OtAutoBlock.js></script>
+<script src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js type="text/javascript" charset="UTF-8" charset="UTF-8" data-domain-script=735b5386-72d1-4877-bd79-15b7ad16cdc1 ></script>
+
+<script type="text/javascript">
+    function OptanonWrapper() { }
+</script>
+<meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /><title>
+	FALTs: Factors Affecting Laboratory Tests | Wallach's Interpretation of Diagnostic Tests, 11e | Advanced Practice Nursing | Health Library
+</title>
+    <link rel="shortcut icon" href="//hl.silverchair-cdn.com/Images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="//hl.silverchair-cdn.com/Images/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" /><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.0" /><meta http-equiv="X-UA-Compatible" content="IE=Edge" />        <meta property="aa:authenticationType" content="Authenticated by IP" />
+        <meta property="aa:loggedInStatus" content="Logged In" />
+        <meta property="aa:vendorID" content="" />
+        <meta property="aa:institutionID" content="115983" />
+        <meta property="aa:institutionName" content="Hebrew University of Jerusalem" />
+        <meta property="aa:sessionID" content="aljmtm0v2xn4im0a33wue2ne" />
+        <meta property="aa:IPAddress" content="132.64.244.120" />
+
+    
+    
+    <meta name="description" content="Laboratory testing is an integral part of modern medical practice. Although clinical laboratory testing accounts for only 2.3% of annual health care costs">
+
+
+        <meta property="aa:enabled" content="true" />
+        <meta property="aa:contentTitle" content="" />
+        <meta property="aa:primaryCategory" content="Texts" />
+        <meta property="aa:subCategory" content="Internal Medicine and Primary Care" />
+        <meta property="aa:subCategory2" content="" />
+        <meta property="aa:pageType" content="Content Page" />
+        <meta property="aa:siteName" content="Advanced Practice Nursing" />
+
+
+
+    <meta name="citation_author" content="L. V. Rao" />
+    <meta name="citation_title" content="FALTs: Factors Affecting Laboratory Tests" />
+    <meta name="citation_publication_date" content="2021/1/01" />
+    <meta name="citation_doi" content="" />
+
+
+
+
+
+
+
+
+    
+    
+    <link href="Content/jquery.fancybox.css" rel="stylesheet" />
+
+<link rel="icon" type="image/png" href="/UI/app/images/favicons/favicon-32x32.png" sizes="32x32" /><link rel="icon" type="image/png" href="/UI/app/images/favicons/favicon-16x16.png" sizes="16x16" /><link rel="manifest" href="/UI/app/images/favicons//manifest.json" /><link rel="shortcut icon" href="/UI/app/images/favicons/favicon.ico" /><link rel="shortcut icon" href="/UI/app/images/favicons/favicon.png" /><meta name="msapplication-config" content="/UI/app/images/favicons/browserconfig.xml" /><meta name="theme-color" content="#ffffff" />
+<link href="//hl.silverchair-cdn.com/cassette.axd/stylesheet/8d7c03dc08821b04e55e4aae439164ed1b201d6d/bundles/brand" type="text/css" rel="stylesheet"/>
+<link href="//hl.silverchair-cdn.com/cassette.axd/stylesheet/2dc0eaee32507d72679df73522e19e0b1fb9375f/bundles/site" type="text/css" rel="stylesheet"/>
+<link href="//hl.silverchair-cdn.com/cassette.axd/stylesheet/c7337f71ad3ba81cc23eb16cce3767d7d643063f/bundles/article" type="text/css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="//hl.silverchair-cdn.com/UI/app/styles/branding/backgrounds.css" type="text/css" />
+    <script src="//hl.silverchair-cdn.com/Themes/Client/dist/v-639140600536364616/header.min.js"></script>
+    <script src="//assets.adobedtm.com/a357ca7c6780/60a89ae273a4/launch-c01189ab6e31.min.js" async></script>
+    
+    
+    <script type="text/javascript">
+        window.rsConf = {
+            general: { usePost: true },
+            settings: { hlicon: 'iconoff' },
+            ui: {
+                tools: {
+                    enlarge: false,
+                    voicesettings: false,
+                    readhover: false,
+                    download: false
+                }
+            },
+            phrases: {
+                es_us: {
+                    speechenabled: "Vocalizado por <a href='https://www.readspeaker.com/es/?ref=http://apn.lwwhealthlibrary.com/content.aspx?sectionid=240112272&bookid=2839' target='_blank'>ReadSpeaker</a>"
+                }
+            }
+        };</script>
+    <script src="//cdn1.readspeaker.com/script/11251/webReader/webReader.js?pids=wr" type="text/javascript"></script>
+    </head>
+<body id="pg-content" class="off-canvas wk advancedpracticenursing" data-pagename="content" theme-darkGreen>
+    
+        <div class="widget-GoogleTagManager widget-instance-GTM_HealthLibrary_iframe" 
+         data-widget-name="GoogleTagManager" 
+         data-widget-instance="GTM_HealthLibrary_iframe">
+        
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P59CJ23T"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden">
+    </iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) --> 
+    </div>
+<form method="post" action="./content.aspx?sectionid=240112272&amp;bookid=2839" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwMjM3ODcxODcPZBYCZg9kFgJmD2QWBGYPZBYCAgcPFgIeBFRleHQFMDxNRVRBIE5BTUU9IlJPQk9UUyIgQ09OVEVOVD0iTk9JTkRFWCwgTk9GT0xMT1ciPmQCAQ9kFgJmD2QWBmYPZBYKAgEPFgIeDWRhdGEtc2l0ZW5hbWUFGUFkdmFuY2VkIFByYWN0aWNlIE51cnNpbmdkAgIPFgIeB1Zpc2libGVnZAIDD2QWAgIBD2QWAgICDxBkDxYDZgIBAgIWAxAFCVRoaXMgQm9vawUOZmxfQm9va0lEPTI4MzlnEAUJVGhpcyBTaXRlZWcQBRpBbGwgSGVhbHRoIExpYnJhcnkgQ29udGVudAUjZmxfU2l0ZUlEPTIxMiZvdmVycmlkZXN1YmxpbWl0PXRydWVnZGQCBw9kFgYCAw8WAh8CZxYCAgcPDxYCHwAFHkhlYnJldyBVbml2ZXJzaXR5IG9mIEplcnVzYWxlbWRkAgcPZBYMZg8WAh8CZxYCAgEPDxYCHwAFHkhlYnJldyBVbml2ZXJzaXR5IG9mIEplcnVzYWxlbWRkAgIPFgIfAmcWAmYPFgIfAAWtATxwPkNyZWF0ZSBhIGZyZWUgcGVyc29uYWwgYWNjb3VudCB0byBhY2Nlc3Mgc2VsZi1hc3Nlc3NtZW50LCBmYXZvcml0ZXMsIGFuZCBvdGhlciBwZXJzb25hbGl6ZWQgZmVhdHVyZXMuIDxhIGhyZWY9Ii9wdWJsaWMvcGVyc29uYWxfYWNjb3VudF9jcmVhdGlvbi5hc3B4Ij5MZWFybiBtb3JlPC9hPi48L3A+ZAIDDxYCHwJnZAIEDw8WAh8CZ2QWAgIJD2QWAgIBDw8WAh8AZWRkAgcPFgIfAmdkAggPZBYCAgEPDxYCHgtOYXZpZ2F0ZVVybAV9L1NpZ25JblNoaWJib2xldGguYXNweD9mZWRlcmF0aW9uaWQ9MjAmcmV0dXJuVXJsPWh0dHA6Ly9hcG4ubHd3aGVhbHRobGlicmFyeS5jb20vY29udGVudC5hc3B4P3NlY3Rpb25pZD0yNDAxMTIyNzImYm9va2lkPTI4MzlkZAIJDxYCHwJnZAIJD2QWAgIBD2QWAgIBD2QWBGYPFgIfAmhkAgIPFgIfAmcWAgIBDxYCHgRocmVmBTBodHRwczovL2x3d2hlYWx0aGxpYnJhcnkuY29tL3VtYnJlbGxhLWluZGV4LmFzcHhkAgEPZBYCAgIPZBYCZg9kFgJmD2QWDGYPFgIfAmcWAgIBDw8WAh8ABR5IZWJyZXcgVW5pdmVyc2l0eSBvZiBKZXJ1c2FsZW1kZAICDxYCHwJnFgJmDxYCHwAFrQE8cD5DcmVhdGUgYSBmcmVlIHBlcnNvbmFsIGFjY291bnQgdG8gYWNjZXNzIHNlbGYtYXNzZXNzbWVudCwgZmF2b3JpdGVzLCBhbmQgb3RoZXIgcGVyc29uYWxpemVkIGZlYXR1cmVzLiA8YSBocmVmPSIvcHVibGljL3BlcnNvbmFsX2FjY291bnRfY3JlYXRpb24uYXNweCI+TGVhcm4gbW9yZTwvYT4uPC9wPmQCAw8WAh8CZ2QCBA8PFgIfAmdkFgICCQ9kFgICAQ8PFgIfAGVkZAIHDxYCHwJnZAIID2QWAgIBDw8WAh8DBX0vU2lnbkluU2hpYmJvbGV0aC5hc3B4P2ZlZGVyYXRpb25pZD0yMCZyZXR1cm5Vcmw9aHR0cDovL2Fwbi5sd3doZWFsdGhsaWJyYXJ5LmNvbS9jb250ZW50LmFzcHg/c2VjdGlvbmlkPTI0MDExMjI3MiZib29raWQ9MjgzOWRkAgIPZBYCZg9kFgICDQ9kFgxmDxYCHwJnFgICAQ8PFgIfAAUeSGVicmV3IFVuaXZlcnNpdHkgb2YgSmVydXNhbGVtZGQCAg8WAh8CZxYCZg8WAh8ABa0BPHA+Q3JlYXRlIGEgZnJlZSBwZXJzb25hbCBhY2NvdW50IHRvIGFjY2VzcyBzZWxmLWFzc2Vzc21lbnQsIGZhdm9yaXRlcywgYW5kIG90aGVyIHBlcnNvbmFsaXplZCBmZWF0dXJlcy4gPGEgaHJlZj0iL3B1YmxpYy9wZXJzb25hbF9hY2NvdW50X2NyZWF0aW9uLmFzcHgiPkxlYXJuIG1vcmU8L2E+LjwvcD5kAgMPFgIfAmdkAgQPDxYCHwJnZBYCAgkPZBYCAgEPDxYCHwBlZGQCBw8WAh8CZ2QCCA9kFgICAQ8PFgIfAwV9L1NpZ25JblNoaWJib2xldGguYXNweD9mZWRlcmF0aW9uaWQ9MjAmcmV0dXJuVXJsPWh0dHA6Ly9hcG4ubHd3aGVhbHRobGlicmFyeS5jb20vY29udGVudC5hc3B4P3NlY3Rpb25pZD0yNDAxMTIyNzImYm9va2lkPTI4MzlkZGTZJfhVZDi/+CJZznxSs6upSQf5oQ==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=lcVNNXSRf7fSuJmdnb7qjwuT2McZTbPwDLnmGmKSQyffDRCCdM8WPVmuR8RhE6hxcIyfp25AQGSnCAwlBJatCg3nasU1&amp;t=638942066805310136" type="text/javascript"></script>
+
+
+<script src="/WebResource.axd?d=inb3s4aaaHxk4KmEUiNqXS6Fy_cwa3bLxYaj6PiKboYGzNwVaw69BdZE5mJ1iVUE4RGrN0gIlmVqOaWvXd7fhGyG6GVgu18mTVC0xJnMF081gwSji0fFxE-wsB6gmUdXSQUTnDu-7KsnvXbQqY25tKsYYnA1&amp;t=639140331915167585" type="text/javascript"></script>
+<script src="/WebResource.axd?d=6ekP28hcssW4Bv_wVsjstoamZk9s07E73D5wD-2eQRgUBhHnvnGILLVYbhb0jD4qbFqYikwnETsU3G2lMD6mInT3LGc1&amp;t=638942066805310136" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="65E7F3AF" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdACpHDT6DBz+N1a4VP4iDjQCDII3AUQm9WWjTK1LxsVBpHYg8XaF7MyLuB2t2toHAkRfxvrJeBi/bhiFgEarN6fLtAIHRDT+D4yLCG8fJmGKbmXTMJx8v6Rj7SbnC5u1b1G/hmCZ7U3X3QkYlv10HY3e6bIDFrwvX2lQt4Ph9l3Oic2J7pFjXlPG86w64Vb/4fIOS3e5a+iDgdzRRJT1KYtgXcosQV0/0Es0TKtQA0TRQJW6ml+FBPy7UM4RaY4mGQyoQI/X+zHHsLWsA/LhxbICUSDcm4O9RfmhqpuvU2UMcQvFsFZuy+leHECWKSZLNjlYqaKaMp8aft7haioRzFCh6bSf26hcCMu2alb0nhjQknxj4m3x9s0Tb68RdEWInby3+QKzuv1ux0ZFZf5OOudX14fVvgtsL1gjrv0kEpJaXZt5Ol5LTS29WlFaWFjLzic7Pc8rhgHXKl6o7N9c3n5uCMkycnI7qTehZefCODu2Fw9Jdjxd5BebszCeHX3z89N2osdk3E8X8zHQbmBUQ7gPZGQiKq/+D7zwOXKI01YxVnRf1dF/iHxVadPeh2KprJcWG7gthOTRK8HRQpqXY4hn5LIXTnhps6x47fJtaLnUKK8lSYw+e5bp064QcxNNdwCN8E8aDe/EuuDt2CrKXKmtD4Q5UXTuh/BtU2sDBpJpFJaemJ/BbAeuddzxO22O4l19pTwl8WjyeZCbEHBlVGrhwaME8KurtbZJmbWuuvYYvEPiRmf07LL8vfrAvgL3yCDiTGklTSF39UCCUu6s0JM+nwCES60gS04WUvOfG/P5DMsJExL1kafuQW4sqwo5ToGNjlSPvOhcsUv8X0rglU9H6Z1bgGy2lS5b8aVBiVjuMvDlivLqXtRnT8v5MmxX4lOaqW2rwUyZfZq0YXzH4Vz/kHFKUQw==" />
+</div>
+        <div class="preview-mode-text text-center h3 bg-preview-red hide">PREVIEW MODE IS ENABLED</div>
+        <input id="hdnSiteID" type="hidden" value="212" />
+
+        
+    <input id="hdnTopSiteHostName" type="hidden" value="lwwhealthlibrary.com" />
+    <a class="skipnav" href="#mainContent" target="_self">Skip to main content</a>
+    <div id="ms-advanced-practice-nursing" class="container">
+        <section class="masthead">
+            
+
+
+
+<div class="contain-to-grid headerTopPortion">
+    <div class="admin-row">
+        <div class="row top-nav">
+            <div class="large-6 medium-6 small-6 columns lippincott-link-container">
+                <div class="lippincott-link">
+                    <a href="https://www.wolterskluwer.com/en/solutions/lippincott-medicine/medical-education/lippincott-clinical-context" id="ctl00_ctl00_BodyContent_masthead_lnkLpct" target="_blank" class="lds-link">Lippincott&reg; Clinical Context</a>
+                </div>
+            </div>
+            <div class="large-6 medium-6 small-6 columns text-right admin-link">
+                <a class="mobile-top-nav-resource-trigger js-mobile-top-nav-resource-trigger" href="javascript:;"><i class="icon-more"></i></a>
+                <div id="userCentral" class="top-nav-resource no-print">
+                    <a href="https://www.wolterskluwer.com/en/solutions/lippincott-clinical-context/lww-health-library/health-library-user-central">Administrator Resources</a>
+                    
+                        <a id="userCentralLink" href="/multimedia.aspx?categoryId=45780">Faculty Resources</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row umbrella-menu-row">
+        <div class="logos">
+            <div id="divWKLogo" class="wk-logo">
+                <a href="http://lww.com" target="_blank">
+                    <img alt="Wolters Kluwer" data-interchange="[//hl.silverchair-cdn.com/UI/app/images/assets/wk_logo.svg, (default)], [//hl.silverchair-cdn.com/UI/app/images/assets/wk_logo.svg, (retina)]" src="//hl.silverchair-cdn.com/UI/app/images/assets/wk_logo.svg" /><noscript><img src="//hl.silverchair-cdn.com/UI/app/images/assets/wk_logo.svg" alt="Wolters Kluwer logo"></noscript>
+                </a>
+            </div>
+            <div class="logos-inner">
+                <div class="hl-logo">
+                    <a href="https://lwwhealthlibrary.com/umbrella-index.aspx">Health Library
+                    </a>
+                </div>
+
+                <h1 id="ctl00_ctl00_BodyContent_masthead_micrositeTitle" class="microsite-title js-microsite-title" data-sitename="Advanced Practice Nursing"><a href="/index.aspx" id="ctl00_ctl00_BodyContent_masthead_siteURL">Advanced Practice Nursing</a></h1>
+            </div>
+        </div>
+        <div id="BannerAdSpace" class="bannerAdSpace">
+            <div id="ctl00_ctl00_BodyContent_masthead_AdSpaceInlineBox">
+	<div class="selfServe">
+		
+	</div>
+</div>
+        </div>
+
+        <div id="ctl00_ctl00_BodyContent_masthead_headerSearchContainer" class="header-search-container">
+            <div id="healthLibrarySearchMobileToggle" class="search-toggle">
+                <a href="javascript:;" class="js-search-menu-trigger menu-toggle" data-target="#healthLibrarySearch"><i class="icon-search"></i><span class="screen-reader-text">Search menu toggle.</span></a>
+            </div>
+            <div id="healthLibrarySearch" class="sb-module js-search-menu no-print">
+                <div class="navbar-search">
+                    <div class="search-input">
+                        <label id="UmbrellaHomeSearchTermLabel" class="screen-reader-text" for="UmbrellaHomeSearchTerm">Type your search term</label>
+                        <input id="UmbrellaHomeSearchTerm" title="Search" type="text" placeholder="Search..." maxlength="255" />
+                        <input type="text" id="UmbrellaSiteSearchInputHintPage" title="Predictive Search Options" autocomplete="off" class="search-input" />
+                        <ul id="UmbrellaAutoCompleteResultsPage" class="term-list hidden"></ul>
+                    </div>
+                    <label for="SearchFilterDropdown" id="ctl00_ctl00_BodyContent_masthead_SearchFilterDropdown_SearchFilterDropdownLabel" class="screen-reader-text">Select how to filter your search</label>
+<select name="ctl00$ctl00$BodyContent$masthead$SearchFilterDropdown$SearchFilterDropdown" id="SearchFilterDropdown" class="search-filter">
+	<option value="fl_BookID=2839">This Book</option>
+	<option value="">This Site</option>
+	<option value="fl_SiteID=212&amp;overridesublimit=true">All Health Library Content</option>
+
+</select>
+<input name="ctl00$ctl00$BodyContent$masthead$SearchFilterDropdown$hfAllSitesFilterText" type="hidden" id="hfAllSitesFilterText" value="All Health Library Content" />
+
+
+                    <a href="javascript:;" id="UmbrellaHomeSearchIcon" class="search-btn"><i class="icon-search"></i><span class="screen-reader-text">Search</span></a>
+                </div>
+                <div class="navbar-search-advanced">
+                    <div class="adv-search-info">
+                        <a class="advanced-search" href="/Solr/advancedSearch.aspx"><span>Advanced Search</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input name="ctl00$ctl00$BodyContent$masthead$hfSolrBookID" type="hidden" id="hfSolrBookID" value="B1" />
+        <input name="ctl00$ctl00$BodyContent$masthead$hfSolrAutoSuggestMinimumCharactersLength" type="hidden" id="hfSolrAutoSuggestMinimumCharactersLength" value="2" />
+        <input name="ctl00$ctl00$BodyContent$masthead$hfUseSubscriptionSearch" type="hidden" id="hfUseSubscriptionSearch" value="True" />
+
+            <div class="widget-AccessProvided widget-instance-AccessProvided_HL" 
+         data-widget-name="AccessProvided" 
+         data-widget-instance="AccessProvided_HL">
+         
+    </div>
+<div id="userInfo" class="no-print">
+            <div class="si-toggle" data-toggle-target="#signInDropdown">
+                
+                <div id="ctl00_ctl00_BodyContent_masthead_ddInstAnon" class="inst-sign-in">
+                    <a href="javascript:;" class="js-sign-in-menu-trigger mobile-sign-in-toggle menu-toggle"><i id="ctl00_ctl00_BodyContent_masthead_i1" class="icon-institution"></i></a>
+                    <a href="javascript:;" class="js-sign-in-menu-trigger desktop-sign-in-toggle hide-for-medium-down button button-secondary">
+                        <i id="ctl00_ctl00_BodyContent_masthead_iconAuthInstitution" class="icon-institution"></i>
+                        
+                        <span id="ctl00_ctl00_BodyContent_masthead_lblInstitutionName" class="sign-in">Hebrew University of Jerusalem</span>
+                        <i class="icon-chevron-down"></i>
+                    </a>
+                </div>
+                
+            </div>
+            <div id="signInDropdown" class="js-sign-in-menu si-module">
+                
+
+<div class="aa-login-info" data-just-logged-in="False" style="display: none;"></div>
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_AccessProvidedBy" class="si-access-provided si-option">
+    Access Provided By:<br/>
+    <i class="icon-institution"></i>
+    <span id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_lblAccessByInstitution" class="si-institution-name">Hebrew University of Jerusalem</span>
+</div>
+
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_CreatePersonalAccountFull" class="si-create-account si-option">
+    <p>Create a free personal account to access self-assessment, favorites, and other personalized features. <a href="/public/personal_account_creation.aspx">Learn more</a>.</p>
+    <a class="button button-tertiary" id="ibCreateAccount" href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+</div>
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_AskForSignIn" class="si-access-signInToggle si-option">
+    <span class="text">Already have a personal account?</span>
+</div>
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_pnlGlobalSignin" class="si-panel js-pnl-global-signin" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_ctl00_BodyContent_masthead_GlobalSignin_ibSignIn&#39;)">
+	
+    <h2>Sign In</h2>
+    <div class="si-form">
+        <div class="si-label">Username</div>
+        <input name="ctl00$ctl00$BodyContent$masthead$GlobalSignin$txtEmail" type="text" maxlength="50" id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_txtEmail" Title="Username" placeholder="your.name@institution.edu" />
+        <span id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail" class="si-error" style="display:none;">Required</span>
+        <div class="si-label">Password</div>
+        <input name="ctl00$ctl00$BodyContent$masthead$GlobalSignin$txtPassword" type="password" maxlength="50" id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_txtPassword" Title="Password" placeholder="Enter your password" />
+        <span id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword" class="si-error" style="display:none;">Required</span>
+    </div>
+    <div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_errorContainer" tabindex="-1" class="si-error-container" aria-live="assertive" aria-atomic="true">
+        
+    </div>
+    <div class="si-forgot-pass si-option">
+        <a href="javascript:;" id="si-forgotPassword" class="forgotPassword">I forgot my password?</a>
+        <input type="submit" name="ctl00$ctl00$BodyContent$masthead$GlobalSignin$ibSignIn" value="Sign In" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$BodyContent$masthead$GlobalSignin$ibSignIn&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_ibSignIn" class="button button-secondary js-data-layers-login" />
+    </div>
+
+</div>
+
+
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_AccessCode" class="si-access-code si-option"><a id="si-accessCode" data-reveal-id="accessCodeFormModal" href="#">Enter an Access Code</a></div>
+
+
+
+<div id="ctl00_ctl00_BodyContent_masthead_GlobalSignin_RequiresAuthForFavorites" class="js-requires-auth-for-favorites">
+    <p>
+        Create a free personal account to access self-assessment, favorites, and other personalized features. 
+        <a href="/public/personal_account_creation.aspx">Learn more.</a>
+    </p>
+    <p>
+        <a href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+    </p>
+</div>
+                <div id="ctl00_ctl00_BodyContent_masthead_divSignout" class="si-signout si-option">
+                    <a id="ctl00_ctl00_BodyContent_masthead_lbSignOut" href="javascript:__doPostBack(&#39;ctl00$ctl00$BodyContent$masthead$lbSignOut&#39;,&#39;&#39;)">Sign-Out</a>
+                </div>
+            </div>
+        </div>
+        <div id="ctl00_ctl00_BodyContent_masthead_divMainMenuToggle" class="main-menu-toggle hide-for-large-up">
+            <a href="javascript:;" class="menu-toggle js-main-menu-trigger" data-target="#mainMenuSectionMobile"><i class="icon-menu"></i><span class="screen-reader-text">Menu toggle for mobile view.</span></a>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="ctl00_ctl00_BodyContent_masthead_micrositeMenu" class="contain-to-grid headerBottomPortion js-main-menu no-print">
+    <div class="row header-nav-row">
+        <nav class="header-nav">
+            <div id="rotationMenuContainer" class="rotation-menu-container">
+                <a href="javascript:;" class="js-rotation-menu-trigger title-wrap menu-toggle rotation-menu-mobile-toggle" data-target="#rotationMenuMobile">
+                    <span>Rotations</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul id="rotationMenuMobile" class="js-rotation-menu rotation-menu">
+                    
+    <input name="ctl00$ctl00$BodyContent$masthead$ucRotationListMobile$currentRotationId" type="hidden" id="currentRotationId" />
+    <input name="ctl00$ctl00$BodyContent$masthead$ucRotationListMobile$currentRotationName" type="hidden" id="currentRotationName" />
+    <input name="ctl00$ctl00$BodyContent$masthead$ucRotationListMobile$currentSiteId" type="hidden" id="currentSiteId" />
+
+
+                </ul>
+            </div>
+            <div class="main-menu-container">
+                    <div class="widget-ResourceListing widget-instance-WKHL_ResourceListing" 
+         data-widget-name="ResourceListing" 
+         data-widget-instance="WKHL_ResourceListing">
+        <ul id="mainMenuSection" class="main-menu">
+        <li><a href="/books.aspx">Texts</a></li>
+                    <li class="hide-for-medium-down"><a href='/multimedia.aspx?categoryid=42546'>Video & Audio</a></li>
+        <li class="hide-for-medium-down"><a href='/selfassessment.aspx'>Self Assessment</a></li>
+        <li class="hide-for-medium-down"><a href='/multimedia.aspx?categoryid=42548'>Cases</a></li>
+            <li class="hide-for-large-up"><a href='/multimedia.aspx?categoryid=42546'>Video & Audio</a></li>
+        <li class="hide-for-large-up"><a href='/selfassessment.aspx'>Self Assessment</a></li>
+        <li class="hide-for-large-up"><a href='/multimedia.aspx?categoryid=42548'>Cases</a></li>
+            </ul>
+ 
+    </div>
+
+            </div>
+            <div class="microsite-menu-container">
+                <a href="javascript:;" class="js-microsite-menu-trigger microsite-menu-mobile-toggle menu-toggle" data-target="#micrositeMenuWrapper">
+                    <span>More Collections</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <div id="micrositeMenuWrapper" class="js-microsite-menu">
+                    <a class="collections-search-link" href="/solr/advancedSearch.aspx?scope=all">
+                        <span class="collections-search-text"><i class="icon-search"></i><span>Search Across Your Collections</span></span>
+                    </a>
+                    <div class="collections-wrapper js-collections-wrapper">
+                        <div class="collections-header">Health Library Collections</div>
+                        <ul id="micrositeMenuSectionMobile" class="microsite-menu">
+                            
+
+    <div class="site-list-no-access">
+        <div class="header h5">CHOOSE YOUR DISCIPLINE: </div>
+        <div class="content">
+            <div id="NoActiveSubsMicroSiteList">
+                <h3>You have no active subscriptions.</h3>
+                <p><a href="https://lwwhealthlibrary.com/umbrella-index.aspx" id="ctl00_ctl00_BodyContent_masthead_ucSiteListMobile_aLearnMoreLink">Learn more about Health Library subscriptions.</a></p>
+            </div>
+        </div>
+    </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+
+        </section>        
+        <section tabindex="0" id="mainContent" class="main main-section">
+            
+    <div id="ctl00_ctl00_BodyContent_PageContent_divPrintFooter" class="divFooter"></div>
+    <div class="row breadcrumb-row">
+        <div class="large-6 medium-6 small-12 columns">
+            <a href="/book.aspx?bookid=2839">Wallach's Interpretation of Diagnostic Tests, 11e</a><span class="icon-chevron-right"></span>
+        </div>
+        <div class="large-6 medium-6 small-12 columns">
+            <div class="chapter-nav clearfix hide-mobile">
+                    <div class="widget-BookChapterNavigation widget-instance-BookChapterNavigation_WKHL" 
+         data-widget-name="BookChapterNavigation" 
+         data-widget-instance="BookChapterNavigation_WKHL">
+        
+
+    <div class="left-cell">
+        Chapter 1
+    </div>
+
+<div class="right-cell">
+        <a href="/content.aspx?sectionid=240112263&amp;bookid=2839" class="left-arrow"><i class="icon-arrow-left"></i><span>Previous Chapter</span></a>
+            <a href="/content.aspx?sectionid=240112312&amp;bookid=2839" class="right-arrow"><span>Next Chapter</span><i class="icon-arrow-right"></i></a>
+</div>
+ 
+    </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row chapter-mobile-nav">
+        <div class="large-12 columns">
+            <a href="javascript:;" class="button button-small mobile-chapter-nav js-mobile-chapter-nav"><i class="icon-contents"></i>Chapter Contents</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-2 medium-3 small-12 columns leftColumn no-print">
+                <div class="widget-BookInfo widget-instance-BookInfo_WKHL_BookTitleImage" 
+         data-widget-name="BookInfo" 
+         data-widget-instance="BookInfo_WKHL_BookTitleImage">
+        
+
+
+<div class="bookInfoTop clearfix">
+            <div class="left-cell">
+                    <img id="BookImage" class="fb-featured-image" alt="Book cover for Wallach&#39;s Interpretation of Diagnostic Tests, 11e"
+                         src="https://hl.silverchair-cdn.com/wk/hl/content_public/book/2839/m_cover_9781975105594.jpeg?Expires=1782944365&amp;Signature=w0SGJ0XjAR4dPJIqNx83y0PbkFbjX~kM1zXxjh6roghPBMfTGW5HlzOBKOcpmWllYBkR4YnGkLrTUYtlQWBhf0qA6KH0dReGEyQdhvXav5n2YYa-YS~AJT-M4GULjvFkf5Ac1yJslO76ETeaHp~aRpaJx7S9vkJYND-3GZg3t4Y9wr5M5F8jsqNC1vQ8vk-3Alu7nd3Dm-a3SOGCntZ0kaqOUobb5JbBfmbJmiPCo7-qTK8GSAmJ25zowwnjQTmxkf0GMMrMMuKtROrEmYeaXz-9cY~hqsiO6vLG8toJv-DqhPcmD3fEG9Xl5~02MAACi2Yg9O1gxfmrzugFUE67tQ__&amp;Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" />
+            </div>
+    <div class="right-cell">
+        
+                                    </div>
+</div>
+
+
+
+
+ 
+    </div>
+
+            <div class="mobile-flyout-close">
+                <a href="javascript:;" class="js-mobile-chapter-nav-close mobile-chapter-nav-close"><i class="icon-close"></i><span class="screen-reader-text">Close Menu</span></a>
+            </div>
+            <div id="scrollMenu" class="css3transition">
+                <div class="chapter-nav clearfix show-mobile">
+                        <div class="widget-BookChapterNavigation widget-instance-BookChapterNavigation_WKHL" 
+         data-widget-name="BookChapterNavigation" 
+         data-widget-instance="BookChapterNavigation_WKHL">
+        
+
+    <div class="left-cell">
+        Chapter 1
+    </div>
+
+<div class="right-cell">
+        <a href="/content.aspx?sectionid=240112263&amp;bookid=2839" class="left-arrow"><i class="icon-arrow-left"></i><span>Previous Chapter</span></a>
+            <a href="/content.aspx?sectionid=240112312&amp;bookid=2839" class="right-arrow"><span>Next Chapter</span><i class="icon-arrow-right"></i></a>
+</div>
+ 
+    </div>
+
+                </div>
+                <section id="leftNavSticker">
+                        <div class="widget-BookJumpLinks widget-instance-ChapterJumpLinks Widget" 
+         data-widget-name="BookJumpLinks" 
+         data-widget-instance="ChapterJumpLinks Widget">
+            <div class="toc-header">Chapter Contents </div>
+    <ul data-magellan-expedition="fixed">
+        <li class="section-jump-link head-2" data-magellan-arrival="240112273"><a class="scrollTo" href="#240112273">Introduction</a></li>
+        <li class="section-jump-link head-2" data-magellan-arrival="240112276"><a class="scrollTo" href="#240112276">What Causes Abnormal Test Results (Besides Disease)?</a></li>
+        <li class="section-jump-link head-2" data-magellan-arrival="240112305"><a class="scrollTo" href="#240112305">Reference Intervals</a></li>
+    </ul>
+ 
+    </div>
+
+                    <div class="btn-linkToTop">
+                        <a href="#Top" class="linkToTop">
+                            <span class="tooltip">Back to Top</span>
+                            <i class="icon-arrow-up"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="large-8 medium-9 small-12 columns rightColumn js-right-column">
+            <div id="ctl00_ctl00_BodyContent_PageContent_addFavorite">
+                    <div class="widget-AddFavorites widget-instance-ChapterFavorite" 
+         data-widget-name="AddFavorites" 
+         data-widget-instance="ChapterFavorite">
+        
+<input name="__RequestVerificationToken" type="hidden" value="_w-DJIOfx_JmCRHCRujFH6pGIax8BcnaE1wdDD4Ws1PV6CWO2ORpooOoI_tlEBLFUFplvyUQPT2y8vbvqd74nRorG-o1" />    <div class="js-favorite favorite">
+        <a href="javascript:;" class="js-add-favorite-container add-favorite js-favorite-widget iconfont-star-o" data-resource-id="240112272" data-resource-type="5">
+            <span class="favorite-tooltip"><span class="add-to">Add To </span><span class="remove-from">Remove From</span> Your Favorites</span>
+        </a>
+    </div>
+ 
+    </div>
+</div>
+                <div class="widget-BookInfo widget-instance-BookInfo_WKHL_ChapterTitleAuthor" 
+         data-widget-name="BookInfo" 
+         data-widget-instance="BookInfo_WKHL_ChapterTitleAuthor">
+        
+
+
+<div class="bookInfoTop clearfix">
+    <div class="right-cell">
+        
+                            <div class="chapter-title js-chapter-title">
+                Chapter 1: FALTs: Factors Affecting Laboratory Tests
+            </div>
+                    <div class="chapter-authors">
+                <span class='author-name'>L. V. Rao</span>
+            </div>
+            </div>
+</div>
+
+
+
+
+ 
+    </div>
+<div id="articleTabSticker" class="sticky-column no-print">
+                <nav id="scrollTabBar" class="tab-bar" data-topbar>
+                    <section class="tab-bar-section">
+                        <ul class="tab-bar-list">
+                            <li class="tab-group-container views-tabs">
+                                <ul id="filterDrop" class="tab-group" data-dropdown-content>
+                                    <li class="articleTab tab" data-content-filter="all"><a class="tab-link" href="javascript:;"><span>Text</span></a></li>
+                                    <li class="figureTab tab hide" data-content-filter="figure"><a class="tab-link" href="javascript:;"><span>Figures</span></a></li>
+                                    <li class="tableTab tab " data-content-filter="table"><a class="tab-link" href="javascript:;"><span>Tables</span></a></li>
+                                    <li class="videoTab tab hide" data-content-filter="video"><a class="tab-link" href="javascript:;"><span>Videos</span></a></li>
+                                </ul>
+                            </li>
+                            <li class="tab-group-container utility-tabs">
+                                <ul class="tab-group">
+                                    <li class="toolbox-menu views-dropdown">
+                                        <a href="javascript:;" class="toolbox-dropdown js-toolbar-dropdown-trigger" id="site-menu" data-dropdown="filterDrop">
+                                            <i class="icon-view_original"></i><span>Views</span><i class="icon-chevron-down"></i>
+                                        </a>
+                                        <ul id="filterDrop" class="toolbar-dropdown js-toolbar-dropdown" data-dropdown-content>
+                                            <li class="articleTab" data-content-filter="all"><a class="tab-link" href="javascript:;"><span>Text</span></a></li>
+                                            <li class="figureTab hide" data-content-filter="figure"><a class="tab-link" href="javascript:;"><span>Figures</span></a></li>
+                                            <li class="tableTab " data-content-filter="table"><a class="tab-link" href="javascript:;"><span>Tables</span></a></li>
+                                            <li class="videoTab hide" data-content-filter="video"><a class="tab-link" href="javascript:;"><span>Videos</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="ctl00_ctl00_BodyContent_PageContent_shareMenu" class="toolbox-menu">
+                                        <a href="javascript:;" class="toolbox-dropdown js-toolbar-dropdown-trigger" id="share-icon" data-dropdown="shareDrop">
+                                            <i class="icon-share-alt"></i><span>Share</span><i class="icon-chevron-down"></i>
+                                        </a>
+                                        <ul id="shareDrop" class="addthis_toolbox addthis_default_style addthis_20x20_style toolbar-dropdown js-toolbar-dropdown" data-dropdown-content>
+                                            <li class="toolbox-email">
+                                                
+                                                <a href="#" id="signInModalBtn" data-reveal-id="signInModal" class="btn-email">
+                                                    <i class="icon-envelope-alt"></i>
+                                                    <span>Email</span>
+                                                </a>
+
+                                                <div id="signInModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                                                    
+
+<div class="aa-login-info" data-just-logged-in="False" style="display: none;"></div>
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_AccessProvidedBy" class="si-access-provided si-option">
+    Access Provided By:<br/>
+    <i class="icon-institution"></i>
+    <span id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_lblAccessByInstitution" class="si-institution-name">Hebrew University of Jerusalem</span>
+</div>
+
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_CreatePersonalAccountFull" class="si-create-account si-option">
+    <p>Create a free personal account to access self-assessment, favorites, and other personalized features. <a href="/public/personal_account_creation.aspx">Learn more</a>.</p>
+    <a class="button button-tertiary" id="ibCreateAccount" href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+</div>
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_AskForSignIn" class="si-access-signInToggle si-option">
+    <span class="text">Already have a personal account?</span>
+</div>
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_pnlGlobalSignin" class="si-panel js-pnl-global-signin" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_ctl00_BodyContent_PageContent_EmailSignin_ibSignIn&#39;)">
+	
+    <h2>Sign In</h2>
+    <div class="si-form">
+        <div class="si-label">Username</div>
+        <input name="ctl00$ctl00$BodyContent$PageContent$EmailSignin$txtEmail" type="text" maxlength="50" id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_txtEmail" Title="Username" placeholder="your.name@institution.edu" />
+        <span id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail" class="si-error" style="display:none;">Required</span>
+        <div class="si-label">Password</div>
+        <input name="ctl00$ctl00$BodyContent$PageContent$EmailSignin$txtPassword" type="password" maxlength="50" id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_txtPassword" Title="Password" placeholder="Enter your password" />
+        <span id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword" class="si-error" style="display:none;">Required</span>
+    </div>
+    <div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_errorContainer" tabindex="-1" class="si-error-container" aria-live="assertive" aria-atomic="true">
+        
+    </div>
+    <div class="si-forgot-pass si-option">
+        <a href="javascript:;" id="si-forgotPassword" class="forgotPassword">I forgot my password?</a>
+        <input type="submit" name="ctl00$ctl00$BodyContent$PageContent$EmailSignin$ibSignIn" value="Sign In" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$BodyContent$PageContent$EmailSignin$ibSignIn&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_ibSignIn" class="button button-secondary js-data-layers-login" />
+    </div>
+
+</div>
+
+
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_AccessCode" class="si-access-code si-option"><a id="si-accessCode" data-reveal-id="accessCodeFormModal" href="#">Enter an Access Code</a></div>
+
+
+
+<div id="ctl00_ctl00_BodyContent_PageContent_EmailSignin_RequiresAuthForFavorites" class="js-requires-auth-for-favorites">
+    <p>
+        Create a free personal account to access self-assessment, favorites, and other personalized features. 
+        <a href="/public/personal_account_creation.aspx">Learn more.</a>
+    </p>
+    <p>
+        <a href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+    </p>
+</div>
+                                                    <a class="close-reveal-modal">Ã—</a>
+                                                </div>
+                                                
+                                                <div class="free-72-hours th-bg-color-dark">FREE 72 HOURS</div>
+                                            </li>
+                                                <div class="widget-ChapterShareLinks widget-instance-WKHL_ShareLinks" 
+         data-widget-name="ChapterShareLinks" 
+         data-widget-instance="WKHL_ShareLinks">
+        <div class="share-widget">
+
+        <li class="toolbar-item item-link">
+            <a class="st-custom-button addthis_button_facebook js-share-stats" data-network="facebook" data-title="FALTs: Factors Affecting Laboratory Tests" data-url="https://apn.lwwhealthlibrary.com/content.aspx?sectionid=240112272&amp;bookid=2839" data-email-subject="FALTs: Factors Affecting Laboratory Tests" href="javascript:;">
+                <i class="icon-facebook"></i><span>Facebook</span>
+            </a>
+        </li>
+        <li class="toolbar-item item-link">
+            <a class="st-custom-button addthis_button_twitter js-share-stats" data-network="twitter" data-title="FALTs: Factors Affecting Laboratory Tests" data-url="https://apn.lwwhealthlibrary.com/content.aspx?sectionid=240112272&amp;bookid=2839" data-email-subject="FALTs: Factors Affecting Laboratory Tests" href="javascript:;">
+                <i class="icon-twitter"></i><span>Twitter</span>
+            </a>
+        </li>
+        <li class="toolbar-item item-link">
+            <a class="st-custom-button addthis_button_linkedin js-share-stats" data-network="linkedin" data-title="FALTs: Factors Affecting Laboratory Tests" data-url="https://apn.lwwhealthlibrary.com/content.aspx?sectionid=240112272&amp;bookid=2839" data-email-subject="FALTs: Factors Affecting Laboratory Tests" href="javascript:;">
+                <i class="icon-linkedin"></i><span>Linkedin</span>
+            </a>
+        </li>
+
+</div>
+ 
+    </div>
+
+                                        </ul>
+                                        
+                                    </li>
+                                    <li id="ctl00_ctl00_BodyContent_PageContent_citationMenu" class="toolbox-menu">
+                                        <a href="javascript:;" class="toolbox-dropdown js-get_citation_open-popup stats-get-citation_view-citation"><i class="icon-book icon-white"></i><span>Get Citation</span></a>
+                                            <div class="widget-ArticleToolboxCitation widget-instance-WKHL_Get_Citation" 
+         data-widget-name="ArticleToolboxCitation" 
+         data-widget-instance="WKHL_Get_Citation">
+        
+
+<div id="getCitationPopupDialog" class="getCitationPopupDialog fancybox">
+    <span what="HiddenField" id="articleId"></span>
+        <h2>Citation</h2>
+            <p>Disclaimer: These citations have been automatically generated based on the information we have and may not be 100% accurate. Please consult the latest official style manual if you have any questions regarding the format accuracy.</p>
+    <div class="logoBrand"></div>
+    <div class="citationCopyPaste" id="citationCopyPaste">
+        <span ID="txtCopyPaste" class="copyPaste" Width="100%" BorderStyle="None" border="0"><div class="amacitation"><b>AMA Citation</b> <br/> Rao LV. FALTs: Factors Affecting Laboratory Tests. <span class="editor">In: <span>Rao LV, Snyder LM. </span>eds.</span> <i><em>Wallach's Interpretation of Diagnostic Tests, 11e</em></i>. Lippincott Williams & Wilkins, a Wolters Kluwer business; 2021.  Accessed May 27, 2026. <span class="urlLink"><span>https://apn.lwwhealthlibrary.com/content.aspx?bookid=2839&amp;sectionid=240112272</span></span></div><div class="apacitation"><b>APA Citation</b> <br/> Rao, L. V.  (2021). Falts: factors affecting laboratory tests. Rao, L. V., & Snyder, L. M.  <i><em>Wallach's Interpretation of Diagnostic Tests, 11e</em></i>. Lippincott Williams & Wilkins, a Wolters Kluwer business. <span class="urlLink"><span>https://apn.lwwhealthlibrary.com/content.aspx?bookid=2839&amp;sectionid=240112272</span></span></div><div class="mlacitation"><b>MLA Citation</b> <br/> Rao, L. V.  "FALTs: Factors Affecting Laboratory Tests." <i><em>Wallach's Interpretation of Diagnostic Tests, 11e</em></i> <span class="editor">Rao, L. V., and Snyder, L. Michael. </span> Lippincott Williams & Wilkins, a Wolters Kluwer business, 2021, <span class="urlLink"><span>https://apn.lwwhealthlibrary.com/content.aspx?bookid=2839&amp;sectionid=240112272.</span></span></div></span>
+    </div>
+    <div class="citationLinks">
+        <p>Download citation file: </p>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlRIS" href="../Citation/Download?citationFormat=ris&resourceId=240112272&amp;resourceType=5">RIS (Zotero)</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlEndNote" href="../Citation/Download?citationFormat=enw&resourceId=240112272&amp;resourceType=5">EndNote</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlBibTex" href="../Citation/Download?citationFormat=bibtex&resourceId=240112272&amp;resourceType=5">BibTex</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlMedlars" href="../Citation/Download?citationFormat=medlars&resourceId=240112272&amp;resourceType=5">Medlars</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlProCite" href="../Citation/Download?citationFormat=ris&resourceId=240112272&amp;resourceType=5">ProCite</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlRefWorks" href="../Citation/Download?resourceId=240112272&amp;resourceType=5">RefWorks</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlReferenceManager" href="../Citation/Download?citationFormat=ris&resourceId=240112272&amp;resourceType=5">Reference Manager</a></div>
+        <div class="citationLink"><a class="stats-article-toolbox-citation_download-citation" ID="hlMendeley" href="../Citation/Download?citationFormat=ris&resourceId=240112272&amp;resourceType=5">Mendeley</a></div>
+    </div>
+        <div class="copyrightInfo"><span ID="litCopyright">&copy; Copyright</span></div>
+</div>
+
+ 
+    </div>
+</li>
+                                    <li id="ctl00_ctl00_BodyContent_PageContent_printMenu" class="toolbox-menu">
+                                        <a href="javascript:;" 
+                                            class="toolbox-dropdown" 
+                                            id="print-icon"
+                                            data-print-disabled-unauthenticated-user="True">
+                                            <i class="icon-print"></i><span>Print</span></a>
+                                    </li>
+                                    <li id="ctl00_ctl00_BodyContent_PageContent_permissionsMenu" class="toolbox-menu">
+                                        
+                                        <div class="toolbox-dropdown">    <div class="widget-ToolboxPermissions widget-instance-WK_Get_Permissions" 
+         data-widget-name="ToolboxPermissions" 
+         data-widget-instance="WK_Get_Permissions">
+            <div class="module-widget">
+        <a href="http://s100.copyright.com/AppDispatchServlet?publisherName=WoltersKluwer&amp;publication=book&amp;title=Wallach%26apos%3bs+Interpretation+of+Diagnostic+Tests%2c+11e&amp;publicationDate=&amp;volumeNum=&amp;issueNum=&amp;author=Rao%2c+L.+V.%3b+Snyder%2c+L.+Michael&amp;startPage=&amp;endPage=&amp;contentId=978-1-975105-58-7&amp;oa=&amp;orderBeanReset=True" id="PermissionsLink" rel=nofollow>
+            <span class="toolbar-label text">
+                <span class="toolbar-text normalize permission"><i class="icon-copyright"></i><span>Get Permissions</span></span>
+            </span>
+        </a>
+    </div>
+ 
+    </div>
+</div>
+                                        </li>
+                                    <li class="toolbox-menu expand-reader-view hide-for-medium-down">
+                                        <a href="javascript:;" class="toolbox-dropdown js-expand-reader-view"><i class="icon-double-chevron-right"></i><span class="screen-reader-text">Toggle Reader View</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </div>
+            <section class="tabs-content">
+                <div id="articleTab" class="content active">
+                        <div class="widget-BookSectionsText widget-instance-BookSectionsText WidgetWithUpdates" 
+         data-widget-name="BookSectionsText" 
+         data-widget-instance="BookSectionsText WidgetWithUpdates">
+        <div class="module-widget">
+    <div class="widget-items">
+            <div class="downloadImagesppt js-download-images-ppt st-download-images-ppt hide">
+                <a id="lnkDownloadAllImages"
+                   class="js-download-all-images-link button"
+                   rel="nofollow"
+                   href="/downloadimage.aspx?image=&amp;sec=240112272&amp;BookID=2839&amp;ChapterSecID=240112272&amp;figureName=Wallach&#39;s_Interpretation_of_Diagnostic_Tests_11e_Chapter_1&amp;PPTtype=SlideSet&amp;siteId=212">Download All Figures</a>
+            </div>
+                        <input type="hidden" class="js-lazy-load-intersection-ratio" value="0" />
+                <div id="section_240112273">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112273"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic002"></a>
+
+                    <h2 class='content-section-header' data-magellan-destination='240112273'>Introduction</h2>                                <div id="readspeaker_button240112273" class="rs_skip rsbtn rs_preserve">
+                                    <a class="rsbtn_play js-rsbtn_play" accesskey="L" rel="nofollow" title=Listen to this page using ReadSpeaker href="//app-na.readspeaker.com/cgi-bin/rsent?customerid=11251&amp;amp;lang=en_us&amp;amp;readid=section_240112273&amp;amp;url=https://lwwhealthlibrary.com" data-encoded-url="Ly9hcHAtbmEucmVhZHNwZWFrZXIuY29tL2NnaS1iaW4vcnNlbnQ/Y3VzdG9tZXJpZD0xMTI1MSZhbXA7bGFuZz1lbl91cyZhbXA7cmVhZGlkPXNlY3Rpb25fMjQwMTEyMjczJmFtcDt1cmw9aHR0cHM6Ly9sd3doZWFsdGhsaWJyYXJ5LmNvbQ==">
+                                        <span class="rsbtn_left rsimg rspart">
+                                            <span class="rsbtn_text">
+                                                <span>
+                                                    Listen
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="rsbtn_right rsimg rsplay rspart">
+                                        </span>
+                                    </a>
+                                </div>
+<div>                    
+                    
+                </div>
+                <div id="section_240112274">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112274"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para010"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112274">
+                            <div class="para">Laboratory testing is an integral part of modern medical practice. Although clinical laboratory testing accounts for only 2.3% of annual health care costs in the United States, it plays a major role in the clinical decisions made by physicians, nurses, and other health care providers for the overall management of disease. More than 4,000 laboratory tests are available for clinical use, and about 500 of them are performed regularly. The number of Clinical Laboratory Improvement Amendments (CLIA)–certified laboratories has grown to exceed more than 200,000. The laboratory medicine workforce comprises pathologists, doctoral-level laboratory scientists, technologists, and technicians, who play a vital role in the health care system. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112275">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112275"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para011"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112275">
+                            <div class="para">The health care system is increasingly dependent on reliable clinical laboratory services; however, as part of the overall health care system, these laboratory evaluations are prone to errors. Laboratory medicine comprises more than just the use of chemicals and reagents for the measurement of various analytes for clinical diagnosis purposes. Interference by both endogenous and exogenous substances is a common problem for the test analysis. These substances play a significant role in the proper interpretation of results, and such interference is adverse to patient care and adds to the cost of health care. It would be an oversimplification to conclude that each variable will always produce a specific effect; it depends on the person, the duration of exposure to that variable, and the time between initial stress, the sample collection, and the degree of exposure. Awareness that many factors occurring outside the laboratory in and around the patient may affect the test result before the sample reaches the laboratory or even before the sample is collected is very important. These factors can be minimized when the clinician takes a good history and when there is a good communication of such information between the laboratory and the physician. </div>
+                        </div>
+
+                    
+                </div>
+</div>                <div id="section_240112276">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112276"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic003"></a>
+
+                    <h2 class='content-section-header' data-magellan-destination='240112276'>What Causes Abnormal Test Results (Besides Disease)?</h2>                                <div id="readspeaker_button240112276" class="rs_skip rsbtn rs_preserve">
+                                    <a class="rsbtn_play js-rsbtn_play" accesskey="L" rel="nofollow" title=Listen to this page using ReadSpeaker href="//app-na.readspeaker.com/cgi-bin/rsent?customerid=11251&amp;amp;lang=en_us&amp;amp;readid=section_240112276&amp;amp;url=https://lwwhealthlibrary.com" data-encoded-url="Ly9hcHAtbmEucmVhZHNwZWFrZXIuY29tL2NnaS1iaW4vcnNlbnQ/Y3VzdG9tZXJpZD0xMTI1MSZhbXA7bGFuZz1lbl91cyZhbXA7cmVhZGlkPXNlY3Rpb25fMjQwMTEyMjc2JmFtcDt1cmw9aHR0cHM6Ly9sd3doZWFsdGhsaWJyYXJ5LmNvbQ==">
+                                        <span class="rsbtn_left rsimg rspart">
+                                            <span class="rsbtn_text">
+                                                <span>
+                                                    Listen
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="rsbtn_right rsimg rsplay rspart">
+                                        </span>
+                                    </a>
+                                </div>
+<div>                    
+                    
+                </div>
+                <div id="section_240112277">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112277"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para012"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112277">
+                            <div class="para">The total testing process defines the preanalytic, analytic, and postanalytic phases of laboratory testing and serves as the basis for designing and implementing interventions, restrictions, or limits that can reduce or remove the likelihood of errors. Over the last several years, there has been a remarkable decrease in error rates, especially analytic errors. Evidence from recent studies demonstrates that a large percentage of laboratory errors occur in preanalytic and postanalytic steps. Errors in the preanalytic (61.9%) and postanalytic (23.1%) processes occurred much more frequently than occurrences of analytic errors (15%). About one fourth of these can have consequences to the patient either in delay of the test result or life-threatening. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112278">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112278"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic004"></a>
+
+                    <h3>Preanalytic Errors</h3>                    
+                    
+                </div>
+                <div id="section_240112279">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112279"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para013"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112279">
+                            <div class="para">Preanalytic factors act on both the patient and the specimen before analyses. It is a complex and dynamic process differing from one hospital to another. It can cause random errors, undetectable by routine quality control and often unknown to testing personnel and clinicians. These factors may be divided further into those acting in vivo (biologic or physiologic) and those acting in vitro (specimen handling and interference factors). See <a href="javascript:;" reveal-id="snyder11-ch001-tbl001" class="revealLink tablelink rs_skip rs_preserve">Table 1-1</a> for some of the most frequently ordered tests, and their limitation causes false positive and false negative test results. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112280">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112280"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-tbl001"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112280">
+                            <div id="snyder11-ch001-tbl001-inline" class="inline-table-section rs_preserve"><div class="table-container_top"><div class="title"><span class="label">TABLE 1-1</span><div class="caption"><span class="caption-title">Preanalytic Factors Affecting Laboratory Tests</span></div></div><div class="js-add-favorite-container-wrap add-favorite-container-wrap rs_skip rs_preserve" style="display: none;"><a href="javascript:;" class="js-add-favorite-container add-favorite iconfont-star-o" data-resource-id="240112280" data-resource-type="5" style="display: none;"><span class="screen-reader-text">Favorite</span><span class="favorite-tooltip"><span class="add-to">Add To </span><span class="remove-from">Remove From</span> Your Favorites</span></a></div></div><div class="tableContainer"><div class="tTable"><table> <thead> <tr> <th align="left"><strong>Test</strong></th> <th align="left"><strong>Normal Range</strong></th> <th align="left"><strong>Limitations</strong></th> <th align="left"><strong>Falsely Increased</strong></th> <th align="left"><strong>Falsely Decreased</strong></th> </tr> </thead> <tbody> <tr> <td align="left">ACTH</td> <td align="left">&lt;46 pg/mL</td> <td align="left">Significant diurnal variations, high in the morning (6–8 <span style="font-variant:small-caps;">am</span>). Releases in bursts, levels vary by minute.</td> <td align="left">Pregnancy, menstruation, stress, rheumatoid factor</td> <td align="left">Patients taking glucocorticoids</td> </tr> <tr> <td align="left">Albumin</td> <td align="left">0–4 mo: 2.0–4.5 g/dL<br />4 mo–16 y: 3.2–5.2 g/dL<br />&gt;16 y: 3.5–4.8 g/dL</td> <td align="left">Two dye-binding methods, bromocresol green (BCG) and bromocresol purple (BCP), are in routine use.</td> <td align="left">BCG overestimates albumin in serum due to poorer specificity for the analyte.</td> <td align="left">BCP underestimates in pediatric patients on hemodialysis and chronic renal failure.</td> </tr> <tr> <td align="left">Alkaline phosphatase</td> <td align="left">0–1 y: 150–350 IU/L<br />1–16 y: 30–300 IU/L<br />&gt;16 y: 30–115 IU/L</td> <td align="left">Day-to-day variations (5–10%)<br />Higher in African American men (15%) and women (10%) compared to other racial/ethnic groups</td> <td align="left">Recent food ingestion, smoking, increased BMI (25%), drugs: penicillin, antiepileptic drugs, antihistamines, cardiovascular drugs</td> <td align="left">Use of oral contraceptives</td> </tr> <tr> <td align="left">AFP, tumor marker</td> <td align="left">0.6–6.60 ng/mL</td> <td align="left">Not recommended as a screening procedure to detect cancer in the general population</td> <td align="left">Tumors of the GI tract, liver damage (e.g., cirrhosis, hepatitis, or drug or alcohol abuse), and pregnancy<br />Smoking tobacco (10%)<br />Inflammatory bowel disease<br />Some dietary supplements, herbal remedies, and vitamins can cause liver toxicity, leading to a rise in AFP levels.</td> <td align="left">NA</td> </tr> <tr> <td align="left">Ammonia</td> <td align="left">&lt;50 μmol/L</td> <td align="left">Not useful to assess the degree of dysfunction (e.g., in Reye syndrome, hepatic function improves and the ammonia level falls, even in patients who finally die of these disorders)<br />Levels are not always high in all patients with urea cycle disorders.</td> <td align="left">Atmospheric ammonia<br />The presence of ammonium ions in anticoagulants<br />High-protein diet, GI hemorrhage, increases due to cellular metabolism: 20% in 1 h and 100% by 2 h, prolonged tourniquet application</td> <td align="left">NA</td> </tr> <tr> <td align="left">ANA</td> <td align="left">Negative</td> <td align="left">Not recommended as a general screening test<br />Depending on the titer, normal healthy population can have 5–20% positive test results.</td> <td align="left">Drugs (carbamazepine, chlorpromazine, ethosuximide, hydralazine, isoniazid, mephenytoin, methyldopa, penicillins, phenytoin, primidone, procainamide, and quinidine)<br />Viral illness and infections</td> <td align="left">NA</td> </tr> <tr> <td align="left">Bilirubin total and direct</td> <td align="left">0–1 d: 0.0–6.0 mg/dL<br />1–2 d: 0.0–8.0 mg/dL<br />2–5 d: 0.0–12.0 mg/dL<br />5 d–4 mo: 0.3–1.2 mg/dL<br />&gt;4 mo: 0.3–1.2 mg/dL<br />Direct bilirubin<br />0.0–0.4 mg/dL</td> <td align="left">Day-to-day variation (15–30%)<br />Lower in African Americans</td> <td align="left">Fasting up to 48 h</td> <td align="left">Exposure to light<br />Penicillin<br />Acetyl salicylic acid<br />Sulfisoxazole</td> </tr> <tr> <td align="left">Calcium, total</td> <td align="left">8.7–10.7 mg/dL</td> <td align="left">Need to interpret with total protein and albumin levels<br />0.8 mg of calcium is bound to 1.0-g albumin in serum. To correct, add 0.8 mg/dL for every 1.0 g/dL that serum albumin falls below 4.0 g/dL.</td> <td align="left">Hyperalbuminemia<br />Multiple myeloma<br />Waldenström macroglobulinemia<br />Dehydration<br />Venous stasis during blood collection by prolonged application of tourniquet<br />Hyponatremia (&lt;120 mmol/L)</td> <td align="left">Hypomagnesemia<br />Hyperphosphatemia (e.g., laxatives, phosphate enemas, chemotherapy of leukemia or lymphoma, rhabdomyolysis)<br />Hypoalbuminemia<br />Hemodilution</td> </tr> <tr> <td align="left">CO<sub>2</sub>, total</td> <td align="left">0–2 y: 20–25 mmol/L<br />2–16 y: 22–28 mmol/L<br />&gt;16 y: 24–32 mmol/L</td> <td align="left">80–90% present as bicarbonate and is general guide to body's buffering capacity</td> <td align="left">Antacids<br />Corticotrophin<br />Mercurial and thiazide diuretics<br />Sodium bicarbonate<br />Hyperthermia</td> <td align="left">Acetazolamide<br />Ammonium chloride, aspirin, chlorothiazide diuretics, methicillin<br />Paraldehyde, tetracycline<br />High altitudes</td> </tr> <tr> <td align="left">CA-125</td> <td align="left">0–35 U/mL</td> <td align="left">Not recommended for screening asymptomatic women<br />Not increased in mucinous adenocarcinoma<br />Different manufacturer assays do not produce similar value. Should not be used interchangeably.</td> <td align="left">Pregnancy<br />Menstruation, endometriosis<br />Pleural effusion or inflammation<br />Peritoneal effusion or inflammation, cirrhosis, severe liver necrosis (66%), disorders of the GI tract, liver, and pancreas<br />Renal failure, healthy persons (1%)</td> <td align="left">Postmenopausal women<br />African American and Asian women</td> </tr> <tr> <td align="left">Cholesterol, total</td> <td align="left">&lt;200 mg/dL</td> <td align="left">Intraindividual variation (10%)<br />Seasonal variation (8%) higher in the winter than in summer<br />Positional variation is 5% and 10–15% lower when phlebotomized sitting or recumbent, respectively, as opposed to standing.</td> <td align="left">Pregnancy, drugs: beta blockers, anabolic steroids, vitamin D, oral contraceptives, and epinephrine<br />Smoking, alcohol, renal failure<br />Hypothyroidism, glycogen storage disease, biliary cirrhosis, hepatocellular disease<br />Prostate and pancreatic neoplasms</td> <td align="left">Acute illness such as a heart attack<br />Malnutrition<br />Liver disease<br />Myeloproliferative diseases<br />Chronic anemias<br />Infection<br />Hyperthyroidism<br />Stress</td> </tr> <tr> <td align="left">CRP</td> <td align="left">&lt;10 mg/L</td> <td align="left">Not a screening test for wellness and should only be used in the diagnosis and monitoring of a patient who appears to have an inflammatory process<br />Elevated levels are nonspecific and should not be interpreted without a complete clinical history.<br />Influenced by genetics, age, and sedentary lifestyle, stress, exposure to environmental toxins, and diet that specifically contains refined, processed, and manufactured foods</td> <td align="left">Oral contraceptives<br />Pregnancy<br />Monoclonal gammopathy</td> <td align="left">Patients treated with carboxypenicillins<br />Liver failure</td> </tr> <tr> <td align="left">ESR</td> <td align="left">0–15 mm/h in men 0–20 mm/h in women</td> <td align="left">Not a good screening test<br />Compared to the ESR, CRP is a more sensitive and specific marker of the acute phase reaction and is more responsive to changes in the patient's condition.<br />There are only two circumstances where the erythrocyte sedimentation rate is superior—detecting low-grade bone and joint infections and monitoring disease activity in systemic lupus erythematosus.</td> <td align="left">Increased fibrinogen; increased gamma- and beta globulins<br />Drugs (dextran, penicillamine, theophylline, vitamin A, methyldopa, methysergide)<br />Technical factors (e.g., hemolyzed sample, high temperature in the laboratory)<br />Hypercholesterolemia</td> <td align="left">Abnormally shaped RBCs (sickle cells, spherocytes, acanthocytes)<br />Microcytosis, HbC disease, hypofibrinogenemia<br />Technical factors (low temperature in the laboratory, clotted blood)<br />Extreme leukocytosis<br />Drugs (quinine, salicylates, high steroid levels, drugs that cause high glucose levels)</td> </tr> <tr> <td align="left">Ferritin</td> <td align="left">Male: 23–336 ng/mL (in patients with normal iron stores, it should be &gt;30 ng/mL)<br />Female: 11–306 ng/mL</td> <td align="left">In hepatic, malignant, and inflammatory conditions, ferritin levels can be normal. In such cases, bone marrow stain of iron may be used to exclude iron deficiency.</td> <td align="left">Inflammation<br />Liver and kidney disease, malignancy<br />Obesity and age<br />Alcohol use</td> <td align="left">Vegetarianism</td> </tr> <tr> <td align="left">GGT</td> <td align="left"></td> <td align="left">Sensitive but nonspecific indicator of biliary disease<br />Half-life (7–10 d); in alcohol-associated liver injury, the half-life is increased to as much as 28 d, suggesting impaired clearance.<br />Day-to-day variations (10–15%); approximately double in African Americans</td> <td align="left">Higher BMI (25–50%)<br />Renal disease<br />Cardiac disease<br />Phenytoin</td> <td align="left">Pregnancy (25%)</td> </tr> <tr> <td align="left">HCG</td> <td align="left">Negative</td> <td align="left">Approximately one third of all conceptions end in natural termination. This may produce positive results when testing early in the pregnancy followed by negative results after the natural termination.</td> <td align="left">Marijuana use<br />Human antimouse antibody (HAMA) or heterophilic antibody<br />Elevated LH levels due to low testosterone can lead to false positives.<br />Duodenal ulcers<br />Cirrhosis of the liver<br />Inflammatory bowel disease</td> <td align="left">Smoking tobacco (20%)<br />False negatives in urine tests can be caused by drinking large amounts of fluids and taking diuretics, anticonsultants, anti-Parkinson drugs, tranquilizers, hypnotics, or certain antihistamines before the test.</td> </tr> <tr> <td align="left">Lipase</td> <td align="left">0–50 U/L</td> <td align="left">More specific for pancreatitis than is for serum amylase; diagnosis of peritonitis, strangulated or infarcted bowel, pancreatic cyst</td> <td align="left">Cholinergic drugs, opiates<br />Alcohol<br />Renal disease<br />Macrolipasemia</td> <td align="left">Citrates<br />Intravenous dextrose<br />Oxalates<br />Saquinavir</td> </tr> <tr> <td align="left">PTH-intact</td> <td align="left">12–65 pg/mL</td> <td align="left">Inherent biologic variability due to hormone pulsatility and diurnal variation, choice of tube for sample collection, as well as sample stability at storage temperature<br />Because of a pronounced nocturnal rise in intact PTH levels observed in a small experimental male population, sampling after 10 <span style="font-variant:small-caps;">am</span> for optimum discrimination between normal and those with mild primary hyperparathyroidism has been suggested.</td> <td align="left">Heterophile antibodies<br />Rheumatoid factor</td> <td align="left">Sedative–hypnotic drug propofol (Diprivan)</td> </tr> <tr> <td align="left">PSA</td> <td align="left">&lt;4 ng/mL</td> <td align="left">Ambulatory values are higher than sedentary values, which may decrease ≤50% (mean = 18%).<br />Methodologic variations exist depending upon calibrators (WHO vs. Hybritech) used by various manufacturers (22% average bias).</td> <td align="left">Prostatic massage, ≤2 times<br />Cystoscopy: 4 times<br />Needle biopsy: &gt;50 times for ≤1 mo<br />Transurethral resection: &gt;50 times, digital rectal examination, indwelling catheter<br />Vigorous bicycle exercise: ≤2–3 times several days, ejaculation within 24–48 h<br />Urinary tract infection</td> <td align="left">Castration<br />Antiandrogen drugs (e.g., finasteride)<br />Radiation therapy<br />Prostatectomy<br />PSA falls 17% in 3 d after lying in hospital</td> </tr> <tr> <td align="left">TSH</td> <td align="left">0.5–6.3 μIU/mL, depending on age and sex</td> <td align="left">Not be useful for hospitalized ill patients. Has a diurnal rhythm (50%), with peaks at 2:00–4:00 <span style="font-variant:small-caps;">am</span> and troughs at 5:00–6:00 <span style="font-variant:small-caps;">pm</span> with ultradian variations</td> <td align="left">Dopamine<br />Glucocorticoids<br />Rheumatoid factor<br />Human antimouse antibodies<br />Heterophile antibodies<br />Thyroid hormone autoantibodies<br />Macro-TSH</td> <td align="left">Severe dehydration<br />Biotin may cause falsely low values in immunometric assays.</td> </tr> </tbody> </table></div></div></div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112281">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112281"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic005"></a>
+
+                    <h4>Physiologic Factors</h4>                    
+                    
+                </div>
+                <div id="section_240112282">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112282"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para014"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112282">
+                            <div class="para">Some physiologic factors are beyond our control. They include age, sex, and race, and so on, and can be managed by placing appropriate reference limits. Others factors such as diet, starvation, exercise, posture, diurnal and seasonal variations, menstrual cycle, and pregnancy must be considered in the interpretation of the test results. Age has a noticeable effect on some test results and the need for establishing appropriate reference intervals. In newborns, the composition of blood is affected by the maturity of the infant at birth. At birth, RBC and hemoglobin values are higher than adults due to low levels of oxygen in the uterus. They continue to decrease and level out to adult values about the age of 15. Adult values are usually taken as the reference for comparison with those of the young and the elderly. The concentration of most test constituents remains constant between puberty and menopause in women and between puberty and middle age in men. The plasma concentrations of many constituents increase in women after menopause. Hormone levels are affected by aging. However, changes in concentrations are much less pronounced than an endocrine organ's response to stimuli. Until puberty, there are few differences in laboratory data between boys and girls. After puberty, the characteristic changes in the levels of sex hormones become apparent. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112283">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112283"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para015"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112283">
+                            <div class="para">In addition to the commonly known hormonal changes during the menstrual cycle, there is a preovulatory increase in the concentrations of aldosterone and renin. Coincident with the ovulation, serum cholesterol levels are lower than at any other phase of the menstrual cycle. In pregnancy, a dilutional effect is observed due to the increase in mean plasma volume, which in turn causes hemodilution. Normal pregnancy is characterized by major physiologic adaptations that alter maternal blood chemistry and hematology laboratory values. In addition, there are time-related fluctuations in the levels of certain analytes. Many analytes—such as cortisol, thyroid stimulating hormone (TSH), growth hormone, potassium, glucose, iron, and proinflammatory cytokines—exhibit diurnal variation. Hormones such as luteinizing hormone (LH), follicle-stimulating hormone (FSH), and testosterone released in short bursts lasting barely 2 minutes make accurate measurements problematic. Seasonal changes also affect specific analytes like vitamin D (higher during summer), cholesterol, and thyroid hormones (higher during winter). Changes in the levels of some of the constituents in blood occur when measured at sea level as opposed to measurement at a higher altitude. Hematocrit, hemoglobin, and C-reactive protein (CRP) can be higher at high altitude. Levels of plasma renin, transferrin, urinary creatinine, creatinine clearance, and estriol decrease with increasing altitude. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112284">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112284"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para016"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112284">
+                            <div class="para">The dietary effect of laboratory test results is complicated and just cannot be separated into the categories of “fasting” and “nonfasting” status of the patient. Significant variations in some routine test results after a regular meal showed fasting time should be given careful consideration when performing tests to prevent spurious results. Clinically significant differences are observed within 1–4 hours for triglycerides, albumin, alanine aminotransferase (ALT), calcium, iron, lactate dehydrogenase (LDH), phosphorus, magnesium, lymphocytes, RBC, hemoglobin, hematocrit, etc. The type of diet (high fat, low fat, vegetarian, malnutrition), length of time since last meal, and test-specific dietary concerns can affect some tests. Consumption of caffeine, bran, serotonin (consumption of fruits and vegetables such as bananas, avocados, and onions), herbal preparations (e.g., aloe vera, Chinese rhubarb, senna, quinine, and quinidine), recreational drug use, ethanol, and smoking can induce both short- and long-term effects that alter the results of several analytes. Differentiations of the effects of race from those of socioeconomic conditions are difficult. Carbohydrate and lipid metabolisms differ in Blacks and Whites. Glucose tolerance is less in Blacks, Polynesians, and Native Americans in comparison to Whites. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112285">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112285"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para017"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112285">
+                            <div class="para">Physical stress and mental stress influence the concentrations of many plasma constituents, including cortisol, aldosterone, prolactin, TSH, aldosterone, cholesterol, glucose, insulin, and lactate. With blindness, the normal stimulation of the hypothalamic–pituitary axis is reduced. Consequently, certain features of hypopituitarism and hypoadrenalism may be observed. In some blind individuals, the normal diurnal variations of cortisol may persist; in others, it does not. Fever provokes many hormonal responses as do shock and trauma. The stress of surgery has been shown to reduce the serum triiodothyronine (T<sub>3</sub>) levels by 50% in patients without thyroid disease. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112286">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112286"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para018"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112286">
+                            <div class="para">Transfusions and infusions can also significantly affect the concentration of certain laboratory values. For persons receiving an infusion, blood should not be obtained proximal to the infusion site. Blood should be obtained from the opposite arm. A minimum of 8 hours must elapse before blood is obtained from a subject who has received fat emulsion. For patients receiving blood transfusions, the degree of hemolysis associated with a progressive increase in potassium, LDH, free hemoglobin related to the age of the transfused blood. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112287">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112287"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para019"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112287">
+                            <div class="para">Exercise such as running up and down several flights of stairs or strenuous activity such as working out in a gymnasium or marathon running the night before the specimen collection can affect the results obtained for several analytes. To minimize preanalytic variables introduced by exercise, subjects should be instructed to refrain from strenuous activity on the night before testing and not to exert themselves by walking a long distance, running, or climbing stairs before blood specimen collection. In addition, the muscle damage associated with trauma of surgery will increase the serum activity of enzymes originating in skeletal muscles, and this activity may persist for several days. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112288">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112288"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para020"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112288">
+                            <div class="para">The plasma and extracellular volumes decrease within a few days of the start of bed rest. With prolonged bed rest, fluid retention occurs, and plasma protein and albumin levels may be decreased by an average of 0.5 and 0.3 g/dL, respectively. As a result, concentrations of bound protein are also reduced. Changes in posture during blood sampling can affect the concentrations of several analytes measured in serum or plasma. Change in posture from a supine to an erect or sitting position can result in a shift in body water from intravascular to interstitial compartments. As a result, the concentrations of larger molecules that are not filterable are increased. These effects are accentuated in patients with a tendency for edema, such as in cardiovascular insufficiency and cirrhosis of the liver. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112289">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112289"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic006"></a>
+
+                    <h4>Specimen Handling Factors</h4>                    
+                    
+                </div>
+                <div id="section_240112290">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112290"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para021"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112290">
+                            <div class="para">Among controllable preanalytic variables, specimen collection is most critical. Unacceptable specimen collection due to misidentification, insufficient volume to perform test, incorrect whole blood-to-anticoagulant ratio, and specimen quality (hemolysis, clots, contaminated, collected in wrong container) accounts for the majority of preanalytic errors. Hemolysis, lipemia, and icteric samples have variable effects on assays and depend upon testing method and analyte. The time and temperature for storage of the specimen and the processing steps in the preparation of serum or plasma or cell separation can introduce preanalytic variables. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112291">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112291"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para022"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112291">
+                            <div class="para">Pneumatic tube systems of various lengths are routinely used in many hospitals to transport blood collection tubes to the testing laboratory. Significant differences between plasma but not serum levels of LDH are observed when blood collection tubes are transported through pneumatic tube systems. The application of a tourniquet, by reducing the pressure below the systolic pressure, maintains the effective filtration pressure within the capillaries. As a result, small molecules and fluid are transferred from the intravasal space to the interstitium. Application of tourniquet for longer than 1 minute can result in hemoconcentration of large molecules that are unable to penetrate the capillary wall. To minimize the preanalytic effects of tourniquet application time, the tourniquet should be released as soon as the needle enters the vein. Avoidance of excessive fist clenching during phlebotomy and maintaining tourniquet application time to no more than 1 minute can minimize preanalytic errors. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112292">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112292"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para023"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112292">
+                            <div class="para">Various salts of heparin, ethylenediaminetetraacetic acid (EDTA), and sodium citrate are used widely in the clinical laboratory. Heparin is the preferred anticoagulant for blood specimens for electrolyte levels and other routine chemistry tests. Apparent differences in the results of certain analytes between serum and heparinized plasma are related to the consumption of fibrinogen and the lysis of cellular elements during the process of clotting. EDTA is the commonly used anticoagulant for routine hematologic determinations. It functions as an anticoagulant by chelating calcium ions, which are required for the clotting process. Citrate has been used as an anticoagulant for the collection of blood specimens intended for global coagulation tests such as prothrombin time (PT) and partial thromboplastin time (PTT). A laboratory that has been using one of the concentrations (3.2% or 3.8%) to perform PT determination for patients receiving oral anticoagulant therapy should not interchange the formulations. Doing so will affect the international normalized ratios (INRs) that are used to report the results of PT. Sodium fluoride and lithium iodoacetate have been used alone or in combination with anticoagulants such as potassium oxalate, EDTA, citrate, or lithium heparin for blood collection. In the absence of glycolytic inhibitors, a decrease in the glucose level of as much as 24% can occur in 1 hour after blood collection in neonates, in contrast to a 5% decrease in healthy individuals when specimen is stored at room temperature. The anticoagulant-to-blood ratio is critical for some laboratory tests. In general, collecting of blood specimens to less than nominal volume increases the effective molarity of the anticoagulant and induces osmotic changes affecting cell morphologic features. Furthermore, the binding of analytes such as ionic calcium or magnesium to heparin can be enhanced when the effective concentration of unfractionated heparin increased beyond the normal 14.3 U/mL of blood. In addition, stability of various analytes is significantly reduced in plasma (lithium heparin) compared to serum tubes when plasma is stored, but not separated from the gel after centrifugation. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112293">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112293"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para024"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112293">
+                            <div class="para">Virtually, all drugs may affect the results of clinical laboratory tests that include both in vivo (pharmacologic) and in vitro (interferences and methodologic) effects. The problem of drug interference is complex, and physicians are generally aware of main therapeutic effects of drug, but many secondary effects are ignored. Some of the examples are increase in liver enzymes with Dilantin and barbiturates and increase in fibrinogen, transferrin, amylase, etc. following oral contraceptives and contrast agents (gadolinium) decreasing total calcium levels. Biotin (vitamin B7) ingested in moderate to high doses can cause interference in immunoassays. Depending upon the assay format, biotin interference results in either falsely low or high values. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112294">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112294"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para025"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112294">
+                            <div class="para">In coagulation, testing knowledge or access to the patient history may be necessary, as many medications such as anticoagulant therapies (warfarin, heparin, and direct thrombin inhibitors), blood product, and component transfusion and coagulation factor replacement therapies all impact coagulation test results. Over-the-counter drugs (aspirin) have prolonged effect on platelet function studies. In addition, the patient's physiologic state plays a role. Some foods, green leafy vegetables, green tea, alcohol and herbs like Garlic and ginkgo (additive to warfarin), Coenzyme Q10, St. John's wort, and ginseng decrease warfarin effect. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112295">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112295"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para026"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112295">
+                            <div class="para">The quality of the specimens submitted to the microbiology laboratory is critical for optimal specimen evaluation. The general techniques of specimen collection and handling that have been established both to maximize the yield of organisms and isolate relevant pathogens from specimens obtained from different body sites should be reviewed with clinical laboratory prior to obtaining the specimen. In addition, valid interpretation of the results of culture can be achieved only if the specimen obtained is appropriate for processing. As a result, care must be taken to collect only those specimens that may yield pathogens, rather than colonizing flora or contaminants. Specific rules for the collection of material vary, depending on the source of the specimen, but several general principles apply. Prompt transport of specimens to the microbiology laboratory is essential to optimize the yield of cultures and the interpretation of results. Delays in processing may result in the overgrowth of some micro-organisms or the death of more fastidious ones. Samples for bacterial culture should ideally arrive in the microbiology laboratory within 1–2 hours of collection. If a delay is unavoidable, most specimens (with the exception of blood, cerebrospinal fluid, joint fluid, and cultures for <em>Neisseria gonorrhoeae</em>) should be refrigerated until transported. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112296">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112296"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para027"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112296">
+                            <div class="para">Point-of-care testing (POCT) usage is increasing and has tremendous impact on operational efficiency and patient care. Quality error rates associated with POCT may be considerably higher than those of central lab tests. This partly can be attributed to lack of understanding or training of nonlab staff or as a result of test limitations and misuse of POCT. Patient misidentification at bed side, hemolysis of RBC when analyzed on whole blood samples, and improper finger stick sampling (patient with peripheral vascular disease or condition that impairs/decreases circulation to the periphery, dehydration, hypoxia, diabetic ketoacidosis, shock, severe edema, finger edema, and interference from other sugars and medications and hypotensive patient) can significantly affect POCT results. In addition, other sources of error include the use of expired or damaged strips, use of multiple lots of strips available at the same time, and failure to prevent deterioration (keeping the strips dry). POCT is also commonly used in urine drug testing and comes with many issues. Some test strips are class specific (opiates or benzodiazepines, etc.) with limited cross-reactivities to many prescribed member drug classes, creating potential of false-negative results. Some are not specific and will cross-react with analytes with similar (dissimilar) chemical structure, creating false-positive results. POCT pregnancy tests are most often used to confirm or rule out pregnancy in ER and many urgicare settings. False-negative human chorionic gonadotropin (HCG) test results (due device detection limit) in emergency care situations, can prove disastrous in early pregnancy and subjected to treatment that may harm the fetus. This may be due to the testing that was done very early in pregnancy below the device detection limit. Also, the presence of HCG variants and some POCT assays may not detect some variants, and some may not detect at all. One such variant HCG beta core fragment is present in 10-fold high concentration than intact HCG, and sometimes this may be the only thing exclusively present in urine. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112297">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112297"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic007"></a>
+
+                    <h3>Analytic Errors</h3>                    
+                    
+                </div>
+                <div id="section_240112298">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112298"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para028"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112298">
+                            <div class="para">Clinical laboratories have long focused their attention on quality control methods and quality assessment programs dealing with analytic aspects of testing. Total analytic error (or measurement error) refers to assay errors from all sources arising from the data collection experiment. Some error is expected, because not all components of measuring are the same. There are four major types of experimental error: random (not predictable), systematic (one direction), total (random and systematic), and idiosyncratic (nonmethodologic). </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112299">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112299"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para029"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112299">
+                            <div class="para">Errors due to analytic problems have been significantly reduced over time, but there is evidence that, particularly for immunoassays, interference may have a serious impact on patients. Paraproteins can interfere in chemical measurements when they form precipitates during the testing procedure. Heterophilic antibodies are human antibodies that can bind animal antibodies. They can cause problems in immunoassays, particularly immunometric assays, where they can form a bridge between the capture and detection antibodies, leading to false-positive results in the absence of analyte or if analyte is also present, a false increase in measured concentrations. Very rarely, heterophilic antibodies can also lead to false-negative or falsely low results. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112300">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112300"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para030"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112300">
+                            <div class="para">Very high hormone levels can interfere with immunoassay systems, resulting in falsely low analyte determinations. This is attributable to the “hook effect,” which describes the inhibition of immune complex formation by excess antigen concentration. There are proteins that are well known to form aggregates with immunoglobulins or high molecular weight proteins. Clinically relevant proteins that can have “macro-” forms—including amylase, creatinine kinase, LDH, and prolactin—can elevate the results when using certain laboratory tests, yet the patient lacks clinical disease related to elevated analyte concentration. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112301">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112301"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para031"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112301">
+                            <div class="para">Immunoassay interference is <em>not</em> analyte specific and is variable with respect to time. In some patients, this interference can lost for a long time and in some for only a short time. This interference affects lots of assays but not all of them. In addition, a different manufacturer's test kits have different cross-reactions with interference compounds, and the test results vary from lab to lab. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112302">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112302"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para032"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112302">
+                            <div class="para">Incorrect results can also occur as a result of a large number of biologically common phenomena causing analytic variation. These include cold agglutinins, rouleaux, osmotic matrix effects, platelet agglutination, giant platelets, unlysed erythrocytes, nucleated erythrocytes, megakaryocytes, red cell inclusions, cryoproteins, circulating mucin, leukocytosis, in vitro hemolysis, extreme microcytosis, bilirubinemia, lipemia, and so on. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112303">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112303"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic008"></a>
+
+                    <h3>Postanalytic Errors</h3>                    
+                    
+                </div>
+                <div id="section_240112304">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112304"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para033"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112304">
+                            <div class="para">Approximately 70–80% of the patient chart or medical record is composed of laboratory test results. Postanalytic errors are dependent on the design and development of those processes and procedures that will ensure correct and timely notification of these test results to the patient's medical record with right reference range and appropriate interpretation of the test result. Manual and telephone reporting should be discouraged as this is subject to transcription errors at the receiver end. The introduction of a hospitalized computer order entry system has eliminated some errors, but it has not eliminated the risk of mismatching the patients. </div>
+                        </div>
+
+                    
+                </div>
+</div>                <div id="section_240112305">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112305"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic009"></a>
+
+                    <h2 class='content-section-header' data-magellan-destination='240112305'>Reference Intervals</h2>                                <div id="readspeaker_button240112305" class="rs_skip rsbtn rs_preserve">
+                                    <a class="rsbtn_play js-rsbtn_play" accesskey="L" rel="nofollow" title=Listen to this page using ReadSpeaker href="//app-na.readspeaker.com/cgi-bin/rsent?customerid=11251&amp;amp;lang=en_us&amp;amp;readid=section_240112305&amp;amp;url=https://lwwhealthlibrary.com" data-encoded-url="Ly9hcHAtbmEucmVhZHNwZWFrZXIuY29tL2NnaS1iaW4vcnNlbnQ/Y3VzdG9tZXJpZD0xMTI1MSZhbXA7bGFuZz1lbl91cyZhbXA7cmVhZGlkPXNlY3Rpb25fMjQwMTEyMzA1JmFtcDt1cmw9aHR0cHM6Ly9sd3doZWFsdGhsaWJyYXJ5LmNvbQ==">
+                                        <span class="rsbtn_left rsimg rspart">
+                                            <span class="rsbtn_text">
+                                                <span>
+                                                    Listen
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <span class="rsbtn_right rsimg rsplay rspart">
+                                        </span>
+                                    </a>
+                                </div>
+<div>                    
+                    
+                </div>
+                <div id="section_240112306">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112306"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para034"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112306">
+                            <div class="para">The term “reference values” has essentially replaced the obsolete term “normal values.” Laboratory tests are commonly compared to a reference interval before health care providers make physiologic assessments, medical diagnosis, or management decisions. These comparisons may be cross-sectional or longitudinal. A cross-sectional comparison is of an analyte result for a single patient with the interval of results for that analyte obtained from a group of apparently healthy individuals. This is referred to as the “population-based” reference interval. Another example of a cross-sectional comparison is when a single-patient result is compared with a fixed value or cutoff value. There are two types of population-based reference intervals. The most common type is derived from a reference sample of persons who are in good health (health associated). The other type of reference interval has been termed “decision based” and defines specific medical decision limits that clinicians use to diagnose or manage patients. Longitudinal comparisons are when a patient's most recent value is compared with previous values for the same analyte. This may help detect a change in health status. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112307">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112307"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para035"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112307">
+                            <div class="para">Comparison of patient results with a population-based reference interval or with the cutoff values is used for diagnostic or screening purposes. The reference value change over a period of time is used for monitoring patients. Both healthy reference limits and disease-associated reference limits are important for the clinical interpretation of the laboratory test results and vary from laboratory to laboratory. These variations may be caused by preanalytic processing procedures, populations of healthy individuals, inherent random biologic variations, analytic platforms, or analytic imprecision that was present when reference intervals were determined. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112308">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112308"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para036"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112308">
+                            <div class="para">Decision limits for optimally classifying patients into “disease” versus “healthy” categories are difficult to define. Most diseases are not homogenous distributions but represent a continuum of mild and severe forms. Various statistical tools and models have been developed to formalize the medical decision process, but most of the models do not include the methodologic differences in laboratory test values. The major utility of healthy reference intervals for clinicians is to provide a rough assessment of the possibility that a test value on a specific patient is difficult for the values normally found in similar healthy subjects. The guidelines for medical decision-making use a standard 95% reference interval. By defining the healthy reference interval to include central 95% of matched healthy subjects, there is &lt;1 in 20 chances for a value outside the reference interval to be found in a matched healthy subject. Conventionally, a common limit of acceptability is based on the mean of population data ±2 standard deviation (SD), because this encompassed roughly 95% of the observations expected to be “normal.” With this convention, it must be remembered that 5% (usually 2.5% on the low side and 2.5% on the high side) of results can be expected to fall outside the ±2 SD limit, even in a “normal” healthy population. This is best illustrated in the use of multitest chemistry profiles for screening of persons known to be free of disease. The probability of any given test being abnormal is about 2–5%, and the probability of disease if a screening test is abnormal is generally low (0–15%). The frequency of abnormal single tests is 1.5% (albumin) to 5.9% (glucose) and up to 16.6% for sodium. Based on statistical expectations, when a panel of eight tests is performed in a multiphasic health program, 25% of the patients have one or more abnormal results; when the panel includes 20 tests, 55% have one or more test abnormalities. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112309">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112309"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para037"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112309">
+                            <div class="para">In terms of qualitative test reports (e.g., positive, negative), optimal decision limits (cutoff) can be determined with ROC curve analyses. If false-positive labeling leads to a more harmful outcome, the decision limits should be moved away from the ROC optimum in a direction to minimize false-positive diagnoses. Likewise, if false-negative labeling is more dangerous, the decision limits should be moved to minimize the false-negative diagnoses. Although decision limits are better tools than reference values for deriving diagnostic value from laboratory tests, they have some drawbacks. First, decision limits will not address the degree of deviation of a test result above or below the decision limit. A test result slightly above the limit will be regarded as positive the same as a result far above the decision limit, and a test result slightly below the cutoff limit will be reported as negative. </div>
+                        </div>
+
+                    
+                </div>
+                <div id="section_240112310">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112310"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-topic010"></a>
+
+                    <h3>Performing the Right Test at the Right Time for the Right Reason</h3>                    
+                    
+                </div>
+                <div id="section_240112311">
+                    <a class="jumpLoc-sectionId rs_skip" id="240112311"></a>
+                    <a class="jumpLoc-legacySectionId rs_skip" id="snyder11-ch001-para038"></a>
+
+                                                                <div class="category-section clearfix content-section" statsid="240112311">
+                            <div class="para">As with the absolute value of a result, a test result or change in sequential results must be interpreted in the context of the clinical situation, recent changes in patient management, and historical results. Excessive repetition of tests is wasteful, and the excess burden increases the possibility of laboratory errors. Appropriate intervals between tests should be dictated by the patient's clinical condition. Negative laboratory values (or any other type of tests) do not necessarily rule out a clinical diagnosis. Tests should be performed only if they will alter the patient's diagnosis, prognosis, treatment, or management. Incorrect test values or isolated individual variation in results may cause Ulysses syndrome and result in loss of time, money, and peace of mind. </div>
+                        </div>
+
+                    
+                </div>
+</div>            </div>
+</div>
+
+ 
+    </div>
+
+                </div>
+            </section>
+        </div>
+        <div class="large-2 medium-8 small-12 columns relatedColumn js-related-column no-print">
+            <div id="relatedContentWidgets" class="section-container">
+                <section class="account-favorites article-module">
+                        <div class="widget-MyFavorites widget-instance-MyFavoritesContent_WKHL" 
+         data-widget-name="MyFavorites" 
+         data-widget-instance="MyFavoritesContent_WKHL">
+         
+    </div>
+
+                </section>
+                
+                <section class="related-topics article-module">
+                        <div class="widget-RelatedBookContent widget-instance-RelatedBookContent Widget" 
+         data-widget-name="RelatedBookContent" 
+         data-widget-instance="RelatedBookContent Widget">
+        
+
+ 
+    </div>
+
+                </section>
+                <section class="student-resources article-module">
+                        <div class="widget-StudentResources widget-instance-StudentResources Widget" 
+         data-widget-name="StudentResources" 
+         data-widget-instance="StudentResources Widget">
+        
+
+ 
+    </div>
+
+                </section>
+                <section id="ctl00_ctl00_BodyContent_PageContent_relatedOvidWidget_secRelatedOvid" class="related-ovid-articles article-module js-relatedovid-wrap hide">
+    
+    <div>
+        <div class="articleWidgetHead">
+            <span>Related results from</span><br>
+            <span>Ovid MEDLINE®</span>
+        </div>
+
+        <div id="relatedOvid" class="relatedOvid widget-RelatedPubMed">
+            <span>Loading....</span>
+        </div>
+        
+        <div class="view-more">
+            <a href="https://insights.ovid.com" id="Config_ViewMoreLink" class="view-more-link" target="_blank">
+                <span>Go to Ovid MEDLINE®</span>
+                <i class="icon-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+    </section>
+
+<input name="ctl00$ctl00$BodyContent$PageContent$relatedOvidWidget$hdnShowOvid" type="hidden" id="ctl00_ctl00_BodyContent_PageContent_relatedOvidWidget_hdnShowOvid" class="js-showOvid" value="True" />
+                <section class="related-articles article-module">
+                        <div class="widget-AssociatedContentListing widget-instance-WKHL_AssociatedContentListing" 
+         data-widget-name="AssociatedContentListing" 
+         data-widget-instance="WKHL_AssociatedContentListing">
+        <div class="widget-AssociatedContent">
+</div> 
+    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="btn-linkToTop btn-stickBottom">
+        <a href="#Top" class="linkToTop">
+            <span class="tooltip">Back to Top</span>
+            <i class="icon-arrow-up"></i>
+        </a>
+    </div>
+    <div id="ctl00_ctl00_BodyContent_PageContent_printUnauthenticatedUserMessage" class="printUnauthenticatedUserMessage hide">
+        <p>
+            <a href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a> 
+            to access self-assessment, favorites, and other personalized features. 
+            <a href="/public/personal_account_creation.aspx">Learn more.</a> 
+        </p>
+    </div>
+    
+<div id="Collection_Modal_CopyTo" class="reveal-modal js-add-to-collection-modal tiny" data-reveal aria-hidden="true">
+    <div class="popover-content">
+        <div class="js-copy-favorite"></div>
+        <div class="js-my-collections-widget-wrap"></div>
+    </div>
+</div>
+
+    
+        </section> 
+        <div class="footer-push"></div>    
+    </div>
+    <div class="modal-overlay"></div>
+    <section class="sitefooter">
+        
+
+<footer>
+    <div class="footer">
+        <div class="row">
+            <div class="large-7 columns footerMenu no-print">
+                <ul>
+                    <li><a href="/public/Privacy.aspx">Disclaimer</a></li>
+                    <li><a href="/public/Privacy.aspx">Privacy statement</a></li>
+                    <li><a href="/public/Terms_of_Use.aspx">Terms & conditions</a></li>
+                    <li><a id="ot-sdk-btn" href="javascript:;" class="ot-sdk-show-settings ot-sdk-hl">Cookie Settings</a></li>
+                </ul>
+            </div>
+            <div class="large-5 columns">
+                <div class="footerCopyright">
+                        <div class="widget-FooterCopyrightStatement widget-instance-FooterCopyrightStatement_WKHL" 
+         data-widget-name="FooterCopyrightStatement" 
+         data-widget-instance="FooterCopyrightStatement_WKHL">
+        <div class="footer-Copyright-statement">
+    ©2026 Wolters Kluwer Health, Inc. and/or its subsidiaries. All rights reserved.
+</div> 
+    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="accessCodeFormModal" class="reveal-modal tiny" data-reveal="accessCodeFormModal">
+            <div class="widget-SpecialOfferRedeem widget-instance-WKHL_SpecialOfferRedeem" 
+         data-widget-name="SpecialOfferRedeem" 
+         data-widget-instance="WKHL_SpecialOfferRedeem">
+        <div class="special-offer-redeem">
+    <div class="headingSection">
+                    <span class="special-offer-heading">Enter an Access Code</span>
+    </div>
+
+    <div class="bodySection">
+        <div class="access-content-wrap">
+                    </div>
+        <div class="inputButtonSection">
+            <div class="specialOfferCode">
+                <label for="specialOfferCode"><span class="screenreader-text">Enter Access Code</span></label>
+                <input id="specialOfferCode" type="text" placeholder="Enter Access Code" />
+            </div>
+
+            <div class="redeemButton">
+                <a class="btn" id="redeemButton" href="javascript:;">Redeem</a>
+            </div>
+        </div>
+        <div id="error-message" class="error-message" role="alert"></div>
+        <input type="hidden" id="instanceName" readonly="readonly" value="WKHL_SpecialOfferRedeem" />
+    </div>
+</div>
+ 
+    </div>
+
+        <a href="javascript:;" id="close-access-code-form" class="close-reveal-modal">&#215;</a>
+    </div>
+    <div id="feedbackFormModal" class="reveal-modal medium" data-reveal="feedbackFormModal">
+        
+
+<div id="feedbackFormInput" class="js-feedbackFormInput">
+    <h2>Feedback</h2>
+    <div id="failedCaptcha" class="requiredField">Please complete all required fields.</div>
+    <div class="question js-question js-required">
+    <fieldset>
+        <legend>
+        <span>Please tell us about your experience on LWWHealthLibrary!<span class="requiredField"> *</span></span>
+        <span class="form-information">1 = Not at all a good experience; 5 = Very good experience</span> </legend>
+        <table id="rblRating" class="radioList js-answer" role="presentation">
+	<tr>
+		<td><input id="rblRating_0" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblRating" value="1" /><label for="rblRating_0">1</label></td><td><input id="rblRating_1" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblRating" value="2" /><label for="rblRating_1">2</label></td><td><input id="rblRating_2" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblRating" value="3" /><label for="rblRating_2">3</label></td><td><input id="rblRating_3" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblRating" value="4" /><label for="rblRating_3">4</label></td><td><input id="rblRating_4" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblRating" value="5" /><label for="rblRating_4">5</label></td>
+	</tr>
+</table>
+        </fieldset>
+        <div class="requiredField">
+            <span id="rblFeedbackFormRatingError" class="hide js-feedback-field-validator">Field required.</span>
+        </div>
+    </div>
+    <div class="question js-question js-required">
+    <fieldset>
+        <legend>
+        <span>Did you find the information you were looking for?<span class="requiredField"> *</span></span></legend> 
+        <table id="rblDidYouFind" class="radioList js-answer" role="presentation">
+	<tr>
+		<td><input id="rblDidYouFind_0" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblDidYouFind" value="yes" /><label for="rblDidYouFind_0">Yes</label></td><td><input id="rblDidYouFind_1" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblDidYouFind" value="no" /><label for="rblDidYouFind_1">No</label></td>
+	</tr>
+</table>
+        </fieldset>
+        <div class="requiredField">
+            <span id="rblFeedbackFormDidYouFindError" class="hide js-feedback-field-validator">Field required.</span>
+        </div>
+    </div>
+
+    <div class="question">
+        <fieldset>
+        <legend>
+        <span class="form-information">If no, please explain (limited to 1,000 characters):</span></legend> 
+        <textarea name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$tbPleaseExplain" rows="4" cols="20" id="tbPleaseExplain" class="js-answer" Title="Did you find the information you were looking for?">
+</textarea>
+        <div class="form-information form-light">(<span id="pleaseExplainCharRemaining">1000</span> characters left)</div>
+        </fieldset>
+    </div>
+    
+    <div class="question js-question js-required">
+        <fieldset>
+        <legend>
+        <span>What content would you like to see added (limited to 1,000 characters)?<span class="requiredField"> *</span></span></legend> 
+        <textarea name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$tbWhatContent" rows="4" cols="20" id="tbWhatContent" class="js-answer" Title="What content would you like to see added?">
+</textarea>
+        <div class="form-information form-light">(<span id="whatContentCharRemaining">1000</span> characters left)</div>
+        </fieldset>
+        <div class="requiredField">
+            <span id="tbFeedbackFormWhatContentError" class="hide js-feedback-field-validator">Field required.</span>
+        </div>
+    </div>
+    
+    <div class="question js-question js-required">
+        <fieldset>
+        <legend>
+        <span>May we contact you about your feedback? <span class="requiredField"> *</span></span></legend> 
+        <table id="rblMayWeContact" class="radioList js-answer" role="presentation">
+	<tr>
+		<td><input id="rblMayWeContact_0" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblMayWeContact" value="yes" /><label for="rblMayWeContact_0">Yes</label></td><td><input id="rblMayWeContact_1" type="radio" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$rblMayWeContact" value="no" /><label for="rblMayWeContact_1">No</label></td>
+	</tr>
+</table>
+        </fieldset>
+        <div class="requiredField">
+            <span id="rblFeedbackFormMayWeContactError" class="hide js-feedback-field-validator">Field required.</span>
+        </div>
+    </div>
+
+    <div id="requiredCaptcha" class="requiredField">* Captcha is invalid</div>
+
+
+    <div class="field control">
+        <div>
+            <a ID="btnSubmit" class="feedbackFormSubmitBtn" href="javascript:;">Submit</a>
+        </div> 
+        <div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_feedbackFormCaptchaContainer" class="large-8 medium-8 large-push-3 medium-push-4 columns end">
+            
+
+<div class="recaptchaUCContainer">
+	<span id="captchaFallbackAlert" class="js-captchaAlert error hide">reCAPTCHA verification required. Please check the box below and resubmit the form.</span>
+	<div id="captchaError" class="js-captchaError error hide">Captcha Validation Error. Please try again.</div>
+	<div id="recaptchaV2Container" Class="captcha"></div>
+	<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$ucRecaptcha$hdnRecaptchaResponse" id="hdnRecaptchaResponse" />
+	<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$ucRecaptcha$hdnRecaptchaV2Response" id="hdnRecaptchaV2Response" />
+	<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$ucRecaptcha$hdnSimpleCaptchaResponse" id="hdnSimpleCaptchaResponse" />
+	<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$ucRecaptcha$hdnCaptchaUserEmail" id="hdnCaptchaUserEmail" />
+</div>
+        </div>
+    </div>
+</div>
+<div id="feedbackFormSuccess" class="generic-text">Your feedback has been successfully submitted.</div>
+<div id="feedbackFormError">We are unable to receive your feedback at this time.  Please try again another time.</div>
+<div id="feedbackFormCaptchaError">Captcha is invalid. Please try again.</div>
+<div id="notLoggedIn">
+    <div class="generic-text">Please sign in to submit feedback.</div>
+    <div class="sign-in-wrap si-module">
+        
+
+<div class="aa-login-info" data-just-logged-in="False" style="display: none;"></div>
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_AccessProvidedBy" class="si-access-provided si-option">
+    Access Provided By:<br/>
+    <i class="icon-institution"></i>
+    <span id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_lblAccessByInstitution" class="si-institution-name">Hebrew University of Jerusalem</span>
+</div>
+
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_CreatePersonalAccountFull" class="si-create-account si-option">
+    <p>Create a free personal account to access self-assessment, favorites, and other personalized features. <a href="/public/personal_account_creation.aspx">Learn more</a>.</p>
+    <a class="button button-tertiary" id="ibCreateAccount" href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+</div>
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_AskForSignIn" class="si-access-signInToggle si-option">
+    <span class="text">Already have a personal account?</span>
+</div>
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_pnlGlobalSignin" class="si-panel js-pnl-global-signin" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_ibSignIn&#39;)">
+	
+    <h2>Sign In</h2>
+    <div class="si-form">
+        <div class="si-label">Username</div>
+        <input name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$FeedbackSignin$txtEmail" type="text" maxlength="50" id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_txtEmail" Title="Username" placeholder="your.name@institution.edu" />
+        <span id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail" class="si-error" style="display:none;">Required</span>
+        <div class="si-label">Password</div>
+        <input name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$FeedbackSignin$txtPassword" type="password" maxlength="50" id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_txtPassword" Title="Password" placeholder="Enter your password" />
+        <span id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword" class="si-error" style="display:none;">Required</span>
+    </div>
+    <div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_errorContainer" tabindex="-1" class="si-error-container" aria-live="assertive" aria-atomic="true">
+        
+    </div>
+    <div class="si-forgot-pass si-option">
+        <a href="javascript:;" id="si-forgotPassword" class="forgotPassword">I forgot my password?</a>
+        <input type="submit" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$FeedbackSignin$ibSignIn" value="Sign In" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$BodyContent$siteFooter$feedbackForm$FeedbackSignin$ibSignIn&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_ibSignIn" class="button button-secondary js-data-layers-login" />
+    </div>
+
+</div>
+
+
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_AccessCode" class="si-access-code si-option"><a id="si-accessCode" data-reveal-id="accessCodeFormModal" href="#">Enter an Access Code</a></div>
+
+
+
+<div id="ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_RequiresAuthForFavorites" class="js-requires-auth-for-favorites">
+    <p>
+        Create a free personal account to access self-assessment, favorites, and other personalized features. 
+        <a href="/public/personal_account_creation.aspx">Learn more.</a>
+    </p>
+    <p>
+        <a href="https://apn.lwwhealthlibrary.com/register.aspx?returnurl=https%3a%2f%2fapn.lwwhealthlibrary.com%2fcontent.aspx%3fsectionid%3d240112272%26bookid%3d2839">Create a Free Personal Account</a>
+    </p>
+</div>
+    </div>
+</div>
+<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$isLoggedIn" id="isLoggedIn" value="false" />
+<a href="javascript:;" id="close-feedback-form" class="close-reveal-modal"><span class="screen-reader-text">Close</span><i class="icon-close"></i></a>
+<div id="closeRevealModalFeedbackForm" class="close-reveal-modal"></div>
+<input type="hidden" name="ctl00$ctl00$BodyContent$siteFooter$feedbackForm$keepMeOpen" id="keepMeOpen" value="false" />
+
+
+    </div>
+    <div id="termsAndPrivacyModal" class="">
+            <div class="widget-TermsAndPrivacy widget-instance-WKHL_TermsAndConditionsPopup" 
+         data-widget-name="TermsAndPrivacy" 
+         data-widget-instance="WKHL_TermsAndConditionsPopup">
+         
+    </div>
+
+    </div>
+    <div id="SsUiOnly">
+	<div class="selfServe">
+		<style type="text/css">
+    #pg-umbrella-index a#userCentralLink[href='/public/user_central.aspx'] {
+    display: none;
+    }
+</style>
+	</div>
+</div>
+</footer>
+
+    </section>
+
+        <div id="revealModal" class="reveal-modal" data-reveal>
+            <div id="revealContent"></div>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+        <script src="//hl.silverchair-cdn.com/Themes/Client/dist/v-639140600668648377/site.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        $('.favorite').appendTo($('.chapter-title')).css({ display: 'inline' });
+    </script>
+    <script type="text/javascript" src="https://players.brightcove.net/110757620001/HkqgZOnMx_default/index.min.js"></script>
+        <div class="widget-KalturaVideoScripts widget-instance-WKAclands_KalturaScripts" 
+         data-widget-name="KalturaVideoScripts" 
+         data-widget-instance="WKAclands_KalturaScripts">
+        <script defer type="text/javascript" src="//cdnapisec.kaltura.com/p/1315631/embedPlaykitJs/uiconf_id/55531902"></script>
+ 
+    </div>
+
+
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail"), document.getElementById("ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword"), document.getElementById("ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail"), document.getElementById("ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword"), document.getElementById("ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail"), document.getElementById("ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail = document.all ? document.all["ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail"] : document.getElementById("ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail");
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.controltovalidate = "ctl00_ctl00_BodyContent_masthead_GlobalSignin_txtEmail";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.focusOnError = "t";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.errormessage = "Required";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.display = "Dynamic";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqEmail.initialvalue = "";
+var ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword = document.all ? document.all["ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword"] : document.getElementById("ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword");
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword.controltovalidate = "ctl00_ctl00_BodyContent_masthead_GlobalSignin_txtPassword";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword.errormessage = "Required";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword.display = "Dynamic";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_masthead_GlobalSignin_reqPassword.initialvalue = "";
+var ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail = document.all ? document.all["ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail"] : document.getElementById("ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail");
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.controltovalidate = "ctl00_ctl00_BodyContent_PageContent_EmailSignin_txtEmail";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.focusOnError = "t";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.errormessage = "Required";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.display = "Dynamic";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqEmail.initialvalue = "";
+var ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword = document.all ? document.all["ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword"] : document.getElementById("ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword");
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword.controltovalidate = "ctl00_ctl00_BodyContent_PageContent_EmailSignin_txtPassword";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword.errormessage = "Required";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword.display = "Dynamic";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_PageContent_EmailSignin_reqPassword.initialvalue = "";
+var ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail = document.all ? document.all["ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail"] : document.getElementById("ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail");
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.controltovalidate = "ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_txtEmail";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.focusOnError = "t";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.errormessage = "Required";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.display = "Dynamic";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqEmail.initialvalue = "";
+var ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword = document.all ? document.all["ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword"] : document.getElementById("ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword");
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword.controltovalidate = "ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_txtPassword";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword.errormessage = "Required";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword.display = "Dynamic";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_ctl00_BodyContent_siteFooter_feedbackForm_FeedbackSignin_reqPassword.initialvalue = "";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        //]]>
+</script>
+</form>
+
+    <div id="divRevealModal" class="reveal-modal small" data-reveal>
+        <div id="divDefaultUpdateTarget">
+    
+</div>
+    </div>
+    <div id="mathRevealModal" class="reveal-modal" data-reveal=""></div>
+    
+<script src="https://assets.ovid.com/widget/v2/widget.js" type="text/javascript" data-widget></script>
+
+    
+
+        <div class="widget-Hypothesis widget-instance-WKHL_HypothesisMasterInclude" 
+         data-widget-name="Hypothesis" 
+         data-widget-instance="WKHL_HypothesisMasterInclude">
+        <div id="hypothesis-container">
+</div>
+ 
+    </div>
+    <div class="widget-CustomJSScript widget-instance-" 
+         data-widget-name="CustomJSScript" 
+         data-widget-instance="">
+            <script src="//hl.silverchair-cdn.com/wk/wk.hl.proxylogging.js" async></script>
+ 
+    </div>
+
+</body>
+</html>

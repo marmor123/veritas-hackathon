@@ -12,8 +12,11 @@ This is the single entry point for Module 5.
 
 import json
 import logging
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 
 logger = logging.getLogger(__name__)
+
+LLM_TIMEOUT_SECONDS = 120  # Hard timeout per LLM call (CPU is slow but shouldn't hang forever)
 
 from backend.api.models.schemas import (
     AnalysisOutput,
@@ -87,27 +90,17 @@ def synthesize(
     )
     logger.info("[Synthesizer] Prompt built (%d chars)", len(prompt))
 
-    # Try LLM call
+    # Try primary LLM call (one attempt only — CPU inference is slow)
     model_to_use = model or DEFAULT_MODEL
-    logger.info("[Synthesizer] Trying primary model: %s", model_to_use)
+    logger.info("[Synthesizer] Trying primary model: %s (timeout: %ds)", model_to_use, LLM_TIMEOUT_SECONDS)
     result = _call_llm(prompt, model_to_use)
 
     if result is not None:
         logger.info("[Synthesizer] SUCCESS with model %s", model_to_use)
         return result
 
-    # LLM failed — try fallback models
-    for fallback_model in FALLBACK_MODELS:
-        if fallback_model == model_to_use:
-            continue
-        logger.info("[Synthesizer] Trying fallback model: %s", fallback_model)
-        result = _call_llm(prompt, fallback_model)
-        if result is not None:
-            logger.info("[Synthesizer] SUCCESS with fallback model %s", fallback_model)
-            return result
-
-    # All LLM attempts failed — use demo fallback
-    logger.warning("[Synthesizer] All LLM models failed. Trying demo fallback...")
+    # LLM failed or timed out — skip fallback cascade on CPU, go to demo immediately
+    logger.warning("[Synthesizer] Primary LLM failed/timed out. Using demo fallback (skipping cascade)...")
     if use_demo_fallback:
         demo = match_demo_scenario(verified_results)
         if demo:
@@ -141,9 +134,10 @@ def _build_prompt(
 def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
     """
     Call Ollama and parse the response as AnalysisOutput.
-    Returns None if the call fails or output can't be parsed.
+    Runs with a hard timeout — on CPU, small models can take minutes.
+    Returns None if the call times out, fails, or output can't be parsed.
     """
-    try:
+    def _do_call():
         import ollama
 
         logger.info("[Synthesizer] Calling ollama.generate(model=%s)...", model)
@@ -155,10 +149,16 @@ def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
             think=False,  # Disable thinking mode for Qwen3.5 models
             options={
                 "temperature": 0.3,
-                "num_predict": 2048,
+                "num_predict": 8192,  # Generous budget — JSON with citations + doctor questions can be large
             },
         )
-        raw_text = response.get("response", "").strip()
+        return response.get("response", "").strip()
+
+    try:
+        with ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(_do_call)
+            raw_text = future.result(timeout=LLM_TIMEOUT_SECONDS)
+
         if not raw_text:
             logger.warning("[Synthesizer] Empty response from %s", model)
             return None
@@ -166,6 +166,9 @@ def _call_llm(prompt: str, model: str) -> AnalysisOutput | None:
         logger.info("[Synthesizer] Got response from %s (%d chars), parsing...", model, len(raw_text))
         return _parse_llm_output(raw_text)
 
+    except FuturesTimeoutError:
+        logger.error("[Synthesizer] LLM call TIMED OUT after %ds (%s)", LLM_TIMEOUT_SECONDS, model)
+        return None
     except ImportError:
         logger.error("[Synthesizer] 'ollama' package not installed!")
         return None

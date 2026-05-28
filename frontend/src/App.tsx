@@ -17,6 +17,7 @@ function App() {
   const [verificationResult, setVerificationResult] = useState<VerificationResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useMock, setUseMock] = useState(true); // Toggle for demo mode
+  const [demoScenario, setDemoScenario] = useState<DemoScenario | null>(null); // Track which demo was selected
 
   const handleFileSelected = async (file: File) => {
     setStage('uploading');
@@ -51,6 +52,7 @@ function App() {
     setError(null);
     setOcrResult(null);
     setAnalysisResult(null);
+    setDemoScenario(scenario);
 
     setStage('ocr');
     await simulateDelay(1000);
@@ -67,9 +69,9 @@ function App() {
     if (useMock) {
       // In demo mode, simulate verification and then show analysis
       await simulateDelay(1500);
-      // Use the demo scenario's analysis data
-      const demo = demoScenarios.iron_deficiency;
-      setAnalysisResult(demo.analysis);
+      // Use the actual demo scenario that was selected (not hardcoded)
+      const scenarioKey = demoScenario ?? 'iron_deficiency';
+      setAnalysisResult(demoScenarios[scenarioKey].analysis);
       setStage('complete');
     } else {
       try {
@@ -98,6 +100,7 @@ function App() {
     setOcrResult(null);
     setAnalysisResult(null);
     setVerificationResult(null);
+    setDemoScenario(null);
     setError(null);
   };
 

@@ -5,9 +5,11 @@ Transforms raw biomarker lists into retrieval-optimized clinical queries.
 Raw biomarker lists make poor retrieval queries — clinical textbooks describe
 patterns with diagnostic framing, not bare lists.
 
-Latency target: < 3 seconds.
+Latency target: < 3 seconds (with GPU). On CPU, we set a short timeout
+and fall back to the deterministic query formatter.
 """
 
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from backend.api.models.schemas import VerifiedResult
 
 
@@ -123,7 +125,7 @@ def rewrite_query(
         print("[QueryRewriter] ollama package not installed. Using fallback.")
         return _fallback_query(verified_results)
 
-    try:
+    def _do_llm_call():
         response = ollama.generate(
             model=model,
             system=SYSTEM_PROMPT,
@@ -134,7 +136,12 @@ def rewrite_query(
                 "num_predict": 512,
             },
         )
-        rewritten = response.get("response", "").strip()
+        return response.get("response", "").strip()
+
+    try:
+        with ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(_do_llm_call)
+            rewritten = future.result(timeout=timeout)
 
         # Strip "Query:" prefix if the LLM adds one
         if rewritten.lower().startswith("query:"):
@@ -147,6 +154,8 @@ def rewrite_query(
             return rewritten
 
         print("[QueryRewriter] LLM returned empty or too-short response. Using fallback.")
+    except FuturesTimeoutError:
+        print(f"[QueryRewriter] LLM call timed out after {timeout}s. Using fallback.")
     except Exception as e:
         print(f"[QueryRewriter] LLM call failed ({type(e).__name__}: {e}). Using fallback.")
 
